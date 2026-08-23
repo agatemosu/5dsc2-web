@@ -22,13 +22,13 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="min-h-dvh bg-background">
+<div class="flex min-h-dvh flex-col bg-background">
 	<div
 		class="pointer-events-none fixed -inset-x-50 -inset-y-22.5 z-0 bg-cover bg-center opacity-60 mix-blend-exclusion"
 		style="background-image: url({bg})"
 	></div>
 
-	<div class="relative z-10">
+	<div class="relative z-10 flex flex-1 flex-col">
 		<header class="sticky top-0 z-50 flex h-20 bg-black">
 			<div class="flex size-20 justify-center">
 				<img src={logo} width="60px" alt="Logo" />
