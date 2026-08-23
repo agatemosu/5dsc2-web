@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+@import '@fontsource/momo-trust-display';
+
+@theme {
+	--font-sans: 'Momo Trust Display', sans-serif;
+
+	--color-accent: #4969e7;
+	--color-background: #e8e8e8;
+	--color-dark: #1e1e1e;
+
+	--color-dimmed: #8e8e8e;
+
+	--color-team-red: #fa6a3e;
+	--color-team-blue: #f84e78;
+
+	--color-mod-nomod: #4babff;
+	--color-mod-hidden: #ffb115;
+	--color-mod-hardrock: #f65440;
+	--color-mod-doubletime: #865fe3;
+	--color-mod-easy: #93c278;
+	--color-mod-tiebreaker: #8b97a3;
+}
