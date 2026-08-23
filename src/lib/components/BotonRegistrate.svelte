@@ -9,7 +9,7 @@
 
 	<a
 		href="/register"
-		class="flex h-20 w-110 items-center justify-center bg-accent text-4xl text-white"
+		class="flex py-5 px-32 items-center justify-center bg-accent text-4xl text-white"
 	>
 		regístrate
 	</a>
