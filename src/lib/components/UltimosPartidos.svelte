@@ -36,7 +36,7 @@
 </script>
 
 <div class="relative flex w-82 flex-col items-center bg-dark">
-	<span class="text-white">últimos partidos</span>
+	<span class="my-2.5 text-white">últimos partidos</span>
 
 	<div class="flex flex-col items-center gap-2.5">
 		{#each partidos as partido}
