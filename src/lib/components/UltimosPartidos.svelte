@@ -39,7 +39,7 @@
 	<span class="my-2.5 text-white">últimos partidos</span>
 
 	<div class="flex flex-col items-center gap-2.5">
-		{#each partidos as partido}
+		{#each partidos as partido, i (i)}
 			<div class="flex w-40">
 				<div class="w-12.5 bg-team-red">
 					<img

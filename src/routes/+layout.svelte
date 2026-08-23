@@ -36,7 +36,7 @@
 
 			<nav class="ml-10 flex items-center">
 				<ul class="flex gap-7.5">
-					{#each items as item}
+					{#each items as item, i (i)}
 						{#if page.url.pathname === item.href || page.url.pathname.startsWith(item.href + '/')}
 							<li class="relative text-2xl text-white">
 								<span class="relative z-50 cursor-pointer">
@@ -49,6 +49,7 @@
 							</li>
 						{:else}
 							<li class="text-2xl text-dimmed hover:text-white">
+								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 								<a href={item.href}>{item.text}</a>
 							</li>
 						{/if}

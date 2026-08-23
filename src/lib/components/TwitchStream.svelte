@@ -11,14 +11,14 @@
 	];
 </script>
 
-<div class="flex max-w-3xl w-full flex-col gap-1">
+<div class="flex w-full max-w-3xl flex-col gap-1">
 	<div class="flex justify-between">
 		<p class="text-2xl">partido en <span class="text-accent">directo</span>.</p>
 
 		<ul class="flex gap-2">
-			{#each socials as social}
+			{#each socials as social, i (i)}
 				<li>
-					<a href={social.href}>
+					<a href={social.href} rel="external">
 						<social.icon class="size-7 text-black hover:opacity-80" />
 					</a>
 				</li>
@@ -27,7 +27,7 @@
 	</div>
 
 	<iframe
-		class="aspect-video"
+		class="aspect-video bg-black"
 		src="https://player.twitch.tv/?channel=spanishcup&autoplay=false&muted=true&parent={page.url
 			.hostname}"
 		allow="fullscreen"

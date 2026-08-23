@@ -14,6 +14,11 @@ export default defineConfig({
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
 			},
 			adapter: adapter(),
+			typescript: {
+				config: (config) => {
+					config.include.push('../drizzle.config.ts');
+				},
+			},
 		}),
 		svg(),
 	],
