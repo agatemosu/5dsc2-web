@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg?url';
 	import logo from '$lib/assets/logo.svg?url';
 	import './layout.css';
+	import bg from '$lib/assets/bg.png';
 
 	let { children } = $props();
 
@@ -21,34 +22,41 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="min-h-dvh bg-background font-sans">
-	<header class="flex h-20 bg-black">
-		<div class="flex size-20 justify-center">
-			<img src={logo} width="60px" alt="Logo" />
-		</div>
+<div class="min-h-dvh bg-background">
+	<div
+		class="pointer-events-none fixed -inset-x-50 -inset-y-22.5 z-0 bg-cover bg-center opacity-60 mix-blend-exclusion"
+		style="background-image: url({bg})"
+	></div>
 
-		<nav class="ml-10 flex items-center">
-			<ul class="flex gap-7.5">
-				{#each items as item}
-					{#if page.url.pathname === item.href || page.url.pathname.startsWith(item.href + '/')}
-						<li class="relative text-2xl text-white">
-							<span class="relative z-50 cursor-pointer">
-								{item.text}
-							</span>
+	<div class="relative z-10">
+		<header class="flex h-20 bg-black">
+			<div class="flex size-20 justify-center">
+				<img src={logo} width="60px" alt="Logo" />
+			</div>
 
-							<div
-								class="pointer-events-none absolute right-0 bottom-1 z-40 h-2.5 w-12.5 bg-accent"
-							></div>
-						</li>
-					{:else}
-						<li class="text-2xl text-dimmed hover:text-white">
-							<a href={item.href}>{item.text}</a>
-						</li>
-					{/if}
-				{/each}
-			</ul>
-		</nav>
-	</header>
+			<nav class="ml-10 flex items-center">
+				<ul class="flex gap-7.5">
+					{#each items as item}
+						{#if page.url.pathname === item.href || page.url.pathname.startsWith(item.href + '/')}
+							<li class="relative text-2xl text-white">
+								<span class="relative z-50 cursor-pointer">
+									{item.text}
+								</span>
 
-	{@render children()}
+								<div
+									class="pointer-events-none absolute right-0 bottom-1 z-40 h-2.5 w-12.5 bg-accent"
+								></div>
+							</li>
+						{:else}
+							<li class="text-2xl text-dimmed hover:text-white">
+								<a href={item.href}>{item.text}</a>
+							</li>
+						{/if}
+					{/each}
+				</ul>
+			</nav>
+		</header>
+
+		{@render children()}
+	</div>
 </div>
