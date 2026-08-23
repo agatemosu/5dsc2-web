@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import bg from '$lib/assets/bg.png';
 	import favicon from '$lib/assets/favicon.svg?url';
 	import logo from '$lib/assets/logo.svg?url';
+	import { dates } from '$lib/dates';
 	import './layout.css';
-	import bg from '$lib/assets/bg.png';
 
 	let { children } = $props();
 
@@ -11,11 +12,17 @@
 		{ text: 'inicio', href: '/' },
 		{ text: 'info', href: '/info' },
 		{ text: 'jugadores', href: '/players' },
-		{ text: 'mappool', href: '/mappool' },
-		{ text: 'salas', href: '/rooms' },
-		{ text: 'partidos', href: '/matches' },
-		{ text: 'stats', href: '/stats' },
 	];
+
+	if (import.meta.env.DEV || Temporal.Now.plainDateTimeISO() > dates.qualifiers.start) {
+		items.push({ text: 'mappool', href: '/mappool' });
+		items.push({ text: 'salas', href: '/rooms' });
+	}
+
+	if (import.meta.env.DEV || Temporal.Now.plainDateTimeISO() > dates.qualifiers.end) {
+		items.push({ text: 'partidos', href: '/matches' });
+		items.push({ text: 'stats', href: '/stats' });
+	}
 </script>
 
 <svelte:head>
