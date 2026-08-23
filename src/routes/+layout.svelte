@@ -29,7 +29,7 @@
 	></div>
 
 	<div class="relative z-10">
-		<header class="flex h-20 bg-black">
+		<header class="sticky top-0 z-50 flex h-20 bg-black">
 			<div class="flex size-20 justify-center">
 				<img src={logo} width="60px" alt="Logo" />
 			</div>
