@@ -11,7 +11,7 @@
 	];
 </script>
 
-<div class="flex w-3xl flex-col gap-1">
+<div class="flex max-w-3xl w-full flex-col gap-1">
 	<div class="flex justify-between">
 		<p class="text-2xl">partido en <span class="text-accent">directo</span>.</p>
 
@@ -27,7 +27,7 @@
 	</div>
 
 	<iframe
-		class="aspect-video w-full max-w-4xl pt-0"
+		class="aspect-video"
 		src="https://player.twitch.tv/?channel=spanishcup&autoplay=false&muted=true&parent={page.url
 			.hostname}"
 		allow="fullscreen"

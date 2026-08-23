@@ -58,15 +58,13 @@
 	});
 </script>
 
-<div class="flex w-3xl flex-col items-end gap-2.5">
+<div class="flex flex-col items-end gap-2.5">
 	<span class="text-4xl"> fechas </span>
 
-	<div class="w-77.5">
+	<div class="grid w-full max-w-80 grid-cols-2">
 		{#each dates as date}
-			<div class="flex justify-between">
-				<div>{formatter.format(date.start)} - {formatter.format(date.end)}</div>
-				<div class="text-accent">{date.text}</div>
-			</div>
+			<div>{formatter.format(date.start)} - {formatter.format(date.end)}</div>
+			<div class="text-right text-accent">{date.text}</div>
 		{/each}
 	</div>
 </div>
