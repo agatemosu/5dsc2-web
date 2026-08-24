@@ -10,7 +10,7 @@
 	let { children, title }: Props = $props();
 </script>
 
-<div class="mt-20 grid flex-1 grid-cols-2">
+<div class="mt-20 grid flex-1 2xl:grid-cols-2">
 	{#if title}
 		<div class="flex max-w-3xl flex-col gap-5">
 			<TituloSuperGrande />

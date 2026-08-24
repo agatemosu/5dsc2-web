@@ -7,7 +7,7 @@
 	const socials = [
 		{ icon: youtube, href: 'https://www.youtube.com/@SpanishCup', alt: 'YouTube' },
 		{ icon: twitch, href: 'https://www.twitch.tv/spanishcup', alt: 'Twitch' },
-		{ icon: discord, href: '/', alt: 'Discord' },
+		{ icon: discord, href: 'https://discord.com/invite/CY2dHK2Zek', alt: 'Discord' },
 	];
 </script>
 
