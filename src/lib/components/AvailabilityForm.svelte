@@ -82,7 +82,7 @@
 			<button
 				type="submit"
 				class={[
-					'bg-[#FEBA66] px-16 py-2 text-3xl font-bold  uppercase shadow-md transition-opacity',
+					'bg-[#FEBA66] px-16 py-2 text-3xl font-bold  text-white uppercase shadow-md transition-opacity',
 					loggedInDiscord ? 'cursor-pointer hover:opacity-60' : 'cursor-not-allowed brightness-50',
 				]}
 			>
@@ -90,7 +90,7 @@
 			</button>
 			<button
 				type="button"
-				class="cursor-pointer uppercase transition hover:underline"
+				class="cursor-pointer text-white uppercase transition hover:underline"
 				onclick={resetSelections}
 			>
 				Restablecer

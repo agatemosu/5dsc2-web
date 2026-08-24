@@ -40,7 +40,7 @@
 			/>
 			<span class="text-xl text-white">{discordData!.username}</span>
 		{:else}
-			<DiscordIcon class="size-10" />
+			<DiscordIcon class="size-10 text-white" />
 			<span class="text-xl text-white">Discord (sin vincular)</span>
 		{/if}
 	</div>

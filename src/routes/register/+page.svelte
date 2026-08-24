@@ -27,7 +27,7 @@
 		/>
 
 		<div class="my-6 flex flex-col text-center">
-			<p>
+			<p class="text-white">
 				Marca las horas en las que crees poder estar disponible para jugar partidos. Se usará <b
 					>horario peninsular</b
 				> en todo momento.
