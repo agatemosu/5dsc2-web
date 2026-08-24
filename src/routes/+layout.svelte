@@ -9,7 +9,7 @@
 
 	let { children, data } = $props();
 
-	  let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
+	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
 </script>
 
 <svelte:head>

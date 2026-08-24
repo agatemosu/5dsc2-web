@@ -1,10 +1,9 @@
 import { definePageMetaTags } from 'svelte-meta-tags';
 
 export const load = () => {
-  const pageTags = definePageMetaTags({
-    title: 'Info',
-  });
+	const pageTags = definePageMetaTags({
+		title: 'Info',
+	});
 
-
-  return { ...pageTags };
+	return { ...pageTags };
 };

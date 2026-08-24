@@ -6,8 +6,13 @@ import { addRoleToUser } from '$lib/server/discord';
 import { UserError } from '$lib/user-error';
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { definePageMetaTags } from 'svelte-meta-tags';
 
 export const load: PageServerLoad = async (event) => {
+	const pageTags = definePageMetaTags({
+		title: 'Registro',
+	});
+
 	const playerData = event.locals.user
 		? await db.query.user.findFirst({
 				where: (user, { eq }) => eq(user.id, event.locals.user!.id),
@@ -20,6 +25,7 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		playerData,
+		...pageTags,
 	};
 };
 
