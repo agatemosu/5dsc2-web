@@ -29,7 +29,7 @@
 - Los 36 jugadores con mejor clasificación, basada en la fórmula detallada a continuación, avanzarán a la Fase de Liga.
 
 $$
-\text{Sean }m\in[1,2,\dots,10], \ \  N_m\in [1, 2, \dots, N_\text{total\_jugadores}], \ \ j_m \in [1, 2, \dots, N_m], \ \ |p_{g}| = \sum _{m=1}^{10} N_m, \ \ p_{i_m} \in p_{g}
+\text{Sean }m\in[1,2,\dots,10], \ \ N_m\in [1, 2, \dots, N_\text{total\_jugadores}], \ \ j_m \in [1, 2, \dots, N_m], \ \ |p_{g}| = \sum _{m=1}^{10} N_m, \ \ p_{i_m} \in p_{g}
 $$
 
 $$
@@ -41,7 +41,7 @@ $$
 \\
 N_m & =&\text{Cantidad de puntuaciones en un mapa }m
 \\
-j_m &  =& \text{Jugador } j \text{ en el mapa } m
+j_m & =& \text{Jugador } j \text{ en el mapa } m
 \\
 p_{g} &=& \text{Conjunto de puntuaciones de todos los mapas }
 \\
@@ -79,17 +79,17 @@ $$
 
 <div class="overflow-x-auto">
 
-| RONDA           | ESTRELLAS | NOMODS | OCULTOS | ROCADURAS | TIEMPODOBLES | ROMPEEMPATES |
-| :-------------- | --------: | -----: | ------: | --------: | -----------: | -----------: |
-| Clasificatorias |      6,5★ |      4 |       2 |         2 |            2 |            0 |
-| Liga Fase 1     |      6,2★ |      4 |       2 |         2 |            3 |            0 |
-| Liga Fase 2     |      6,4★ |      4 |       2 |         2 |            3 |            0 |
-| La Purga        |      6,6★ |      5 |       3 |         3 |            3 |            1 |
-| Octavos         |      6,4★ |      5 |       3 |         3 |            3 |            1 |
-| Cuartos         |      6,6★ |      6 |       3 |         3 |            4 |            1 |
-| Semifinales     |      6,8★ |      6 |       3 |         3 |            4 |            1 |
-| Finales         |      7,0★ |      7 |       3 |         3 |            4 |            1 |
-| Gran final      |      7,2★ |      7 |       3 |         3 |            4 |            1 |
+| RONDA           |  SR  | NM  | HD  | HR  | DT  | TB  | BEST OF |
+| :-------------- | :--: | :-: | :-: | :-: | :-: | :-: | :------ |
+| Clasificatorias | 6,5★ |  4  |  2  |  2  |  2  |  0  |         |
+| Liga Fase 1     | 6,2★ |  4  |  2  |  2  |  3  |  0  | Bo8     |
+| Liga Fase 2     | 6,4★ |  4  |  2  |  2  |  3  |  0  | Bo8     |
+| La Purga        | 6,6★ |  5  |  3  |  3  |  3  |  1  | Bo9     |
+| Octavos         | 6,4★ |  5  |  3  |  3  |  3  |  1  | Bo9     |
+| Cuartos         | 6,6★ |  6  |  3  |  3  |  4  |  1  | Bo11    |
+| Semifinales     | 6,8★ |  6  |  3  |  3  |  4  |  1  | Bo11    |
+| Finales         | 7,0★ |  7  |  3  |  3  |  4  |  1  | Bo13    |
+| Gran final      | 7,2★ |  7  |  3  |  3  |  4  |  1  | Bo13    |
 
 </div>
 

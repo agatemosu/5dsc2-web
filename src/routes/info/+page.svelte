@@ -4,7 +4,7 @@
 	import Rules from './rules.md';
 </script>
 
-<Layout title="Info">
+<Layout title="info">
 	<div class="prose max-w-full font-inter prose-invert">
 		<Rules />
 	</div>

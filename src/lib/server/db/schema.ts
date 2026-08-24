@@ -18,6 +18,7 @@ export const player = sqliteTable('players', {
 		.references(() => user.id, { onDelete: 'cascade' }),
 	registeredAt: integer('registered_at', { mode: 'timestamp' }).notNull(),
 	availability: text('availability').notNull(),
+	seed: integer('seed'),
 });
 
 export const osuUser = sqliteTable('osu_users', {
@@ -25,14 +26,6 @@ export const osuUser = sqliteTable('osu_users', {
 	username: text('username').notNull(),
 	globalRank: integer('global_rank').notNull(),
 	countryRank: integer('country_rank').notNull(),
-	teamId: integer('team_id').references(() => osuTeam.id),
-});
-
-export const osuTeam = sqliteTable('osu_teams', {
-	id: integer('id').primaryKey(),
-	name: text('name').notNull(),
-	shortName: text('short_name').notNull(),
-	flagUrl: text('flag_url'),
 });
 
 export const discordUser = sqliteTable('discord_users', {
@@ -83,6 +76,5 @@ export const sessionRelations = relations(session, ({ one }) => ({
 export type User = typeof user.$inferSelect;
 export type Player = typeof player.$inferSelect;
 export type OsuUser = typeof osuUser.$inferSelect;
-export type OsuTeam = typeof osuTeam.$inferSelect;
 export type DiscordUser = typeof discordUser.$inferSelect;
 export type Session = typeof session.$inferSelect;

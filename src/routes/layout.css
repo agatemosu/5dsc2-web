@@ -10,6 +10,7 @@
 	--font-inter: 'Inter Variable', sans-serif;
 
 	--color-accent: #4969e7;
+	--color-accent-dark: #314181;
 	--color-background: #e8e8e8;
 	--color-dark: #1e1e1e;
 
@@ -18,10 +19,38 @@
 	--color-team-red: #fa6a3e;
 	--color-team-blue: #f84e78;
 
+	--color-qualifier-gold: #ffb700;
+	--color-qualifier-silver: #d3d3d3;
+	--color-qualifier-bronze: #e4733b;
+
 	--color-mod-nomod: #4babff;
 	--color-mod-hidden: #ffb115;
 	--color-mod-hardrock: #f65440;
 	--color-mod-doubletime: #865fe3;
 	--color-mod-easy: #93c278;
 	--color-mod-tiebreaker: #8b97a3;
+}
+
+html {
+	--header-height: 80px;
+	overflow-y: scroll;
+	scroll-padding-top: var(--header-height);
+	scrollbar-color: var(--color-accent) var(--color-dark);
+}
+
+body {
+	scrollbar-color: var(--color-accent) transparent;
+}
+
+mjx-container svg {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+[align='center'] {
+	text-align: center;
+}
+
+[align='right'] {
+	text-align: right;
 }

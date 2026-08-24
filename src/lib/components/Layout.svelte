@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import TituloSuperGrande from './TituloSuperGrande.svelte';
 
 	interface Props {
 		children: Snippet;
@@ -9,11 +10,17 @@
 	let { children, title }: Props = $props();
 </script>
 
-<div
-	class="flex w-full max-w-7xl flex-1 flex-col place-self-center bg-dark p-5 pt-10 text-white md:mt-16 md:px-20"
->
+<div class="mt-20 grid flex-1 grid-cols-2">
 	{#if title}
-		<h1 class="mb-12 text-center text-4xl font-extrabold">{title}</h1>
+		<div class="flex max-w-3xl flex-col gap-5">
+			<TituloSuperGrande />
+
+			<div class="flex items-center justify-center bg-accent px-32 py-5 text-4xl text-white">
+				{title}
+			</div>
+		</div>
 	{/if}
-	{@render children()}
+	<div class="mx-5 bg-dark p-5">
+		{@render children()}
+	</div>
 </div>

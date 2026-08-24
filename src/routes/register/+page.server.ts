@@ -20,7 +20,6 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		playerData,
-		title: 'Registro - 5 Digit Spanish Cup 2026',
 	};
 };
 
