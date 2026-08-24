@@ -5,9 +5,9 @@
 	import TwitchStream from '$lib/components/TwitchStream.svelte';
 </script>
 
-<main class="mx-auto mt-20 grid w-full flex-1 grid-cols-2 gap-x-12 gap-y-10">
+<main class="mx-auto mt-20 grid w-full flex-1 lg:grid-cols-2">
 	<div class="flex flex-col justify-between">
-		<div class="flex w-3xl flex-col gap-5">
+		<div class="flex max-w-3xl flex-col gap-5">
 			<TituloSuperGrande />
 
 			<div class="self-end">
@@ -18,7 +18,7 @@
 		<!-- <ProximoPartidoSection /> -->
 	</div>
 
-	<div class="mr-5 mb-5 flex flex-col items-end justify-between">
+	<div class="m-5 mt-0 flex flex-col items-end justify-between gap-5">
 		<Fechas />
 		<TwitchStream />
 	</div>
