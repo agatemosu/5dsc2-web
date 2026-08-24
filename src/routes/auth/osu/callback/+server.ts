@@ -39,6 +39,10 @@ export const GET: RequestHandler = async (event) => {
 		return error(403, 'Debes ser de España para registrarte.');
 	}
 
+	if (osuUser.statistics.global_rank >= 100_000 || osuUser.statistics.global_rank < 10_000) {
+		return error(403, 'Debes ser 5 dígitos para registrarte.');
+	}
+
 	const existingUser = await getUserByOsuId(osuUser.id);
 
 	if (existingUser) {
