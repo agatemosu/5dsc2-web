@@ -14,7 +14,7 @@ export const load: PageServerLoad = async () => {
 		},
 	});
 
-	const allHaveSeed = players.every((player) => player.seed != null);
+	const allHaveSeed = players.length > 1 && players.every((player) => player.seed != null);
 	players.sort((a, b) => {
 		if (allHaveSeed) {
 			if (a.seed === -1 && b.seed !== -1) return 1;
