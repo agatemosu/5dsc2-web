@@ -15,9 +15,9 @@
 	{#if data.user == null || data.playerData == null}
 		<a
 			href={resolve('/auth/osu')}
-			class="flex items-center gap-3 place-self-center bg-[#F24998] px-4 py-2 hover:opacity-80"
+			class="flex items-center gap-3 place-self-center bg-[#F24998] px-4 py-2 text-white hover:opacity-80"
 		>
-			<OsuLogo class="size-10 text-white" />
+			<OsuLogo class="size-10" />
 			<span class="text-xl">Inicia sesión con osu!</span>
 		</a>
 	{:else}
