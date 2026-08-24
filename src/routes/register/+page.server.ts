@@ -36,6 +36,13 @@ export const actions: Actions = {
 
 		if (
 			import.meta.env.PROD &&
+			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.player_regs.start) < 0
+		) {
+			return fail(403, { error: 'Aún no se aceptan registros.' });
+		}
+
+		if (
+			import.meta.env.PROD &&
 			playerData === undefined &&
 			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.player_regs.end) > 0
 		) {
