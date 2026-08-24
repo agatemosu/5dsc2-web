@@ -1,52 +1,56 @@
+function getDate(date: string) {
+	return Temporal.ZonedDateTime.from(date + '[Europe/Madrid]');
+}
+
 export const dates = {
 	player_regs: {
-		start: Temporal.PlainDateTime.from('2026-08-23'),
-		end: Temporal.PlainDateTime.from('2026-09-07'),
+		start: getDate('2026-08-24 21:00'),
+		end: getDate('2026-09-07 23:59'),
 		text: 'registros',
 	},
 	qualifiers: {
-		start: Temporal.PlainDateTime.from('2026-09-11'),
-		end: Temporal.PlainDateTime.from('2026-09-20'),
+		start: getDate('2026-09-11 00:00'),
+		end: getDate('2026-09-20 23:59'),
 		text: 'qualifiers',
 	},
 	liga_fase_1: {
-		start: Temporal.PlainDateTime.from('2026-09-19'),
-		end: Temporal.PlainDateTime.from('2026-09-20'),
+		start: getDate('2026-09-19 00:00'),
+		end: getDate('2026-09-20 23:59'),
 		text: 'liga fase 1',
 	},
 	liga_fase_2: {
-		start: Temporal.PlainDateTime.from('2026-09-26'),
-		end: Temporal.PlainDateTime.from('2026-09-27'),
+		start: getDate('2026-09-26 00:00'),
+		end: getDate('2026-09-27 23:59'),
 		text: 'liga fase 2',
 	},
 	la_purga: {
-		start: Temporal.PlainDateTime.from('2026-10-03'),
-		end: Temporal.PlainDateTime.from('2026-10-04'),
+		start: getDate('2026-10-03 00:00'),
+		end: getDate('2026-10-04 23:59'),
 		text: 'la purga',
 	},
 	ro16: {
-		start: Temporal.PlainDateTime.from('2026-10-10'),
-		end: Temporal.PlainDateTime.from('2026-10-11'),
+		start: getDate('2026-10-10 00:00'),
+		end: getDate('2026-10-11 23:59'),
 		text: 'ro16',
 	},
 	quarterfinals: {
-		start: Temporal.PlainDateTime.from('2026-10-17'),
-		end: Temporal.PlainDateTime.from('2026-10-18'),
+		start: getDate('2026-10-17 00:00'),
+		end: getDate('2026-10-18 23:59'),
 		text: 'quarterfinals',
 	},
 	semifinals: {
-		start: Temporal.PlainDateTime.from('2026-10-24'),
-		end: Temporal.PlainDateTime.from('2026-10-25'),
+		start: getDate('2026-10-24 00:00'),
+		end: getDate('2026-10-25 23:59'),
 		text: 'semifinals',
 	},
 	finals: {
-		start: Temporal.PlainDateTime.from('2026-10-31'),
-		end: Temporal.PlainDateTime.from('2026-11-01'),
+		start: getDate('2026-10-31 00:00'),
+		end: getDate('2026-11-01 23:59'),
 		text: 'finals',
 	},
 	grandfinals: {
-		start: Temporal.PlainDateTime.from('2026-11-07'),
-		end: Temporal.PlainDateTime.from('2026-11-08'),
+		start: getDate('2026-11-07 00:00'),
+		end: getDate('2026-11-08 23:59'),
 		text: 'grandfinals',
 	},
 };

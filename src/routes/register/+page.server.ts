@@ -37,7 +37,7 @@ export const actions: Actions = {
 		if (
 			import.meta.env.PROD &&
 			playerData === undefined &&
-			Temporal.Now.plainDateTimeISO() > dates.player_regs.end
+			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.player_regs.end) > 0
 		) {
 			return fail(410, { error: 'Ya no se aceptan registros.' });
 		}

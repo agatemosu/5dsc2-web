@@ -12,7 +12,7 @@
 
 	<div class="grid w-full max-w-80 grid-cols-2">
 		{#each Object.values(dates) as date, i (i)}
-			<div>{formatter.format(date.start)} - {formatter.format(date.end)}</div>
+			<div>{formatter.format(date.start.epochMilliseconds)} - {formatter.format(date.end.epochMilliseconds)}</div>
 			<div class="text-right text-accent">{date.text}</div>
 		{/each}
 	</div>
