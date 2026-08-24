@@ -1,3 +1,4 @@
+import 'temporal-polyfill/global';
 import svg from '@poppanator/sveltekit-svg';
 import remarkGfm from 'remark-gfm';
 import adapter from '@sveltejs/adapter-vercel';
