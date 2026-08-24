@@ -6,8 +6,7 @@ export const load: LayoutServerLoad = async ({ url, locals }) => {
 	const baseTags = defineBaseMetaTags({
 		title: 'Inicio',
 		titleTemplate: '%s | 5 Digit Spanish Cup 2026',
-		description:
-			'Participa ahora en la 5 digit cup española y compite con jugadores de tu nivel.',
+		description: 'Participa ahora en la 5 digit cup española y compite con jugadores de tu nivel.',
 		canonical: new URL(url.pathname, url.origin).href,
 		openGraph: {
 			type: 'website',
@@ -21,6 +20,9 @@ export const load: LayoutServerLoad = async ({ url, locals }) => {
 					type: 'image/png',
 				},
 			],
+		},
+		twitter: {
+			cardType: 'summary_large_image',
 		},
 	});
 
