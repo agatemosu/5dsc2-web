@@ -5,20 +5,11 @@ CREATE TABLE `discord_users` (
 	`avatar` text
 );
 --> statement-breakpoint
-CREATE TABLE `osu_teams` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`name` text NOT NULL,
-	`short_name` text NOT NULL,
-	`flag_url` text
-);
---> statement-breakpoint
 CREATE TABLE `osu_users` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`username` text NOT NULL,
 	`global_rank` integer NOT NULL,
-	`country_rank` integer NOT NULL,
-	`team_id` integer,
-	FOREIGN KEY (`team_id`) REFERENCES `osu_teams`(`id`) ON UPDATE no action ON DELETE no action
+	`country_rank` integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `players` (
@@ -26,6 +17,7 @@ CREATE TABLE `players` (
 	`user_id` integer NOT NULL,
 	`registered_at` integer NOT NULL,
 	`availability` text NOT NULL,
+	`seed` integer,
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
