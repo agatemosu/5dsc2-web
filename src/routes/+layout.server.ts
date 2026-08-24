@@ -4,18 +4,14 @@ import header from '$lib/assets/header.png';
 
 export const load: LayoutServerLoad = async ({ url, locals }) => {
 	const baseTags = defineBaseMetaTags({
-		title: 'Home',
+		title: 'Inicio',
 		titleTemplate: '%s | 5 Digit Spanish Cup 2026',
 		description:
-			'Svelte Meta Tags is a Svelte component for managing meta tags and SEO in your Svelte applications.',
+			'Participa ahora en la 5 digit cup española y compite con jugadores de tu nivel.',
 		canonical: new URL(url.pathname, url.origin).href,
 		openGraph: {
 			type: 'website',
-			url: new URL(url.pathname, url.origin).href,
-			locale: 'en_IE',
-			title: 'Open Graph Title',
-			description: 'Open Graph Description',
-			siteName: 'SiteName',
+			locale: 'es_ES',
 			images: [
 				{
 					url: new URL(header, url.origin).href,
