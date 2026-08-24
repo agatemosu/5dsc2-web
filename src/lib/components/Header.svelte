@@ -6,7 +6,7 @@
 	const items = getNavigationItems();
 </script>
 
-<header class="sticky top-0 z-50 flex h-20 bg-black max-md:hidden">
+<header class="sticky top-0 z-50 hidden h-20 bg-black lg:flex">
 	<div class="flex size-20 justify-center">
 		<img src={logo} width="60" alt="Logo" />
 	</div>

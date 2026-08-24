@@ -8,7 +8,7 @@
 	const items = getNavigationItems();
 </script>
 
-<header class="sticky top-0 z-50 bg-black md:hidden">
+<header class="sticky top-0 z-50 bg-black lg:hidden">
 	<div class="flex h-16 items-center justify-between px-4">
 		<img src={logo} width="48" alt="Logo" />
 
