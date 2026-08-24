@@ -5,7 +5,7 @@
 	import MobileHeader from '$lib/components/MobileHeader.svelte';
 	import './layout.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <svelte:head>
@@ -19,7 +19,7 @@
 	></div>
 
 	<div class="relative z-10 flex flex-1 flex-col">
-		<Header />
+		<Header user={data.user?.osu} />
 		<MobileHeader />
 
 		{@render children()}

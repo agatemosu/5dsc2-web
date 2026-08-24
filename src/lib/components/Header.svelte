@@ -1,17 +1,25 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import logo from '$lib/assets/logo.svg?url';
 	import { getNavigationItems } from '$lib/navigation';
+	import type { OsuUser } from '$lib/server/db/schema';
+
+	interface Props {
+		user: OsuUser | undefined;
+	}
+
+	let { user }: Props = $props();
 
 	const items = getNavigationItems();
 </script>
 
-<header class="sticky top-0 z-50 hidden h-20 bg-black lg:flex">
+<header class="sticky top-0 z-50 hidden h-20 items-center bg-black pr-5 lg:flex">
 	<div class="flex size-20 justify-center">
 		<img src={logo} width="60" alt="Logo" />
 	</div>
 
-	<nav class="ml-10 flex items-center">
+	<nav class="ml-10 flex flex-1 items-center">
 		<ul class="flex gap-7.5">
 			{#each items as item, i (i)}
 				{#if page.url.pathname === item.href || page.url.pathname.startsWith(item.href + '/')}
@@ -33,4 +41,16 @@
 			{/each}
 		</ul>
 	</nav>
+
+	{#if user}
+		<img
+			src="https://a.ppy.sh/{user.id}"
+			alt="Avatar de {user.username}"
+			class="mt-10 size-20 shadow-md"
+		/>
+	{:else}
+		<a href={resolve('/auth/osu')} class="bg-accent px-2 py-1 text-white hover:opacity-80">
+			Acceder
+		</a>
+	{/if}
 </header>

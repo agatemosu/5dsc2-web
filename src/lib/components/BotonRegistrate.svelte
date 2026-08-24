@@ -9,7 +9,7 @@
 	</div>
 
 	<a
-		href={resolve('/auth/osu')}
+		href={resolve('/register')}
 		class="flex items-center justify-center bg-accent px-32 py-5 text-4xl text-white"
 	>
 		regístrate
