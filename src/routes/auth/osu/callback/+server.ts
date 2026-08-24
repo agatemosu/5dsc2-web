@@ -11,11 +11,6 @@ export const GET: RequestHandler = async (event) => {
 	if (errorCode) {
 		const errorDescription = event.url.searchParams.get('error_description');
 
-		console.error('osu OAuth returned an error:', {
-			errorCode,
-			errorDescription,
-		});
-
 		return error(400, errorDescription ?? 'Vuelve a intentarlo.');
 	}
 
@@ -24,13 +19,6 @@ export const GET: RequestHandler = async (event) => {
 	const storedState = event.cookies.get('osu_oauth_state');
 
 	if (code == null || state == null || storedState == null || state !== storedState) {
-		console.error('osu OAuth state/code validation failed:', {
-			hasCode: code != null,
-			hasState: state != null,
-			hasStoredState: storedState != null,
-			stateMatches: state != null && storedState != null ? state === storedState : false,
-		});
-
 		return error(400, 'Vuelve a intentarlo.');
 	}
 
@@ -38,7 +26,7 @@ export const GET: RequestHandler = async (event) => {
 	try {
 		tokens = await getOsuClient(event.url.origin).validateAuthorizationCode(code);
 	} catch (err) {
-		console.error('osu OAuth token exchange failed:', err);
+		console.error('osu! OAuth token exchange failed:', err);
 
 		return error(400, 'Vuelve a intentarlo.');
 	}

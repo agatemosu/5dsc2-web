@@ -27,8 +27,9 @@ export const GET: RequestHandler = async (event) => {
 	let tokens: OAuth2Tokens;
 	try {
 		tokens = await getDiscordClient(event.url.origin).validateAuthorizationCode(code, null);
-	} catch {
-		// Invalid code or client credentials
+	} catch (err) {
+		console.error('Discord OAuth token exchange failed:', err);
+
 		return error(400, 'Vuelve a intentarlo.');
 	}
 
