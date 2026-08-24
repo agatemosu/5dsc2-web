@@ -1,7 +1,11 @@
+import svg from '@poppanator/sveltekit-svg';
+import remarkGfm from 'remark-gfm';
 import adapter from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
-import svg from '@poppanator/sveltekit-svg';
+import { svelteMarkdown } from '@sveltek/markdown';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeMathjax from 'rehype-mathjax';
+import remarkMath from 'remark-math';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -19,6 +23,15 @@ export default defineConfig({
 					config.include.push('../drizzle.config.ts');
 				},
 			},
+			preprocess: [
+				svelteMarkdown({
+					plugins: {
+						rehype: [rehypeMathjax],
+						remark: [remarkMath, remarkGfm],
+					},
+				}),
+			],
+			extensions: ['.svelte', '.md'],
 		}),
 		svg(),
 	],

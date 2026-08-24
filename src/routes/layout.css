@@ -1,8 +1,13 @@
 @import 'tailwindcss';
+
 @import '@fontsource/momo-trust-display';
+@import '@fontsource-variable/inter/wght.css';
+
+@plugin '@tailwindcss/typography';
 
 @theme {
 	--font-sans: 'Momo Trust Display', sans-serif;
+	--font-inter: 'Inter Variable', sans-serif;
 
 	--color-accent: #4969e7;
 	--color-background: #e8e8e8;

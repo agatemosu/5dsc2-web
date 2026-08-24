@@ -14,6 +14,14 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+
+		declare module '*.md' {
+			import type { Component } from 'svelte';
+
+			declare const MarkdownComponent: Component;
+
+			export default MarkdownComponent;
+		}
 	}
 }
 
