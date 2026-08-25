@@ -27,7 +27,7 @@
 	</div>
 
 	<iframe
-		class="aspect-video bg-black"
+		class="aspect-video bg-black shadow-xl"
 		src="https://player.twitch.tv/?channel=spanishcup&autoplay=false&muted=true&parent={page.url
 			.hostname}"
 		allow="fullscreen"

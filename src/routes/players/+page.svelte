@@ -6,7 +6,11 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Layout title="jugadores">
+{#snippet playerCount()}
+	<div class="self-end bg-dark px-10 py-5 text-xl text-white">{data.players.length}</div>
+{/snippet}
+
+<Layout title="jugadores" extra={playerCount}>
 	<div class="flex flex-col">
 		{#if !data.allHaveSeed}
 			<PlayerGrid players={data.players} />
