@@ -15,11 +15,7 @@ export function getOsuClient(urlOrigin: string) {
 		throw new Error('osu! OAuth environment variables are missing');
 	}
 
-	return new arctic.Osu(
-		clientId,
-		clientSecret,
-		`${urlOrigin}/auth/osu/callback`,
-	);
+	return new arctic.Osu(clientId, clientSecret, `${urlOrigin}/auth/osu/callback`);
 }
 
 export function getDiscordClient(urlOrigin: string) {
@@ -36,9 +32,5 @@ export function getDiscordClient(urlOrigin: string) {
 		throw new Error('Discord OAuth environment variables are missing');
 	}
 
-	return new arctic.Discord(
-		clientId,
-		clientSecret,
-		`${urlOrigin}/auth/discord/callback`,
-	);
+	return new arctic.Discord(clientId, clientSecret, `${urlOrigin}/auth/discord/callback`);
 }
