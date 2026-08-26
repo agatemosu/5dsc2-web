@@ -1,5 +1,6 @@
 import { SessionValidationResult } from '$lib/server/auth';
 import '@poppanator/sveltekit-svg/dist/svg.d.ts';
+import type { MetaTagsProps } from 'svelte-meta-tags';
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -11,15 +12,19 @@ declare global {
 		}
 
 		// interface Error {}
-		// interface PageData {}
+
+		interface PageData {
+			pageMetaTags?: Readonly<MetaTagsProps>;
+		}
+
 		// interface PageState {}
+
 		// interface Platform {}
 
 		declare module '*.md' {
 			import type { Component } from 'svelte';
 
-			declare const MarkdownComponent: Component;
-
+			const MarkdownComponent: Component;
 			export default MarkdownComponent;
 		}
 	}
