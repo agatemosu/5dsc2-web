@@ -1,31 +1,20 @@
 ## Información General
 
 - El torneo es individual, 1v1.
-
 - Todos los horarios están dados en horario peninsular español.
-
 - BWS es calculado con la fórmula estándar: $BWS = \text{rango} ^ {0.9937 ^ {\text{badges} ^ 2}}$
-
 - BWS es calculado contabilizando badges desde 2022 y en adelante. Las badges conseguidas anteriormente no se contabilizarán para el cálculo de BWS.
-
 - Los jugadores deben estar en el rango permitido hasta que acaben los registros.
-
 - Todos los mapas serán jugados en el cliente antiguo, NO en osu!(lazer), en TeamVS, usando ScoreV2 y NF forzado.
-
 - Habrán unos clasificatorios que determinarán los 36 jugadores que accederán a la Fase de Liga. Estos serán calculados usando el método Z-sum.
 
 ## Información sobre la Ronda Clasificatoria
 
 - Todo jugador debe reservar su lobby en la página web con al menos 1 hora de antelación.
-
 - Todo jugador que no esté en su lobby pasados 5 minutos después de su hora asignada, dejará de poder participar en esa misma lobby.
-
 - El orden de los mapas en los clasificatorios no puede ser alterado. Se jugarán de forma secuencial empezando por el NM1 y acabando en el DT2.
-
 - Hay un temporizador de hasta 90 segundos entre mapas.
-
 - Cada mapa se jugará una sola vez, la administración se reserva el derecho de que algún jugador pueda repetir algún mapa, en caso de que haya tenido algún problema técnico.
-
 - Los 36 jugadores con mejor clasificación, basada en la fórmula detallada a continuación, avanzarán a la Fase de Liga.
 
 $$
@@ -51,28 +40,34 @@ p_{i_m} &=& \text{Score concreta sobre el mapa } m
 \\\mu_m &=& \ln {\prod_{j_m=1}^{N_m}\sqrt[{N_m}]{e^{p_{g_{j_m}}}}}\end{cases}
 $$
 
+## Información General de los Partidos
+
+- Los jugadores recibirán una notificación 15 minutos antes de su hora asignada.
+- Aquel jugador que llegue 5 minutos tarde, perderá su protección de mapa y bans.
+- Aquel jugador que no llegue pasados 10 minutos de su hora asignada, será dado como perdedor del match.
+- Los mapas de calentamiento están permitidos, deben durar un máximo de 3:30 minutos.
+- La seed mas alta se reserva el derecho de elegir entre la primera protección de mapa o la segunda protección de mapa. Solo habrá una protección de mapa disponible por cada partido y estos mapas no podrán ser baneados posteriormente.
+- El orden de bans ABAB será decidido por un !roll.
+- El doble ban no está permitido.
+- El jugador que haya elegido primer ban también tendrá el primer pick.
+- Hay un temporizador de hasta 90 segundos entre mapas, contabilizando la elección de mapa y el estar listo posteriormente.
+- Cada jugador podrá ser avisado hasta 2 veces por no estar listo antes de que acabe cada temporizador. Al tercer aviso será dado por perdedor del match.
+- Cada jugador tiene a su disposición un temporizador de 90 segundos, que puede utilizar entre mapas después del temporizador que ya hay dado.
+- En caso de darse algún problema técnico en los primeros 20 segundos del mapa, el árbitro asignado deberá abortar el mapa.
+- En caso de darse algún problema técnico pasados los primeros 20 segundos del mapa, el árbitro pedirá una replay o prueba para poder verificar el score del afectado.
+
 ## Normas del torneo y aclaraciones
 
 - Es obligatorio permanecer en el servidor de discord oficial del torneo hasta que cada jugador finalice su participación en el torneo.
-
 - La administración se reserva el derecho de expulsar del torneo a cualquier jugador que incumpla las normas establecidas.
-
 - La administración podrá aclarar o modificar el redactado de una norma cuando sea necesario para resolver una ambigüedad o facilitar su interpretación.
-
 - La administración podrá añadir nuevas normas cuando sea necesario para garantizar el correcto funcionamiento, la integridad y el juego limpio del torneo.
-
 - No se permitirá ningún tipo de falta de respeto, acoso o comportamiento antideportivo hacia jugadores, miembros del personal u otras personas relacionadas con el torneo.
-
 - No se podrán compartir ni publicar los resultados de la Ronda Clasificatoria antes de su anuncio oficial por parte de la administración.
-
 - Queda prohibido el uso de multicuentas, cheats o cualquier otro método que proporcione una ventaja ilegítima.
-
 - Todos los jugadores deberán cumplir las normas oficiales de osu!. Su incumplimiento podrá ser sancionado por la administración.
-
 - Los miembros del personal del torneo no podrán participar como jugadores, con excepción de comentaristas, streamers y creadores de GFX.
-
 - Los jugadores eliminados podrán participar en labores de arbitraje y/o realización de replays.
-
 - La administración podrá resolver cualquier situación no contemplada en estas normas tomando las medidas necesarias para preservar la integridad y el correcto desarrollo del torneo.
 
 ## Mappools
