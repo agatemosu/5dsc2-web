@@ -6,10 +6,10 @@
 		type DecodedAvailability,
 		type EncodedAvailability,
 	} from '$lib/availability';
-	import type { SubmitFunction } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
+	import type { SubmitFunction } from './$types';
 
 	interface Props {
 		serverAvailability: EncodedAvailability | undefined;

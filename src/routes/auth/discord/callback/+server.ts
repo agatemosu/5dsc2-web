@@ -3,8 +3,9 @@ import { addDiscordDataToUser } from '$lib/server/db/user';
 import { joinUserToServer } from '$lib/server/discord';
 import { getDiscordClient } from '$lib/server/oauth';
 import { UserError } from '$lib/user-error';
-import { type RequestHandler, error, redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { OAuth2Tokens } from 'arctic';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async (event) => {
 	if (!event.locals.user) {

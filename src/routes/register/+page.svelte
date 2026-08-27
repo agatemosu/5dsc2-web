@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
+	import OsuLogo from '$lib/assets/osu.svg?component';
 	import type { EncodedAvailability } from '$lib/availability';
 	import Layout from '$lib/components/Layout.svelte';
-	import OsuLogo from '$lib/assets/osu.svg?component';
-	import DiscordLink from '$lib/components/DiscordLink.svelte';
-	import AvailabilityForm from '$lib/components/AvailabilityForm.svelte';
+	import AvailabilityForm from './AvailabilityForm.svelte';
+	import DiscordLink from './DiscordLink.svelte';
 
 	let { data, form } = $props();
 	let userError = page.url.searchParams.get('error');

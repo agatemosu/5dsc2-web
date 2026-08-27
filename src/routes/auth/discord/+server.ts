@@ -1,7 +1,7 @@
-import { type RequestHandler, error, redirect } from '@sveltejs/kit';
-import { generateState } from 'arctic';
-
 import { getDiscordClient } from '$lib/server/oauth';
+import { error, redirect } from '@sveltejs/kit';
+import { generateState } from 'arctic';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = (event) => {
 	if (!event.locals.user) {
