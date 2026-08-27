@@ -7,7 +7,7 @@
 	import type { DiscordUser } from '$lib/server/db/schema';
 
 	interface Props {
-		discord: DiscordUser | null | undefined;
+		discord: DiscordUser | null;
 		registered: boolean;
 	}
 
