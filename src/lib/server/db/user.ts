@@ -5,12 +5,12 @@ import * as table from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
 export async function getUserByOsuId(osuId: number) {
-	const [result] = await db.select().from(table.user).where(eq(table.user.osuId, osuId));
+	const [result] = await db.select().from(table.users).where(eq(table.users.osuId, osuId));
 	return result;
 }
 
 export async function createUser(osuUser: OsuUser) {
-	await db.insert(table.osuUser).values({
+	await db.insert(table.osuUsers).values({
 		id: osuUser.id,
 		username: osuUser.username,
 		globalRank: osuUser.statistics.global_rank,
@@ -18,29 +18,29 @@ export async function createUser(osuUser: OsuUser) {
 	});
 
 	const [user] = await db
-		.insert(table.user)
+		.insert(table.users)
 		.values({
 			osuId: osuUser.id,
 		})
-		.returning({ id: table.user.id });
+		.returning({ id: table.users.id });
 
 	return user.id;
 }
 
 export async function refreshOsuUser(osuUser: OsuUser) {
 	await db
-		.update(table.osuUser)
+		.update(table.osuUsers)
 		.set({
 			username: osuUser.username,
 			globalRank: osuUser.statistics.global_rank,
 			countryRank: osuUser.statistics.country_rank,
 		})
-		.where(eq(table.osuUser.id, osuUser.id));
+		.where(eq(table.osuUsers.id, osuUser.id));
 }
 
 export async function addDiscordDataToUser(userId: number, discordUser: DiscordUser) {
 	await db
-		.insert(table.discordUser)
+		.insert(table.discordUsers)
 		.values({
 			id: discordUser.id,
 			username: discordUser.username,
@@ -48,7 +48,7 @@ export async function addDiscordDataToUser(userId: number, discordUser: DiscordU
 			avatar: discordUser.avatar,
 		})
 		.onConflictDoUpdate({
-			target: [table.discordUser.id],
+			target: [table.discordUsers.id],
 			set: {
 				username: discordUser.username,
 				globalName: discordUser.global_name,
@@ -56,19 +56,19 @@ export async function addDiscordDataToUser(userId: number, discordUser: DiscordU
 			},
 		});
 
-	await db.update(table.user).set({ discordId: discordUser.id }).where(eq(table.user.id, userId));
+	await db.update(table.users).set({ discordId: discordUser.id }).where(eq(table.users.id, userId));
 }
 
 export async function unlinkDiscord(userId: number) {
-	await db.update(table.user).set({ discordId: null }).where(eq(table.user.id, userId));
+	await db.update(table.users).set({ discordId: null }).where(eq(table.users.id, userId));
 }
 
 export async function registerUser(userId: number, availability: string) {
 	await db
-		.insert(table.player)
+		.insert(table.players)
 		.values({ userId, availability, registeredAt: new Date() })
 		.onConflictDoUpdate({
-			target: table.player.userId,
+			target: table.players.userId,
 			set: { availability },
 		});
 }

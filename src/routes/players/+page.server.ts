@@ -1,13 +1,13 @@
-import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import { definePageMetaTags } from 'svelte-meta-tags';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	const pageTags = definePageMetaTags({
 		title: 'Jugadores',
 	});
 
-	const players = await db.query.player.findMany({
+	const players = await db.query.players.findMany({
 		columns: { registeredAt: true, seed: true },
 		with: {
 			user: {

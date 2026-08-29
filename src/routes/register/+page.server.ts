@@ -14,8 +14,8 @@ export const load: PageServerLoad = async (event) => {
 	});
 
 	const playerData = event.locals.user
-		? await db.query.user.findFirst({
-				where: (user, { eq }) => eq(user.id, event.locals.user!.id),
+		? await db.query.users.findFirst({
+				where: { id: event.locals.user.id },
 				columns: {},
 				with: {
 					discord: true,
@@ -35,8 +35,8 @@ export const actions: Actions = {
 			return fail(401);
 		}
 
-		const playerData = await db.query.player.findFirst({
-			where: (player, { eq }) => eq(player.userId, event.locals.user!.id),
+		const playerData = await db.query.players.findFirst({
+			where: { userId: event.locals.user.id },
 			columns: { id: true },
 		});
 
@@ -76,8 +76,8 @@ export const actions: Actions = {
 			return fail(401);
 		}
 
-		const playerData = await db.query.player.findFirst({
-			where: (player, { eq }) => eq(player.userId, event.locals.user!.id),
+		const playerData = await db.query.players.findFirst({
+			where: { userId: event.locals.user.id },
 			columns: { id: true },
 		});
 

@@ -1,80 +1,51 @@
-import { relations } from 'drizzle-orm';
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { integer, snakeCase, text } from 'drizzle-orm/sqlite-core';
 
-export const user = sqliteTable('users', {
-	id: integer('id').primaryKey({ autoIncrement: true }),
-	osuId: integer('osu_id')
+export const users = snakeCase.table('users', {
+	id: integer().primaryKey({ autoIncrement: true }),
+	osuId: integer()
 		.notNull()
 		.unique()
-		.references(() => osuUser.id),
-	discordId: text('discord_id').references(() => discordUser.id),
+		.references(() => osuUsers.id),
+	discordId: text().references(() => discordUsers.id),
 });
 
-export const player = sqliteTable('players', {
-	id: integer('id').primaryKey({ autoIncrement: true }),
-	userId: integer('user_id')
+export const players = snakeCase.table('players', {
+	id: integer().primaryKey({ autoIncrement: true }),
+	userId: integer()
 		.notNull()
 		.unique()
-		.references(() => user.id, { onDelete: 'cascade' }),
-	registeredAt: integer('registered_at', { mode: 'timestamp' }).notNull(),
-	availability: text('availability').notNull(),
-	seed: integer('seed'),
+		.references(() => users.id, { onDelete: 'cascade' }),
+	registeredAt: integer({ mode: 'timestamp' }).notNull(),
+	availability: text().notNull(),
+	seed: integer(),
 });
 
-export const osuUser = sqliteTable('osu_users', {
-	id: integer('id').primaryKey(),
-	username: text('username').notNull(),
-	globalRank: integer('global_rank').notNull(),
-	countryRank: integer('country_rank').notNull(),
+export const osuUsers = snakeCase.table('osu_users', {
+	id: integer().primaryKey(),
+	username: text().notNull(),
+	globalRank: integer().notNull(),
+	countryRank: integer().notNull(),
 });
 
-export const discordUser = sqliteTable('discord_users', {
-	id: text('id').primaryKey(),
-	username: text('username').notNull(),
-	globalName: text('global_name'),
-	avatar: text('avatar'),
+export const discordUsers = snakeCase.table('discord_users', {
+	id: text().primaryKey(),
+	username: text().notNull(),
+	globalName: text(),
+	avatar: text(),
 });
 
-export const session = sqliteTable('sessions', {
-	id: text('id').primaryKey(),
-	userId: integer('user_id')
+export const sessions = snakeCase.table('sessions', {
+	id: text().primaryKey(),
+	userId: integer()
 		.notNull()
-		.references(() => user.id, { onDelete: 'cascade' }),
-	expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull(),
+		.references(() => users.id, { onDelete: 'cascade' }),
+	expiresAt: integer({ mode: 'timestamp' }).notNull(),
 });
-
-// relations
-
-export const userRelations = relations(user, ({ one }) => ({
-	player: one(player),
-	osu: one(osuUser, {
-		fields: [user.osuId],
-		references: [osuUser.id],
-	}),
-	discord: one(discordUser, {
-		fields: [user.discordId],
-		references: [discordUser.id],
-	}),
-}));
-
-export const playerRelations = relations(player, ({ one }) => ({
-	user: one(user, {
-		fields: [player.userId],
-		references: [user.id],
-	}),
-}));
-
-export const sessionRelations = relations(session, ({ one }) => ({
-	user: one(user, {
-		fields: [session.userId],
-		references: [user.id],
-	}),
-}));
 
 // types
 
-export type User = typeof user.$inferSelect;
-export type Player = typeof player.$inferSelect;
-export type OsuUser = typeof osuUser.$inferSelect;
-export type DiscordUser = typeof discordUser.$inferSelect;
-export type Session = typeof session.$inferSelect;
+export type User = typeof users.$inferSelect;
+export type Player = typeof players.$inferSelect;
+export type OsuUser = typeof osuUsers.$inferSelect;
+export type DiscordUser = typeof discordUsers.$inferSelect;
+export type Session = typeof sessions.$inferSelect;
