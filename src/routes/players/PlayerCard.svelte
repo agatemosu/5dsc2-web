@@ -2,7 +2,7 @@
 	import type { OsuUser, Player } from '$lib/server/db/schema';
 
 	interface Props {
-		player: Pick<Player, 'seed'> & { user: { osu: OsuUser } };
+		player: Pick<Player, 'seed'> & { osu: OsuUser };
 	}
 
 	let { player }: Props = $props();
@@ -30,10 +30,10 @@
 	></div>
 
 	<div class="relative z-10 flex items-center">
-		<a href="https://osu.ppy.sh/users/{player.user.osu.id}" target="_blank">
+		<a href="https://osu.ppy.sh/users/{player.osu.id}" target="_blank">
 			<img
-				src="https://a.ppy.sh/{player.user.osu.id}"
-				alt={player.user.osu.username}
+				src="https://a.ppy.sh/{player.osu.id}"
+				alt={player.osu.username}
 				class="size-20"
 			/>
 		</a>
@@ -41,11 +41,11 @@
 		<div class="ml-3 flex flex-1">
 			<div class="flex flex-1 flex-col items-start self-center">
 				<span class="text-2xl text-white">
-					{player.user.osu.username}
+					{player.osu.username}
 				</span>
 				<div class="flex items-baseline gap-3 text-accent-dark">
-					<span>#{player.user.osu.globalRank}</span>
-					<span>#{player.user.osu.countryRank} ES</span>
+					<span>#{player.osu.globalRank}</span>
+					<span>#{player.osu.countryRank} ES</span>
 				</div>
 			</div>
 		</div>

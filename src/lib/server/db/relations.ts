@@ -3,14 +3,17 @@ import * as schema from './schema';
 
 export const relations = defineRelations(schema, (r) => ({
 	players: {
-		user: r.one.users({
-			from: r.players.userId,
-			to: r.users.id,
+		osu: r.one.osuUsers({
+			from: r.players.userId.through(r.users.id),
+			to: r.osuUsers.id.through(r.users.osuId),
 			optional: false,
 		}),
 	},
 	users: {
-		player: r.one.players(),
+		player: r.one.players({
+			from: r.users.id,
+			to: r.players.userId,
+		}),
 		osu: r.one.osuUsers({
 			from: r.users.osuId,
 			to: r.osuUsers.id,

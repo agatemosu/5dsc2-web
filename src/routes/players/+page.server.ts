@@ -10,12 +10,7 @@ export const load: PageServerLoad = async () => {
 	const players = await db.query.players.findMany({
 		columns: { registeredAt: true, seed: true },
 		with: {
-			user: {
-				columns: {},
-				with: {
-					osu: true,
-				},
-			},
+			osu: true,
 		},
 	});
 
