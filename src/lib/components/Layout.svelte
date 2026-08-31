@@ -25,7 +25,7 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="mx-5 bg-dark p-5">
+	<div class="mx-5 min-w-0 bg-dark p-5">
 		{@render children()}
 	</div>
 </div>
