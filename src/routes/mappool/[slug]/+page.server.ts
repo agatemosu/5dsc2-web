@@ -46,5 +46,9 @@ export const load: PageServerLoad = async (event) => {
 		mappool,
 	};
 
+	if (!round.published) {
+		return error(403);
+	}
+
 	return { rounds, round };
 };
