@@ -7,14 +7,14 @@ export const GET: RequestHandler = async () => {
 		columns: {},
 		with: {
 			osu: {
-				columns: { countryRank: false },
+				columns: { id: true, username: true },
 			},
 		},
 	});
 
 	const rows = [
-		'id,username,country_rank',
-		...players.map(({ osu }) => `${osu.id},${osu.username},${osu.globalRank}`),
+		'id,username',
+		...players.map(({ osu }) => `${osu.id},${osu.username}`),
 	];
 
 	return text(rows.join('\n'));
