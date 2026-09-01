@@ -15,7 +15,7 @@ export const GET: RequestHandler = async () => {
 		},
 	});
 
-	const rows = ['id,username', ...players.map(({ osu }) => `${osu.id},${osu.username}`)];
+	const rows = players.map(({ osu }) => `${osu.username},${osu.id}`);
 
 	return text(rows.join('\n'));
 };
