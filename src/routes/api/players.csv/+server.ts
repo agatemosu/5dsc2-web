@@ -14,7 +14,7 @@ export const GET: RequestHandler = async () => {
 
 	const rows = [
 		'id,username,country_rank',
-		players.map(({ osu }) => `${osu.id},${osu.username},${osu.globalRank}`),
+		...players.map(({ osu }) => `${osu.id},${osu.username},${osu.globalRank}`),
 	];
 
 	return text(rows.join('\n'));
