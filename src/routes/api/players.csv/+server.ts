@@ -4,6 +4,9 @@ import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	const players = await db.query.players.findMany({
+		where: {
+			registeredAt: { isNotNull: true },
+		},
 		columns: {},
 		with: {
 			osu: {
@@ -12,10 +15,7 @@ export const GET: RequestHandler = async () => {
 		},
 	});
 
-	const rows = [
-		'id,username',
-		...players.map(({ osu }) => `${osu.id},${osu.username}`),
-	];
+	const rows = ['id,username', ...players.map(({ osu }) => `${osu.id},${osu.username}`)];
 
 	return text(rows.join('\n'));
 };

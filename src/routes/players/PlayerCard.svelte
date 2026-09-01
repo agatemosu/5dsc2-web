@@ -31,11 +31,7 @@
 
 	<div class="relative z-10 flex items-center">
 		<a href="https://osu.ppy.sh/users/{player.osu.id}" target="_blank">
-			<img
-				src="https://a.ppy.sh/{player.osu.id}"
-				alt={player.osu.username}
-				class="size-20"
-			/>
+			<img src="https://a.ppy.sh/{player.osu.id}" alt={player.osu.username} class="size-20" />
 		</a>
 
 		<div class="ml-3 flex flex-1">
