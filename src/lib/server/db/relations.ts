@@ -23,6 +23,11 @@ export const relations = defineRelations(schema, (r) => ({
 			to: r.osuUsers.id.through(r.users.osuId),
 			optional: false,
 		}),
+		discord: r.one.discordUsers({
+			from: r.players.userId.through(r.users.id),
+			to: r.discordUsers.id.through(r.users.discordId),
+			optional: false,
+		}),
 	},
 	qualifierRooms: {
 		players: r.many.players({
