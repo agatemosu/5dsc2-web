@@ -4,10 +4,18 @@ import * as table from '$lib/server/db/schema';
 import * as csv from 'csv-parse/sync';
 import { DrizzleQueryError } from 'drizzle-orm';
 import { CommandContext, CommandOptionType, SlashCommand, SlashCreator } from 'slash-create';
+import { z } from 'zod';
 
 interface Options {
 	file: string;
 }
+
+const fileSchema = z.array(
+	z.object({
+		name: z.string(),
+		date: z.string().transform((val) => Temporal.ZonedDateTime.from(val)),
+	}),
+);
 
 export class AddRoomBulkCommand extends SlashCommand {
 	constructor(creator: SlashCreator) {
@@ -53,8 +61,6 @@ export class AddRoomBulkCommand extends SlashCommand {
 			return;
 		}
 
-		console.log(attachment);
-
 		if (attachment.size > 4000) {
 			ctx.send(`Archivo muy grande: ${attachment.size} B > 4000 B`);
 			return;
@@ -63,12 +69,20 @@ export class AddRoomBulkCommand extends SlashCommand {
 		const response = await fetch(attachment.url);
 		const content = await response.bytes();
 
-		const fileData = csv.parse<{ name: string; date: string }>(content, {
+		const fileData = csv.parse(content, {
 			columns: true,
 			skip_empty_lines: true,
+			trim: true,
 		});
 
-		const roomsToInsert = fileData.map((row) => {
+		const result = fileSchema.safeParse(fileData);
+
+		if (!result.success) {
+			ctx.send('Formato inválido.');
+			return;
+		}
+
+		const roomsToInsert = result.data.map((row) => {
 			return {
 				id: row.name,
 				startTime: new Date(Temporal.ZonedDateTime.from(row.date).epochMilliseconds),
