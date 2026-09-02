@@ -16,14 +16,13 @@ export class AddRoomCommand extends SlashCommand {
 			nameLocalizations: {
 				'es-ES': 'añadir-sala',
 			},
-			description: "Adds a room to the tournament's qualifier room list.",
+			description: 'Adds a room to the qualifier room list.',
 			descriptionLocalizations: {
-				'es-ES': 'Añade una sala a las lista de salas de clasificación del torneo.',
+				'es-ES': 'Añade una sala a la lista de salas de clasificación.',
 			},
 			guildIDs: env.DISCORD_GUILD_ID,
 			options: [
 				{
-					required: true,
 					type: CommandOptionType.STRING,
 					name: 'name',
 					name_localizations: {
@@ -33,9 +32,9 @@ export class AddRoomCommand extends SlashCommand {
 					description_localizations: {
 						'es-ES': 'Nombre de la sala',
 					},
+					required: true,
 				},
 				{
-					required: true,
 					type: CommandOptionType.STRING,
 					name: 'date',
 					name_localizations: {
@@ -45,6 +44,7 @@ export class AddRoomCommand extends SlashCommand {
 					description_localizations: {
 						'es-ES': 'Fecha de la sala',
 					},
+					required: true,
 				},
 				{
 					type: CommandOptionType.STRING,
@@ -66,6 +66,7 @@ export class AddRoomCommand extends SlashCommand {
 
 		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
 			ctx.send('No tienes permiso para usar este comando.');
+			return;
 		}
 
 		if (options.timezone !== undefined) {
@@ -87,10 +88,9 @@ export class AddRoomCommand extends SlashCommand {
 				id: options.name,
 				startTime: new Date(zdt.epochMilliseconds),
 			})
-			.onConflictDoNothing()
-			.returning();
+			.onConflictDoNothing();
 
-		if (insertResult.length === 0) {
+		if (insertResult.rowsAffected === 0) {
 			ctx.send(`Ya hay una sala con nombre ${options.name}.`);
 			return;
 		}
