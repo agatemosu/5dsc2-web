@@ -23,7 +23,7 @@
 	{:else}
 		<DiscordLink
 			discord={data.playerData.discord}
-			registered={data.user.player?.registeredAt !== undefined}
+			registered={data.user.player !== null}
 		/>
 
 		<div class="my-6 flex flex-col text-center">
