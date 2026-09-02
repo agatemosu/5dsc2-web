@@ -8,7 +8,7 @@
 
 	let { data }: PageProps = $props();
 
-	let { mappool, mappackUrl } = $derived(data.round);
+	let { mappools, mappackUrl } = $derived(data.round);
 </script>
 
 <Layout title="mappool">
@@ -18,7 +18,7 @@
 				href={resolve('/mappool/[slug]', { slug: round.slug })}
 				class="shrink-0 px-5 py-3 text-sm text-white {page.params.slug === round.slug
 					? 'bg-accent'
-					: round.published
+					: round.mappoolPublishedAt !== null
 						? 'bg-gray'
 						: 'bg-dark'}"
 			>
@@ -45,7 +45,7 @@
 			in:blur={{ delay: 200, duration: 200 }}
 			class="flex flex-col gap-2.5"
 		>
-			{#each mappool as map (map.diff.id)}
+			{#each mappools as map (map.id)}
 				<BeatmapCard {map} />
 			{/each}
 		</div>

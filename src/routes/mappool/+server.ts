@@ -1,6 +1,6 @@
 import { resolve } from '$app/paths';
 import { dates } from '$lib/dates';
-import { rounds } from '$lib/rounds-dummy';
+import { db } from '$lib/server/db';
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
@@ -12,7 +12,14 @@ export const GET: RequestHandler = async () => {
 		return error(403);
 	}
 
-	const lastPublishedRound = rounds.findLast((r) => r.published === true);
+	const lastPublishedRound = await db.query.rounds.findFirst({
+		where: {
+			mappoolPublishedAt: { isNotNull: true },
+		},
+		orderBy: {
+			mappoolPublishedAt: 'desc',
+		},
+	});
 
 	if (!lastPublishedRound) {
 		return error(404);

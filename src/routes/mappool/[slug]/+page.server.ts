@@ -1,6 +1,7 @@
 import { dates } from '$lib/dates';
-import { rounds } from '$lib/rounds-dummy';
+import { db } from '$lib/server/db';
 import { error } from '@sveltejs/kit';
+import { definePageMetaTags } from 'svelte-meta-tags';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -11,44 +12,34 @@ export const load: PageServerLoad = async (event) => {
 		return error(403);
 	}
 
-	const mappool = [
-		{
-			slot: {
-				mod: 'NM',
-				idx: 1,
-			},
-			custom: true,
-			beatmapset: {
-				id: 1002554,
-				title: 'Lost My Way',
-				artist: 'FELT',
-				mapper: {
-					name: 'RLC',
-					id: 1047883,
+	const pageTags = definePageMetaTags({
+		title: 'Mappool',
+	});
+
+	const round = await db.query.rounds.findFirst({
+		where: {
+			slug: event.params.slug,
+		},
+		with: {
+			mappools: {
+				with: {
+					beatmap: {
+						with: { beatmapset: true },
+					},
 				},
-				bpm: 240,
-				length: 369,
-			},
-			diff: {
-				id: 2098486,
-				name: 'Absolution',
-				starRating: 6.8,
-				circleSize: 4,
-				approachRate: 9.5,
-				overallDifficulty: 8.8,
 			},
 		},
-	];
+	});
 
-	const round = {
-		...rounds.find((r) => r.slug === event.params.slug),
-		mappackUrl: event.url.href,
-		mappool,
-	};
-
-	if (!round.published) {
+	if (round?.mappoolPublishedAt == null || round.mappoolPublishedAt > new Date()) {
 		return error(403);
 	}
 
-	return { rounds, round };
+	const rounds = await db.query.rounds.findMany();
+
+	return {
+		rounds,
+		round,
+		...pageTags,
+	};
 };

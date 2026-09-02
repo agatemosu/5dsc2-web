@@ -1,7 +1,11 @@
-import type { Handle } from '@sveltejs/kit';
 import * as auth from '$lib/server/auth';
+import type { Handle } from '@sveltejs/kit';
 
 const handleAuth: Handle = async ({ event, resolve }) => {
+	if (event.url.pathname.startsWith('/api')) {
+		return resolve(event);
+	}
+
 	const sessionToken = event.cookies.get(auth.sessionCookieName);
 
 	if (!sessionToken) {

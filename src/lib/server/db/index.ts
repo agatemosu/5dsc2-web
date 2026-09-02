@@ -8,4 +8,4 @@ if (!env.DATABASE_AUTH_TOKEN) throw new Error('DATABASE_AUTH_TOKEN is not set');
 
 const client = createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN });
 
-export const db = drizzle({ client, relations });
+export const db = drizzle({ client, relations, logger: import.meta.env.DEV });

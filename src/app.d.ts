@@ -11,7 +11,9 @@ declare global {
 			session: SessionValidationResult['session'];
 		}
 
-		// interface Error {}
+		interface Error {
+			data?: unknown;
+		}
 
 		interface PageData {
 			pageMetaTags?: Readonly<MetaTagsProps>;
