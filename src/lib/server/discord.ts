@@ -30,7 +30,7 @@ export async function joinUserToServer(userId: string, accessToken: string) {
 export async function addRoleToUser(userId: string) {
 	const url = `https://discord.com/api/v10/guilds/${
 		env.DISCORD_GUILD_ID
-	}/members/${userId}/roles/${env.DISCORD_ROLE_ID}`;
+	}/members/${userId}/roles/${env.DISCORD_PLAYER_ROLE_ID}`;
 
 	const response = await fetch(url, {
 		method: 'PUT',

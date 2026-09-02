@@ -19,7 +19,7 @@ export function getOsuClient(urlOrigin: string) {
 }
 
 export function getDiscordClient(urlOrigin: string) {
-	const clientId = env.DISCORD_CLIENT_ID;
+	const clientId = env.DISCORD_APP_ID;
 	const clientSecret = env.DISCORD_CLIENT_SECRET;
 
 	console.log({
