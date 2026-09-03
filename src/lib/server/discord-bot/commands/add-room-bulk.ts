@@ -3,7 +3,13 @@ import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import * as csv from 'csv-parse/sync';
 import { DrizzleQueryError } from 'drizzle-orm';
-import { CommandContext, CommandOptionType, SlashCommand, SlashCreator } from 'slash-create';
+import {
+	CommandContext,
+	CommandOptionType,
+	SlashCommand,
+	SlashCreator,
+	type MessageOptions,
+} from 'slash-create';
 import { z } from 'zod';
 
 interface Options {
@@ -46,24 +52,21 @@ export class AddRoomBulkCommand extends SlashCommand {
 		});
 	}
 
-	async run(ctx: CommandContext) {
+	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
 		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
-			ctx.send('No tienes permiso para usar este comando.');
-			return;
+			return 'No tienes permiso para usar este comando.';
 		}
 
 		const attachment = ctx.attachments.get(options.file)!;
 
 		if (!attachment.content_type!.includes('text/csv')) {
-			ctx.send('No es un archivo CSV.');
-			return;
+			return 'No es un archivo CSV.';
 		}
 
 		if (attachment.size > 4000) {
-			ctx.send(`Archivo muy grande: ${attachment.size} B > 4000 B`);
-			return;
+			return `Archivo muy grande: ${attachment.size} B > 4000 B`;
 		}
 
 		const response = await fetch(attachment.url);
@@ -78,14 +81,13 @@ export class AddRoomBulkCommand extends SlashCommand {
 		const result = fileSchema.safeParse(fileData);
 
 		if (!result.success) {
-			ctx.send('Formato inválido.');
-			return;
+			return 'Formato inválido.';
 		}
 
 		const roomsToInsert = result.data.map((row) => {
 			return {
 				id: row.name,
-				startTime: new Date(Temporal.ZonedDateTime.from(row.date).epochMilliseconds),
+				startTime: new Date(row.date.epochMilliseconds),
 			} satisfies typeof table.qualifierRooms.$inferInsert;
 		});
 
@@ -94,13 +96,10 @@ export class AddRoomBulkCommand extends SlashCommand {
 		} catch (e) {
 			if (e instanceof DrizzleQueryError) {
 				const failedToAdd = e.params.filter((n) => n % 2 !== 0).join(', ');
-				ctx.send(
-					`Se ha cancelado la adición de todas las salas porque las siguientes ya existen: ${failedToAdd}.`,
-				);
-				return;
+				return `Se ha cancelado la adición de todas las salas porque las siguientes ya existen: ${failedToAdd}.`;
 			}
 		}
 
-		ctx.send(`Se han añadido las salas proporcionadas.`);
+		return `Se han añadido las salas proporcionadas.`;
 	}
 }

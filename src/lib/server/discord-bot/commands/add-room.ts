@@ -1,7 +1,13 @@
 import { env } from '$env/dynamic/private';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
-import { CommandContext, CommandOptionType, SlashCommand, SlashCreator } from 'slash-create';
+import {
+	CommandContext,
+	CommandOptionType,
+	SlashCommand,
+	SlashCreator,
+	type MessageOptions,
+} from 'slash-create';
 
 interface Options {
 	name: string;
@@ -61,20 +67,18 @@ export class AddRoomCommand extends SlashCommand {
 		});
 	}
 
-	async run(ctx: CommandContext) {
+	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
 		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
-			ctx.send('No tienes permiso para usar este comando.');
-			return;
+			return 'No tienes permiso para usar este comando.';
 		}
 
 		if (options.timezone !== undefined) {
 			const timezones = Intl.supportedValuesOf('timeZone');
 			const supportsTimezone = timezones.includes(options.timezone);
 			if (!supportsTimezone) {
-				ctx.send('Zona horaria inválida.');
-				return;
+				return 'Zona horaria inválida.';
 			}
 		}
 
@@ -91,10 +95,9 @@ export class AddRoomCommand extends SlashCommand {
 			.onConflictDoNothing();
 
 		if (insertResult.rowsAffected === 0) {
-			ctx.send(`Ya hay una sala con nombre ${options.name}.`);
-			return;
+			return `Ya hay una sala con nombre ${options.name}.`;
 		}
 
-		ctx.send(`Nueva sala ${options.name} creada para <t:${zdt.epochMilliseconds / 1000}:F>.`);
+		return `Nueva sala ${options.name} creada para <t:${zdt.epochMilliseconds / 1000}:F>.`;
 	}
 }
