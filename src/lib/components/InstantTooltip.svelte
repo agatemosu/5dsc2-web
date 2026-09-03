@@ -29,6 +29,6 @@
 	);
 </script>
 
-<Tooltip as="div" block={true} {content} html={true}>
+<Tooltip as="span" block={false} {content} html={true}>
 	{@render children()}
 </Tooltip>

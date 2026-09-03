@@ -13,11 +13,15 @@
 
 	<div class="grid w-full max-w-80 grid-cols-2">
 		{#each Object.values(dates) as date, i (i)}
-			<InstantTooltip instant={date.start.toInstant()}>
-				{formatter.format(date.start.epochMilliseconds)} - {formatter.format(
-					date.end.epochMilliseconds,
-				)}
-			</InstantTooltip>
+			<div>
+				<InstantTooltip instant={date.start.toInstant()}>
+					{formatter.format(date.start.epochMilliseconds)}
+				</InstantTooltip>
+				-
+				<InstantTooltip instant={date.start.toInstant()}>
+					{formatter.format(date.end.epochMilliseconds)}
+				</InstantTooltip>
+			</div>
 			<div class="text-right text-accent">{date.text}</div>
 		{/each}
 	</div>
