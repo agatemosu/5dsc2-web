@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import InstantTooltip from '$lib/components/InstantTooltip.svelte';
 	import type { OsuUser, QualifierRoom } from '$lib/server/db/schema';
+	import { tooltip } from 'svooltip';
 
 	interface Props {
 		room: QualifierRoom & { players: Array<{ osu: Pick<OsuUser, 'username'> }> };
@@ -11,6 +12,7 @@
 
 	let { room, loggedIn, selectedRoom }: Props = $props();
 
+	const listFormatter = new Intl.ListFormat('es-ES');
 	const timeFormatter = new Intl.DateTimeFormat('es-ES', { timeStyle: 'short' });
 	const maxPlayers = 16;
 
@@ -42,7 +44,13 @@
 		</span>
 	</InstantTooltip>
 
-	<div class="flex flex-1 items-center">
+	<div
+		class="flex flex-1 items-center"
+		use:tooltip={{
+			content: listFormatter.format(room.players.map((player) => player.osu.username)),
+			visibility: room.players.length > 0,
+		}}
+	>
 		<i class="icon-[tabler--user] text-white"></i>
 		<span class="text-sm text-white">{room.players.length}/{maxPlayers}</span>
 	</div>
