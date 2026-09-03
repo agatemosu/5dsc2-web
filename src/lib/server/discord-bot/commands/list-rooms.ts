@@ -2,6 +2,7 @@ import { env } from '$env/dynamic/private';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import {
+	BaseInteractionContext,
 	ButtonStyle,
 	CommandContext,
 	ComponentType,
@@ -9,9 +10,17 @@ import {
 	SlashCreator,
 	type AnyComponent,
 	type MessageEmbedOptions,
+	type MessageOptions,
 } from 'slash-create';
 
+enum Action {
+	Previous,
+	Next,
+}
+
 export class ListRoomsCommand extends SlashCommand {
+	static readonly pageSize = 5;
+
 	constructor(creator: SlashCreator) {
 		super(creator, {
 			name: 'list-rooms',
@@ -24,17 +33,68 @@ export class ListRoomsCommand extends SlashCommand {
 			},
 			guildIDs: env.DISCORD_GUILD_ID,
 		});
+
+		creator.on('componentInteraction', async (ctx) => {
+			const parsed = ListRoomsCommand.parseCustomId(ctx.customID);
+
+			if (parsed === null || ctx.user.id !== parsed.userId) {
+				return;
+			}
+
+			const roomCount = await db.$count(table.qualifierRooms);
+
+			if (roomCount === 0) {
+				await ctx.editParent('No hay ninguna sala registrada.');
+				return;
+			}
+
+			const totalPages = Math.ceil(roomCount / ListRoomsCommand.pageSize);
+			const listFormatter = new Intl.ListFormat(ctx.locale);
+
+			const newPage = Math.max(
+				0,
+				Math.min(parsed.page + (parsed.action === Action.Previous ? -1 : 1), totalPages - 1),
+			);
+
+			await ctx.editParent({
+				embeds: [await ListRoomsCommand.createEmbed(newPage, totalPages, listFormatter)],
+				components: ListRoomsCommand.createComponents(ctx, newPage, totalPages),
+			});
+		});
 	}
 
-	static readonly pageSize = 5;
+	static createCustomId = (action: Action, userId: string, page: number) =>
+		`rooms:${action}:${userId}:${page}`;
+
+	static parseCustomId = (
+		customId: string,
+	): { action: Action; userId: string; page: number } | null => {
+		const parts = customId.split(':');
+		if (parts.length !== 4) {
+			return null;
+		}
+		const [prefix, actionString, userId, pageString] = parts;
+		if (prefix !== 'rooms') {
+			return null;
+		}
+		const action = Number(actionString);
+		if (!Number.isInteger(action) || !Object.values(Action).includes(action)) {
+			return null;
+		}
+		const page = Number(pageString);
+		if (!Number.isInteger(page) || page < 0) {
+			return null;
+		}
+		return { action, userId, page };
+	};
 
 	static getRooms = (page: number) => {
 		return db.query.qualifierRooms.findMany({
 			orderBy: {
 				startTime: 'asc',
 			},
-			limit: ListRoomsCommand.pageSize,
-			offset: page * ListRoomsCommand.pageSize,
+			limit: this.pageSize,
+			offset: page * this.pageSize,
 			with: {
 				players: {
 					columns: {},
@@ -75,14 +135,18 @@ export class ListRoomsCommand extends SlashCommand {
 		};
 	};
 
-	static createComponents = (page: number, totalPages: number): AnyComponent[] => [
+	static createComponents = (
+		ctx: BaseInteractionContext,
+		page: number,
+		totalPages: number,
+	): AnyComponent[] => [
 		{
 			type: ComponentType.ACTION_ROW,
 			components: [
 				{
 					type: ComponentType.BUTTON,
 					style: ButtonStyle.SECONDARY,
-					custom_id: 'rooms_previous',
+					custom_id: this.createCustomId(Action.Previous, ctx.user.id, page),
 					label: 'Anterior',
 					emoji: { name: '◀️' },
 					disabled: page === 0,
@@ -90,7 +154,7 @@ export class ListRoomsCommand extends SlashCommand {
 				{
 					type: ComponentType.BUTTON,
 					style: ButtonStyle.SECONDARY,
-					custom_id: 'rooms_next',
+					custom_id: this.createCustomId(Action.Next, ctx.user.id, page),
 					label: 'Siguiente',
 					emoji: { name: '▶️' },
 					disabled: page === totalPages - 1,
@@ -99,45 +163,19 @@ export class ListRoomsCommand extends SlashCommand {
 		},
 	];
 
-	async run(ctx: CommandContext) {
-		await ctx.defer();
-
+	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const roomCount = await db.$count(table.qualifierRooms);
-
 		if (roomCount === 0) {
-			await ctx.send('No hay ninguna sala registrada.');
-			return;
+			return 'No hay ninguna sala registrada.';
 		}
 
-		let page = 0;
+		const page = 0;
 		const totalPages = Math.ceil(roomCount / ListRoomsCommand.pageSize);
 		const listFormatter = new Intl.ListFormat(ctx.locale);
 
-		await ctx.send({
+		return {
 			embeds: [await ListRoomsCommand.createEmbed(page, totalPages, listFormatter)],
-			components: ListRoomsCommand.createComponents(page, totalPages),
-		});
-
-		ctx.registerComponent('rooms_previous', async (btnCtx) => {
-			if (page <= 0) return;
-
-			page--;
-
-			await btnCtx.editParent({
-				embeds: [await ListRoomsCommand.createEmbed(page, totalPages, listFormatter)],
-				components: ListRoomsCommand.createComponents(page, totalPages),
-			});
-		});
-
-		ctx.registerComponent('rooms_next', async (btnCtx) => {
-			if (page >= totalPages - 1) return;
-
-			page++;
-
-			await btnCtx.editParent({
-				embeds: [await ListRoomsCommand.createEmbed(page, totalPages, listFormatter)],
-				components: ListRoomsCommand.createComponents(page, totalPages),
-			});
-		});
+			components: ListRoomsCommand.createComponents(ctx, page, totalPages),
+		};
 	}
 }
