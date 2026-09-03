@@ -1,13 +1,23 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import discord from '$lib/assets/discord.svg?component';
-	import twitch from '$lib/assets/twitch.svg?component';
-	import youtube from '$lib/assets/youtube.svg?component';
+	import { tooltip } from 'svooltip';
 
 	const socials = [
-		{ icon: youtube, href: 'https://www.youtube.com/@SpanishCup', alt: 'YouTube' },
-		{ icon: twitch, href: 'https://www.twitch.tv/spanishcup', alt: 'Twitch' },
-		{ icon: discord, href: 'https://discord.com/invite/CY2dHK2Zek', alt: 'Discord' },
+		{
+			icon: 'icon-[simple-icons--youtube]',
+			href: 'https://www.youtube.com/@SpanishCup',
+			alt: 'YouTube',
+		},
+		{
+			icon: 'icon-[simple-icons--twitch]',
+			href: 'https://www.twitch.tv/spanishcup',
+			alt: 'Twitch',
+		},
+		{
+			icon: 'icon-[simple-icons--discord]',
+			href: 'https://discord.com/invite/CY2dHK2Zek',
+			alt: 'Discord',
+		},
 	];
 </script>
 
@@ -18,8 +28,14 @@
 		<ul class="flex gap-2">
 			{#each socials as social, i (i)}
 				<li>
-					<a href={social.href} rel="external">
-						<social.icon class="size-7 text-black hover:opacity-80" />
+					<a
+						href={social.href}
+						rel="external"
+						class="flex"
+						aria-label={social.alt}
+						use:tooltip={{ content: social.alt }}
+					>
+						<i class="size-7 text-black hover:opacity-80 {social.icon}"></i>
 					</a>
 				</li>
 			{/each}

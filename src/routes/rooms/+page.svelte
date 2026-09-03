@@ -11,7 +11,7 @@
 		month: 'long',
 	});
 
-	const roomsByDate = $derived(
+	let roomsByDate = $derived(
 		Map.groupBy(data.rooms, (room) =>
 			room.startTime
 				.toTemporalInstant()

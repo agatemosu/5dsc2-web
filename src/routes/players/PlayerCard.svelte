@@ -7,15 +7,15 @@
 
 	let { player }: Props = $props();
 
-	const eliminated = $derived(player.seed && (player.seed > 32 || player.seed === -1));
-
 	const gradientRules: Array<{ seed: number; style: string }> = [
 		{ seed: 3, style: 'from-qualifier-bronze' },
 		{ seed: 2, style: 'from-qualifier-silver' },
 		{ seed: 1, style: 'from-qualifier-gold' },
 	];
 
-	const gradientRule = $derived.by(() => {
+	let eliminated = $derived(player.seed && (player.seed > 32 || player.seed === -1));
+
+	let gradientRule = $derived.by(() => {
 		if (!player.seed || eliminated) return;
 
 		const seed = player.seed; // ts thinks that can be undefined inside the predicate

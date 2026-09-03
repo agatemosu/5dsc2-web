@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import InstantTooltip from '$lib/components/InstantTooltip.svelte';
 	import type { OsuUser, QualifierRoom } from '$lib/server/db/schema';
 
 	interface Props {
@@ -13,9 +14,11 @@
 	const timeFormatter = new Intl.DateTimeFormat('es-ES', { timeStyle: 'short' });
 	const maxPlayers = 16;
 
+	let instant = $derived(room.startTime.toTemporalInstant());
+
 	let isThisSelectedRoom = $derived(selectedRoom === room.id);
 	let hasSpaceAvailable = $derived(maxPlayers > room.players.length);
-	let isPast = $derived(room.startTime < new Date());
+	let isPast = $derived(Temporal.Instant.compare(instant, Temporal.Now.instant()) < 0);
 </script>
 
 <div
@@ -33,11 +36,15 @@
 			: 'bg-red-500 shadow-red-500'}"
 	></span>
 
-	<span class="text-xl text-white">{timeFormatter.format(room.startTime)}</span>
+	<InstantTooltip {instant}>
+		<span class="text-xl text-white">
+			{timeFormatter.format(instant)}
+		</span>
+	</InstantTooltip>
 
 	<div class="flex flex-1 items-center">
 		<i class="icon-[tabler--user] text-white"></i>
-		<span class="text-white">{room.players.length}/{maxPlayers}</span>
+		<span class="text-sm text-white">{room.players.length}/{maxPlayers}</span>
 	</div>
 
 	{#if !room.mpLinkId}

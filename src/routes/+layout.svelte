@@ -20,11 +20,11 @@
 
 <div class="flex min-h-dvh flex-col bg-background">
 	<div
-		class="pointer-events-none fixed -inset-x-50 -inset-y-22.5 z-0 bg-cover bg-center opacity-60 mix-blend-exclusion"
+		class="pointer-events-none fixed -inset-x-50 -inset-y-22.5 bg-cover bg-center opacity-60 mix-blend-exclusion"
 		style="background-image: url({bg})"
 	></div>
 
-	<div class="relative z-10 flex flex-1 flex-col">
+	<div class="relative flex flex-1 flex-col">
 		<Header user={data.user?.osu} />
 		<MobileHeader />
 

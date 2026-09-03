@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@import 'svooltip/styles.css';
+
 @import '@fontsource/momo-trust-display';
 @import '@fontsource-variable/inter/wght.css';
 
