@@ -19,8 +19,7 @@ enum Action {
 }
 
 export class ListRoomsCommand extends SlashCommand {
-	static readonly pageSize = 5;
-	static readonly prefix = 'list-rooms';
+	readonly pageSize = 5;
 
 	constructor(creator: SlashCreator) {
 		super(creator, {
@@ -36,7 +35,7 @@ export class ListRoomsCommand extends SlashCommand {
 		});
 
 		creator.on('componentInteraction', async (ctx) => {
-			const parsed = ListRoomsCommand.parseCustomId(ctx.customID);
+			const parsed = this.parseCustomId(ctx.customID);
 
 			if (parsed === null || ctx.user.id !== parsed.userId) {
 				return;
@@ -49,7 +48,7 @@ export class ListRoomsCommand extends SlashCommand {
 				return;
 			}
 
-			const totalPages = Math.ceil(roomCount / ListRoomsCommand.pageSize);
+			const totalPages = Math.ceil(roomCount / this.pageSize);
 			const listFormatter = new Intl.ListFormat(ctx.locale);
 
 			const newPage = Math.max(
@@ -58,24 +57,22 @@ export class ListRoomsCommand extends SlashCommand {
 			);
 
 			await ctx.editParent({
-				embeds: [await ListRoomsCommand.createEmbed(newPage, totalPages, listFormatter)],
-				components: ListRoomsCommand.createComponents(ctx, newPage, totalPages),
+				embeds: [await this.createEmbed(newPage, totalPages, listFormatter)],
+				components: this.createComponents(ctx, newPage, totalPages),
 			});
 		});
 	}
 
-	static createCustomId = (action: Action, userId: string, page: number) =>
-		`${this.prefix}:${action}:${userId}:${page}`;
+	createCustomId = (action: Action, userId: string, page: number) =>
+		`${this.commandName}:${action}:${userId}:${page}`;
 
-	static parseCustomId = (
-		customId: string,
-	): { action: Action; userId: string; page: number } | null => {
+	parseCustomId = (customId: string): { action: Action; userId: string; page: number } | null => {
 		const parts = customId.split(':');
 		if (parts.length !== 4) {
 			return null;
 		}
 		const [prefix, actionString, userId, pageString] = parts;
-		if (prefix !== this.prefix) {
+		if (prefix !== this.commandName) {
 			return null;
 		}
 		const action = Number(actionString);
@@ -89,7 +86,7 @@ export class ListRoomsCommand extends SlashCommand {
 		return { action, userId, page };
 	};
 
-	static getRooms = (page: number) => {
+	getRooms = (page: number) => {
 		return db.query.qualifierRooms.findMany({
 			orderBy: {
 				startTime: 'asc',
@@ -109,7 +106,7 @@ export class ListRoomsCommand extends SlashCommand {
 		});
 	};
 
-	static createEmbed = async (
+	createEmbed = async (
 		page: number,
 		totalPages: number,
 		listFormatter: Intl.ListFormat,
@@ -136,7 +133,7 @@ export class ListRoomsCommand extends SlashCommand {
 		};
 	};
 
-	static createComponents = (
+	createComponents = (
 		ctx: BaseInteractionContext,
 		page: number,
 		totalPages: number,
@@ -171,12 +168,12 @@ export class ListRoomsCommand extends SlashCommand {
 		}
 
 		const page = 0;
-		const totalPages = Math.ceil(roomCount / ListRoomsCommand.pageSize);
+		const totalPages = Math.ceil(roomCount / this.pageSize);
 		const listFormatter = new Intl.ListFormat(ctx.locale);
 
 		return {
-			embeds: [await ListRoomsCommand.createEmbed(page, totalPages, listFormatter)],
-			components: ListRoomsCommand.createComponents(ctx, page, totalPages),
+			embeds: [await this.createEmbed(page, totalPages, listFormatter)],
+			components: this.createComponents(ctx, page, totalPages),
 		};
 	}
 }
