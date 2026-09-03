@@ -20,6 +20,7 @@ enum Action {
 
 export class ListRoomsCommand extends SlashCommand {
 	static readonly pageSize = 5;
+	static readonly prefix = 'list-rooms';
 
 	constructor(creator: SlashCreator) {
 		super(creator, {
@@ -64,7 +65,7 @@ export class ListRoomsCommand extends SlashCommand {
 	}
 
 	static createCustomId = (action: Action, userId: string, page: number) =>
-		`rooms:${action}:${userId}:${page}`;
+		`${this.prefix}:${action}:${userId}:${page}`;
 
 	static parseCustomId = (
 		customId: string,
@@ -74,7 +75,7 @@ export class ListRoomsCommand extends SlashCommand {
 			return null;
 		}
 		const [prefix, actionString, userId, pageString] = parts;
-		if (prefix !== 'rooms') {
+		if (prefix !== this.prefix) {
 			return null;
 		}
 		const action = Number(actionString);
