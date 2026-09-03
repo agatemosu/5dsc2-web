@@ -127,7 +127,7 @@ export class ListRoomsCommand extends SlashCommand {
 			.join('\n');
 
 		return {
-			title: 'Salas de clasificación',
+			title: 'Salas de Qualifiers',
 			description: content,
 			footer: { text: `Página ${page + 1} de ${totalPages}` },
 		};
