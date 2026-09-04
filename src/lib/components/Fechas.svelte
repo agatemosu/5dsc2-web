@@ -18,7 +18,7 @@
 					{formatter.format(date.start.epochMilliseconds)}
 				</InstantTooltip>
 				-
-				<InstantTooltip instant={date.start.toInstant()}>
+				<InstantTooltip instant={date.end.toInstant()}>
 					{formatter.format(date.end.epochMilliseconds)}
 				</InstantTooltip>
 			</div>
