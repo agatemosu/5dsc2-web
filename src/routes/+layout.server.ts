@@ -1,6 +1,6 @@
 import { defineBaseMetaTags } from 'svelte-meta-tags';
 import type { LayoutServerLoad } from './$types';
-import header from '$lib/assets/header.png';
+import header from '$lib/assets/header.jpg';
 
 export const load: LayoutServerLoad = async ({ url, locals }) => {
 	const baseTags = defineBaseMetaTags({
@@ -18,7 +18,7 @@ export const load: LayoutServerLoad = async ({ url, locals }) => {
 					alt: 'Banner del torneo',
 					width: 1200,
 					height: 500,
-					type: 'image/png',
+					type: 'image/jpeg',
 				},
 			],
 		},

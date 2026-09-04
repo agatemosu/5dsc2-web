@@ -19,7 +19,7 @@
 		}
 
 		const avatar = discord.avatar
-			? `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png`
+			? `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.webp`
 			: `https://cdn.discordapp.com/embed/avatars/${(BigInt(discord.id) >> 22n) % 6n}.png`;
 
 		const username = discord.globalName

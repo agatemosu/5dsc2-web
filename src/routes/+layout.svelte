@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import bg from '$lib/assets/bg.png';
+	import bgAvif from '$lib/assets/bg.avif';
+	import bgJpg from '$lib/assets/bg.jpg';
+	import bgWebp from '$lib/assets/bg.webp';
 	import favicon from '$lib/assets/logo.svg?url';
 	import Header from '$lib/components/Header.svelte';
 	import MobileHeader from '$lib/components/MobileHeader.svelte';
@@ -19,10 +21,14 @@
 <MetaTags {...metaTags} />
 
 <div class="flex min-h-dvh flex-col bg-background">
-	<div
-		class="pointer-events-none fixed -inset-x-50 -inset-y-22.5 bg-cover bg-center opacity-60 mix-blend-exclusion"
-		style="background-image: url({bg})"
-	></div>
+	<picture
+		class="pointer-events-none fixed -inset-x-50 -inset-y-22.5 opacity-60 mix-blend-exclusion"
+		aria-hidden="true"
+	>
+		<source srcset={bgAvif} type="image/avif" />
+		<source srcset={bgWebp} type="image/webp" />
+		<img src={bgJpg} alt="" class="h-full w-full object-cover object-center" />
+	</picture>
 
 	<div class="relative flex flex-1 flex-col">
 		<Header user={data.user?.osu} />
