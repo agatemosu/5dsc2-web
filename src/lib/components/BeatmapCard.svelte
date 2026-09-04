@@ -23,28 +23,46 @@
 </script>
 
 <div class="flex h-32 bg-gray">
-	<img
-		src="https://assets.ppy.sh/beatmaps/{map.beatmap.beatmapset.id}/covers/cover.jpg"
-		alt="Cover de {map.beatmap.beatmapset.title}"
-		class="w-56 object-cover"
-	/>
+	<a
+		href="https://osu.ppy.sh/beatmapsets/{map.beatmap.beatmapsetId}#osu/${map.beatmapId}"
+		target="_blank"
+		rel="external"
+	>
+		<img
+			src="https://assets.ppy.sh/beatmaps/{map.beatmap.beatmapset.id}/covers/cover.jpg"
+			alt="Cover de {map.beatmap.beatmapset.title}"
+			class="h-full w-56 object-cover"
+		/>
+	</a>
 
 	<div class="flex w-18 flex-col gap-2.5 py-2.5 pl-2.5">
-		<div class="py-2 text-center text-sm text-white {modClass[map.slotName].bg}">
+		<div
+			class="py-2 text-center text-sm text-white {modClass[map.slotName].bg}"
+			use:tooltip={{
+				content:
+					`Sugerido por ${map.suggestor}` +
+					(map.poolerNotes !== '' ? `<br>Notas: ${map.poolerNotes}` : ''),
+				html: true,
+			}}
+		>
 			{map.slotName}{map.slotIndex}
 		</div>
 		{#if map.custom}
 			<div class="bg-white py-1 text-center text-xs text-black">custom</div>
 		{/if}
-		<div class="text-center align-bottom text-xs text-gray-2">
+		<div class="text-center align-bottom text-xs text-gray-2 select-all">
 			{map.beatmapId}
 		</div>
 	</div>
 
 	<div class="flex flex-1 flex-col justify-center py-4 pl-2.5">
-		<div class="font-sans {modClass[map.slotName].text}">{map.beatmap.beatmapset.artist}</div>
-		<div class="text-2xl leading-9 text-white">{map.beatmap.beatmapset.title}</div>
-		<div class="text-white">
+		<div class="max-w-80 truncate font-sans {modClass[map.slotName].text}">
+			{map.beatmap.beatmapset.artist}
+		</div>
+		<div class="max-w-80 truncate text-2xl leading-9 text-white">
+			{map.beatmap.beatmapset.title}
+		</div>
+		<div class="max-w-80 truncate text-white">
 			<span class={modClass[map.slotName].text}>
 				{map.beatmap.version}
 			</span>

@@ -9,6 +9,12 @@
 	let { data }: PageProps = $props();
 
 	let { mappools, mappackUrl } = $derived(data.round);
+
+	const order = ['NM', 'HD', 'HR', 'DT', 'EZ', 'TB'] as const;
+
+	let orderedMappool = $derived(
+		mappools.sort((a, b) => order.indexOf(a.slotName) - order.indexOf(b.slotName)),
+	);
 </script>
 
 <Layout title="mappool">
@@ -45,7 +51,7 @@
 			in:blur={{ delay: 200, duration: 200 }}
 			class="flex flex-col gap-2.5"
 		>
-			{#each mappools as map (map.id)}
+			{#each orderedMappool as map (map.id)}
 				<BeatmapCard {map} />
 			{/each}
 		</div>
