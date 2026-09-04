@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import DiscordIcon from '$lib/assets/discord.svg?component';
-	import LinkIcon from '$lib/assets/link.svg?component';
-	import UnlinkIcon from '$lib/assets/unlink.svg?component';
 	import type { DiscordUser } from '$lib/server/db/schema';
 
 	interface Props {
@@ -40,7 +37,7 @@
 			/>
 			<span class="text-xl text-white">{discordData!.username}</span>
 		{:else}
-			<DiscordIcon class="size-10 text-white" />
+			<i class="icon-[simple-icons--discord] size-10 text-white"></i>
 			<span class="text-xl text-white">Discord (sin vincular)</span>
 		{/if}
 	</div>
@@ -57,7 +54,7 @@
 				type="submit"
 				class="mr-2 flex cursor-pointer items-center gap-1 text-white hover:underline"
 			>
-				<UnlinkIcon class="size-5" /> Desvincular
+				<i class="icon-[lucide--unlink] size-5"></i> Desvincular
 			</button>
 		</form>
 	{:else}
@@ -65,7 +62,7 @@
 			href={resolve('/auth/discord')}
 			class="mr-2 flex items-center gap-1 text-white hover:underline"
 		>
-			<LinkIcon class="size-5" /> Vincular
+			<i class="icon-[lucide--link] size-5"></i> Vincular
 		</a>
 	{/if}
 </div>

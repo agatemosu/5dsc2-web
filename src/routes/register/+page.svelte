@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import OsuLogo from '$lib/assets/osu.svg?component';
 	import type { EncodedAvailability } from '$lib/availability';
 	import Layout from '$lib/components/Layout.svelte';
 	import AvailabilityForm from './AvailabilityForm.svelte';
@@ -17,7 +16,7 @@
 			href={resolve('/auth/osu')}
 			class="flex items-center gap-3 place-self-center bg-[#F24998] px-4 py-2 text-white hover:opacity-80"
 		>
-			<OsuLogo class="size-10" />
+			<i class="icon-[simple-icons--osu] size-10"></i>
 			<span class="text-xl">Inicia sesión con osu!</span>
 		</a>
 	{:else}
