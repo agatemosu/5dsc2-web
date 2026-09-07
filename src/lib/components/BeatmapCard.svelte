@@ -56,13 +56,13 @@
 	</div>
 
 	<div class="flex flex-1 flex-col justify-center py-4 pl-2.5">
-		<div class="max-w-80 truncate font-sans {modClass[map.slotName].text}">
+		<div class="max-w-52 truncate font-sans {modClass[map.slotName].text}">
 			{map.beatmap.beatmapset.artist}
 		</div>
-		<div class="max-w-80 truncate text-2xl leading-9 text-white">
+		<div class="max-w-52 truncate text-2xl leading-9 text-white">
 			{map.beatmap.beatmapset.title}
 		</div>
-		<div class="max-w-80 truncate text-white">
+		<div class="max-w-52 truncate text-white">
 			<span class={modClass[map.slotName].text}>
 				{map.beatmap.version}
 			</span>
