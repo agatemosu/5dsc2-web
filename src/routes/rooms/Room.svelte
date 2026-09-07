@@ -55,7 +55,7 @@
 		<span class="text-sm text-white">{room.players.length}/{maxPlayers}</span>
 	</div>
 
-	{#if !room.mpLinkId}
+	{#if room.mpLinkId}
 		<a
 			href="https://osu.ppy.sh/community/matches/{room.mpLinkId}"
 			target="_blank"
