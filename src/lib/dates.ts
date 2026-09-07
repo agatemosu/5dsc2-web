@@ -5,11 +5,11 @@ function getDate(date: string) {
 export const dates = {
 	player_regs: {
 		start: getDate('2026-08-24 21:00'),
-		end: getDate('2026-09-07 18:00'),
+		end: getDate('2026-09-07 20:30'),
 		text: 'registros',
 	},
 	qualifiers: {
-		start: getDate('2026-09-11 00:00'),
+		start: getDate('2026-09-07 22:30'),
 		end: getDate('2026-09-20 23:59'),
 		text: 'qualifiers',
 	},
