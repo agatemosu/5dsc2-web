@@ -1,3 +1,4 @@
+import { env } from '$env/dynamic/private';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { osuApi } from '$lib/server/osu';
@@ -11,6 +12,7 @@ const modSchema = z.enum(['NM', 'HD', 'HR', 'DT', 'EZ', 'TB']);
 
 const slotSchema = z.object({
 	id: z.number(),
+	custom: z.boolean(),
 	suggestor: z.string(),
 	pooler_notes: z.string(),
 });
@@ -80,7 +82,13 @@ async function getStarRating(map: Beatmap, mod: Mod) {
 
 export const POST: RequestHandler = async (event) => {
 	if (import.meta.env.PROD) {
-		return error(500, 'No API Key defined');
+		if (!event.locals.apiKey) {
+			return error(401, 'No API Key defined');
+		}
+
+		if (event.locals.apiKey !== env.API_KEY) {
+			return error(401, 'Invalid API Key');
+		}
 	}
 
 	const body = await event.request.json();
@@ -148,6 +156,7 @@ export const POST: RequestHandler = async (event) => {
 					beatmapId: slot.id,
 					slotName: mod as Mod,
 					slotIndex: index + 1,
+					custom: slot.custom,
 					suggestor: slot.suggestor,
 					poolerNotes: slot.pooler_notes,
 					starRating: await getStarRating(map, mod as Mod),

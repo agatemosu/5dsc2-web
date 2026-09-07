@@ -3,6 +3,8 @@ import type { Handle } from '@sveltejs/kit';
 
 const handleAuth: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname.startsWith('/api')) {
+		event.locals.apiKey = event.request.headers.get('x-api-key');
+
 		return resolve(event);
 	}
 

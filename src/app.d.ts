@@ -9,6 +9,7 @@ declare global {
 		interface Locals {
 			user: SessionValidationResult['user'];
 			session: SessionValidationResult['session'];
+			apiKey: string | null;
 		}
 
 		interface Error {
