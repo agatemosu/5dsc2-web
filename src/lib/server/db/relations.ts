@@ -18,6 +18,11 @@ export const relations = defineRelations(schema, (r) => ({
 		}),
 	},
 	players: {
+		user: r.one.users({
+			from: r.players.userId,
+			to: r.users.id,
+			optional: false,
+		}),
 		osu: r.one.osuUsers({
 			from: r.players.userId.through(r.users.id),
 			to: r.osuUsers.id.through(r.users.osuId),
