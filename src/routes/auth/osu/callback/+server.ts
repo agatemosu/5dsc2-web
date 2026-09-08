@@ -1,9 +1,10 @@
-import { error, redirect } from '@sveltejs/kit';
-import type { OAuth2Tokens } from 'arctic';
+import { dates } from '$lib/dates';
 import type { OsuUser } from '$lib/interfaces/osu';
 import { createSession, generateSessionToken, setSessionTokenCookie } from '$lib/server/auth';
-import { getOsuClient } from '$lib/server/oauth';
 import { createUser, getUserByOsuId, refreshOsuUser } from '$lib/server/db/user';
+import { getOsuClient } from '$lib/server/oauth';
+import { error, redirect } from '@sveltejs/kit';
+import type { OAuth2Tokens } from 'arctic';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async (event) => {
@@ -49,7 +50,11 @@ export const GET: RequestHandler = async (event) => {
 	const existingUser = await getUserByOsuId(osuUser.id);
 
 	if (existingUser) {
-		await refreshOsuUser(osuUser);
+		if (
+			Temporal.ZonedDateTime.compare(dates.player_regs.end, Temporal.Now.zonedDateTimeISO()) > 0
+		) {
+			await refreshOsuUser(osuUser);
+		}
 
 		if (event.locals.session?.id == null) {
 			const sessionToken = generateSessionToken();
