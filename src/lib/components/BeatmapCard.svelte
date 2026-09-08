@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { calcModStat } from '$lib/calc-mod-stat';
 	import type { Beatmap, Beatmapset, Mappool } from '$lib/server/db/schema';
 	import { tooltip } from 'svooltip';
 
@@ -11,6 +12,13 @@
 	let { map }: Props = $props();
 
 	const numFormatter = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 2 });
+
+	const formatTime = (time: number) => {
+		const minutes = Math.floor(time / 60);
+		const seconds = Math.floor(time % 60);
+
+		return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+	};
 
 	const modClass = {
 		NM: { bg: 'bg-mod-nomod', text: 'text-mod-nomod' },
@@ -79,11 +87,21 @@
 				</div>
 				<div class="flex items-center gap-1" use:tooltip={{ content: 'BPM' }}>
 					<i class="icon-[fa7-solid--music] size-3 {modClass[map.slotName].text}"></i>
-					<span class="text-white">{numFormatter.format(map.beatmap.bpm)}</span>
+					<span class="text-white">
+						{numFormatter.format(
+							map.slotName === 'DT' ? calcModStat.dt.bpm(map.beatmap.bpm) : map.beatmap.bpm,
+						)}
+					</span>
 				</div>
 				<div class="flex items-center gap-1" use:tooltip={{ content: 'Duración' }}>
 					<i class="icon-[fa7-solid--clock] size-3 {modClass[map.slotName].text}"></i>
-					<span class="text-white">{map.beatmap.length}</span>
+					<span class="text-white">
+						{formatTime(
+							map.slotName === 'DT'
+								? calcModStat.dt.length(map.beatmap.length)
+								: map.beatmap.length,
+						)}
+					</span>
 				</div>
 			</div>
 
@@ -93,15 +111,37 @@
 			<div class="grid grid-cols-3 gap-3">
 				<div class="flex items-center gap-1">
 					<span class={modClass[map.slotName].text}>CS</span>
-					<span class="text-white">{numFormatter.format(map.beatmap.circleSize)}</span>
+					<span class="text-white">
+						{numFormatter.format(
+							map.slotName === 'HR'
+								? calcModStat.hr.cs(map.beatmap.circleSize)
+								: map.beatmap.circleSize,
+						)}
+					</span>
 				</div>
 				<div class="flex items-center gap-1">
 					<span class={modClass[map.slotName].text}>AR</span>
-					<span class="text-white">{numFormatter.format(map.beatmap.approachRate)}</span>
+					<span class="text-white">
+						{numFormatter.format(
+							map.slotName === 'DT'
+								? calcModStat.dt.ar(map.beatmap.approachRate)
+								: map.slotName === 'HR'
+									? calcModStat.hr.ar(map.beatmap.approachRate)
+									: map.beatmap.approachRate,
+						)}
+					</span>
 				</div>
 				<div class="flex items-center gap-1">
 					<span class={modClass[map.slotName].text}>OD</span>
-					<span class="text-white">{numFormatter.format(map.beatmap.overallDifficulty)}</span>
+					<span class="text-white">
+						{numFormatter.format(
+							map.slotName === 'DT'
+								? calcModStat.dt.od(map.beatmap.overallDifficulty)
+								: map.slotName === 'HR'
+									? calcModStat.hr.od(map.beatmap.overallDifficulty)
+									: map.beatmap.overallDifficulty,
+						)}
+					</span>
 				</div>
 			</div>
 		</div>
