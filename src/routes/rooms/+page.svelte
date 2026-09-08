@@ -12,12 +12,14 @@
 	});
 
 	let roomsByDate = $derived(
-		Map.groupBy(data.rooms, (room) =>
-			room.startTime
-				.toTemporalInstant()
-				.toZonedDateTimeISO('Europe/Madrid')
-				.toPlainDate()
-				.toString(),
+		Map.groupBy(
+			data.rooms.toSorted((a, b) => a.startTime.getTime() - b.startTime.getTime()),
+			(room) =>
+				room.startTime
+					.toTemporalInstant()
+					.toZonedDateTimeISO('Europe/Madrid')
+					.toPlainDate()
+					.toString(),
 		),
 	);
 </script>
