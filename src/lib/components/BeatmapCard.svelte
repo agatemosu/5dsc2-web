@@ -32,7 +32,7 @@
 
 <div class="flex h-32 bg-gray">
 	<a
-		href="https://osu.ppy.sh/beatmapsets/{map.beatmap.beatmapsetId}#osu/${map.beatmapId}"
+		href="https://osu.ppy.sh/beatmapsets/{map.beatmap.beatmapsetId}#osu/{map.beatmapId}"
 		target="_blank"
 		rel="external"
 	>
