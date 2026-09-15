@@ -16,6 +16,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta name="google-site-verification" content="s-zqMyV7pu2sgrwD2VCvfe0uzVOKsumkL6ONvso-QwI" />
 </svelte:head>
 
 <MetaTags {...metaTags} />
