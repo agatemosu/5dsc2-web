@@ -51,9 +51,9 @@ __Procedimiento Partidos__
 
 __Protecciones, Picks y Bans__
 
-- La seed mas alta de los clasificatorios se reserva el derecho de elegir entre la primera protección de mapa o la segunda protección de mapa. Solo habrá una protección de mapa disponible en cada partido, 1 para cada jugador. Estos mapas no podrán ser baneados posteriormente y podrán ser pickeados en cualquier momento.
+- La seed más alta de los clasificatorios se reserva el derecho de elegir entre la primera protección de mapa o la segunda protección de mapa. Solo habrá una protección de mapa disponible en cada partido, 1 para cada jugador. Estos mapas no podrán ser baneados posteriormente y podrán ser pickeados en cualquier momento.
 - Un !roll decidirá el orden de picks y bans. El jugador con el !roll más alto podrá elegir entre el orden de picks o bans, dejando al otro jugador con la opción restante.
-- El orden de bans será ABAB.
+- El orden de bans será ABAB. (AB en la Fase de Liga)
 - El doble ban no está permitido.
 
 __Temporizadores y Timeouts__
