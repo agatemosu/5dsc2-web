@@ -20,7 +20,7 @@
 <Layout title="mappool">
 	<div class="flex min-w-0 gap-2.5 overflow-x-auto">
 		{#each data.rounds as round (round.slug)}
-			{#if round.mappoolPublishedAt !== null}
+			{#if round.mappoolPublishedAt && round.mappoolPublishedAt <= new Date()}
 				<a
 					href={resolve('/mappool/[slug]', { slug: round.slug })}
 					class="shrink-0 px-5 py-3 text-sm text-white {page.params.slug === round.slug
