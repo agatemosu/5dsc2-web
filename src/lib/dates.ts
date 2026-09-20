@@ -1,5 +1,19 @@
-function getDate(date: string) {
-	return Temporal.ZonedDateTime.from(date + '[Europe/Madrid]');
+function getDate(dateWithoutTimezone: string) {
+	return Temporal.ZonedDateTime.from(dateWithoutTimezone + '[Europe/Madrid]');
+}
+
+const now = Temporal.Now.zonedDateTimeISO();
+
+export function isPastOrDev(date: Temporal.ZonedDateTime) {
+	return import.meta.env.DEV || Temporal.ZonedDateTime.compare(now, date) > 0;
+}
+
+export function isPastAndProd(date: Temporal.ZonedDateTime) {
+	return import.meta.env.PROD && Temporal.ZonedDateTime.compare(now, date) > 0;
+}
+
+export function isFutureAndProd(date: Temporal.ZonedDateTime) {
+	return import.meta.env.PROD && Temporal.ZonedDateTime.compare(now, date) < 0;
 }
 
 export const dates = {

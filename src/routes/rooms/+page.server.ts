@@ -1,4 +1,4 @@
-import { dates } from '$lib/dates';
+import { dates, isFutureAndProd, isPastAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { error, fail } from '@sveltejs/kit';
@@ -7,10 +7,7 @@ import { definePageMetaTags } from 'svelte-meta-tags';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	if (
-		import.meta.env.PROD &&
-		Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.qualifiers.start) < 0
-	) {
+	if (isFutureAndProd(dates.qualifiers.start)) {
 		return error(403);
 	}
 
@@ -44,10 +41,7 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
 	select: async (event) => {
-		if (
-			import.meta.env.PROD &&
-			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.qualifiers.start) < 0
-		) {
+		if (isFutureAndProd(dates.qualifiers.start)) {
 			return fail(403);
 		}
 
@@ -63,10 +57,7 @@ export const actions: Actions = {
 			return fail(400);
 		}
 
-		if (
-			import.meta.env.PROD &&
-			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.qualifiers.end) > 0
-		) {
+		if (isPastAndProd(dates.qualifiers.end)) {
 			return fail(410);
 		}
 

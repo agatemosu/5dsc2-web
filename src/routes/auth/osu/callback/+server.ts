@@ -1,4 +1,4 @@
-import { dates } from '$lib/dates';
+import { dates, isFutureAndProd } from '$lib/dates';
 import type { OsuUser } from '$lib/interfaces/osu';
 import { createSession, generateSessionToken, setSessionTokenCookie } from '$lib/server/auth';
 import { createUser, getUserByOsuId, refreshOsuUser } from '$lib/server/db/user';
@@ -50,11 +50,7 @@ export const GET: RequestHandler = async (event) => {
 	const existingUser = await getUserByOsuId(osuUser.id);
 
 	if (existingUser) {
-		if (
-			Temporal.ZonedDateTime.compare(dates.player_regs.end, Temporal.Now.zonedDateTimeISO()) > 0
-		) {
-			await refreshOsuUser(osuUser);
-		}
+		await refreshOsuUser(osuUser, isFutureAndProd(dates.player_regs.end));
 
 		if (event.locals.session?.id == null) {
 			const sessionToken = generateSessionToken();

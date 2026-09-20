@@ -20,7 +20,7 @@
 
 	let isThisSelectedRoom = $derived(selectedRoom === room.id);
 	let hasSpaceAvailable = $derived(maxPlayers > room.players.length);
-	let isPast = $derived(Temporal.Instant.compare(instant, Temporal.Now.instant()) < 0);
+	let isPast = $derived(Temporal.Instant.compare(Temporal.Now.instant(), instant) > 0);
 </script>
 
 <div

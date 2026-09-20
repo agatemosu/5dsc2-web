@@ -27,13 +27,13 @@ export async function createUser(osuUser: OsuUser) {
 	return user.id;
 }
 
-export async function refreshOsuUser(osuUser: OsuUser) {
+export async function refreshOsuUser(osuUser: OsuUser, refreshRanks: boolean) {
 	await db
 		.update(table.osuUsers)
 		.set({
 			username: osuUser.username,
-			globalRank: osuUser.statistics.global_rank,
-			countryRank: osuUser.statistics.country_rank,
+			globalRank: refreshRanks ? osuUser.statistics.global_rank : undefined,
+			countryRank: refreshRanks ? osuUser.statistics.country_rank : undefined,
 		})
 		.where(eq(table.osuUsers.id, osuUser.id));
 }

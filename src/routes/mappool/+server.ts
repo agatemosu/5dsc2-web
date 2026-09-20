@@ -1,14 +1,11 @@
 import { resolve } from '$app/paths';
-import { dates } from '$lib/dates';
+import { dates, isFutureAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
-	if (
-		import.meta.env.PROD &&
-		Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.qualifiers.start) < 0
-	) {
+	if (isFutureAndProd(dates.qualifiers.start)) {
 		return error(403);
 	}
 

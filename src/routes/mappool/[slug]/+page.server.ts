@@ -1,14 +1,11 @@
-import { dates } from '$lib/dates';
+import { dates, isFutureAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import { error } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	if (
-		import.meta.env.PROD &&
-		Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.qualifiers.start) < 0
-	) {
+	if (isFutureAndProd(dates.qualifiers.start)) {
 		return error(403);
 	}
 

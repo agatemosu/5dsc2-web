@@ -1,12 +1,12 @@
 import { encodeAvailability, validateAvailability } from '$lib/availability';
-import { dates } from '$lib/dates';
+import { dates, isFutureAndProd, isPastAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import { registerUser, unlinkDiscord } from '$lib/server/db/user';
 import { addRoleToUser } from '$lib/server/discord';
 import { UserError } from '$lib/user-error';
 import { fail } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
 import { definePageMetaTags } from 'svelte-meta-tags';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	const pageTags = definePageMetaTags({
@@ -40,18 +40,11 @@ export const actions: Actions = {
 			columns: { id: true },
 		});
 
-		if (
-			import.meta.env.PROD &&
-			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.player_regs.start) < 0
-		) {
+		if (isFutureAndProd(dates.player_regs.start)) {
 			return fail(403, { error: 'Aún no se aceptan registros.' });
 		}
 
-		if (
-			import.meta.env.PROD &&
-			playerData === undefined &&
-			Temporal.ZonedDateTime.compare(Temporal.Now.zonedDateTimeISO(), dates.player_regs.end) > 0
-		) {
+		if (playerData === undefined && isPastAndProd(dates.qualifiers.end)) {
 			return fail(410, { error: 'Ya no se aceptan registros.' });
 		}
 
