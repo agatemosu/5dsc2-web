@@ -87,7 +87,7 @@ export class AddRoomBulkCommand extends SlashCommand {
 		const roomsToInsert = result.data.map((row) => {
 			return {
 				id: row.name,
-				startTime: new Date(row.date.epochMilliseconds),
+				startTime: row.date.toInstant(),
 			} satisfies typeof table.qualifierRooms.$inferInsert;
 		});
 

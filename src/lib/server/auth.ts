@@ -5,8 +5,6 @@ import { encodeBase64url, encodeHexLowerCase } from '@oslojs/encoding';
 import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 
-const DAY_IN_MS = 1000 * 60 * 60 * 24;
-
 export const sessionCookieName = 'auth-session';
 
 export function generateSessionToken() {
@@ -20,7 +18,7 @@ export async function createSession(token: string, userId: number) {
 	const session: table.Session = {
 		id: sessionId,
 		userId,
-		expiresAt: new Date(Date.now() + DAY_IN_MS * 30),
+		expiresAt: Temporal.Now.instant().add({ hours: 30 * 24 }),
 	};
 	await db.insert(table.sessions).values(session);
 	return session;
@@ -43,15 +41,18 @@ export async function validateSessionToken(token: string) {
 	}
 	const { user, ...session } = result;
 
-	const sessionExpired = Date.now() >= session.expiresAt.getTime();
+	const now = Temporal.Now.instant();
+
+	const sessionExpired = Temporal.Instant.compare(now, session.expiresAt) >= 0;
 	if (sessionExpired) {
 		await invalidateSession(session.id);
 		return { session: null, user: null };
 	}
 
-	const renewSession = Date.now() >= session.expiresAt.getTime() - DAY_IN_MS * 15;
+	const renewAt = session.expiresAt.subtract({ hours: 15 * 24 });
+	const renewSession = Temporal.Instant.compare(now, renewAt) >= 0;
 	if (renewSession) {
-		session.expiresAt = new Date(Date.now() + DAY_IN_MS * 30);
+		session.expiresAt = now.add({ hours: 30 * 24 });
 		await db
 			.update(table.sessions)
 			.set({ expiresAt: session.expiresAt })
@@ -67,9 +68,13 @@ export async function invalidateSession(sessionId: string) {
 	await db.delete(table.sessions).where(eq(table.sessions.id, sessionId));
 }
 
-export function setSessionTokenCookie(event: RequestEvent, token: string, expiresAt: Date) {
+export function setSessionTokenCookie(
+	event: RequestEvent,
+	token: string,
+	expiresAt: Temporal.Instant,
+) {
 	event.cookies.set(sessionCookieName, token, {
-		expires: expiresAt,
+		expires: new Date(expiresAt.epochMilliseconds),
 		path: '/',
 	});
 }

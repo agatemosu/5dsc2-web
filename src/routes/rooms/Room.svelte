@@ -16,11 +16,9 @@
 	const timeFormatter = new Intl.DateTimeFormat('es-ES', { timeStyle: 'short' });
 	const maxPlayers = 16;
 
-	let instant = $derived(room.startTime.toTemporalInstant());
-
 	let isThisSelectedRoom = $derived(selectedRoom === room.id);
 	let hasSpaceAvailable = $derived(maxPlayers > room.players.length);
-	let isPast = $derived(Temporal.Instant.compare(Temporal.Now.instant(), instant) > 0);
+	let isPast = $derived(Temporal.Instant.compare(Temporal.Now.instant(), room.startTime) > 0);
 </script>
 
 <div
@@ -38,9 +36,9 @@
 			: 'bg-red-500 shadow-red-500'}"
 	></span>
 
-	<InstantTooltip {instant}>
+	<InstantTooltip instant={room.startTime}>
 		<span class="text-xl text-white">
-			{timeFormatter.format(instant)}
+			{timeFormatter.format(room.startTime)}
 		</span>
 	</InstantTooltip>
 

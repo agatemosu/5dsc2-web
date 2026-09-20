@@ -200,7 +200,7 @@ export const POST: RequestHandler = async (event) => {
 			.update(table.rounds)
 			.set({
 				mappackUrl: result.data.mappack_link,
-				mappoolPublishedAt: new Date(result.data.release_date),
+				mappoolPublishedAt: Temporal.Instant.from(result.data.release_date),
 			})
 			.where(eq(table.rounds.id, round.id));
 	});

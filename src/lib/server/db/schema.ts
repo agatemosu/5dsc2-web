@@ -1,4 +1,5 @@
 import { integer, real, snakeCase, text, unique } from 'drizzle-orm/sqlite-core';
+import { instant } from './timestamp';
 
 export const users = snakeCase.table('users', {
 	id: integer().primaryKey({ autoIncrement: true }),
@@ -15,7 +16,7 @@ export const players = snakeCase.table('players', {
 		.notNull()
 		.unique()
 		.references(() => users.id, { onDelete: 'cascade' }),
-	registeredAt: integer({ mode: 'timestamp' }).notNull(),
+	registeredAt: instant().notNull(),
 	availability: text().notNull(),
 	qualifierRoomId: text('qualifier_room_id').references(() => qualifierRooms.id, {
 		onUpdate: 'cascade',
@@ -40,7 +41,7 @@ export const discordUsers = snakeCase.table('discord_users', {
 
 export const qualifierRooms = snakeCase.table('qualifier_rooms', {
 	id: text().primaryKey(),
-	startTime: integer({ mode: 'timestamp' }).notNull(),
+	startTime: instant().notNull(),
 	mpLinkId: integer(),
 });
 
@@ -49,7 +50,7 @@ export const rounds = snakeCase.table('rounds', {
 	slug: text().notNull().unique(),
 	name: text().notNull(),
 	mappackUrl: text(),
-	mappoolPublishedAt: integer({ mode: 'timestamp' }),
+	mappoolPublishedAt: instant(),
 });
 
 export const mappools = snakeCase.table(
@@ -99,7 +100,7 @@ export const sessions = snakeCase.table('sessions', {
 	userId: integer()
 		.notNull()
 		.references(() => users.id, { onDelete: 'cascade' }),
-	expiresAt: integer({ mode: 'timestamp' }).notNull(),
+	expiresAt: instant().notNull(),
 });
 
 // types

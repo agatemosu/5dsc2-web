@@ -115,7 +115,7 @@ export class ListRoomsCommand extends SlashCommand {
 
 		const content = rooms
 			.map((room) => {
-				const timestamp = Math.floor(room.startTime.getTime() / 1000);
+				const timestamp = Math.floor(room.startTime.epochMilliseconds / 1000);
 				const players = room.players.map((p) => p.osu.username);
 
 				const playerText = players.length

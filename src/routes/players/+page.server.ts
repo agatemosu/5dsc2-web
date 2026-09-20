@@ -23,7 +23,7 @@ export const load: PageServerLoad = async () => {
 			return a.seed! - b.seed!;
 		}
 
-		return a.registeredAt!.getTime() - b.registeredAt!.getTime();
+		return Temporal.Instant.compare(a.registeredAt, b.registeredAt);
 	});
 
 	return {

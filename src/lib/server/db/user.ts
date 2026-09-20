@@ -66,7 +66,7 @@ export async function unlinkDiscord(userId: number) {
 export async function registerUser(userId: number, availability: string) {
 	await db
 		.insert(table.players)
-		.values({ userId, availability, registeredAt: new Date() })
+		.values({ userId, availability, registeredAt: Temporal.Now.instant() })
 		.onConflictDoUpdate({
 			target: table.players.userId,
 			set: { availability },

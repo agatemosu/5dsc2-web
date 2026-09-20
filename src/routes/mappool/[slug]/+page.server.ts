@@ -28,7 +28,10 @@ export const load: PageServerLoad = async (event) => {
 		},
 	});
 
-	if (round?.mappoolPublishedAt == null || round.mappoolPublishedAt > new Date()) {
+	if (
+		round?.mappoolPublishedAt == null ||
+		Temporal.Instant.compare(Temporal.Now.instant(), round.mappoolPublishedAt) < 0
+	) {
 		return error(403);
 	}
 

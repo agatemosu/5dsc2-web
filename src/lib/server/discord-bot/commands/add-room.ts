@@ -120,7 +120,7 @@ export class AddRoomCommand extends SlashCommand {
 				.insert(table.qualifierRooms)
 				.values({
 					id: options.name,
-					startTime: new Date(zdt.epochMilliseconds),
+					startTime: zdt.toInstant(),
 				})
 				.onConflictDoNothing()
 				.returning();
