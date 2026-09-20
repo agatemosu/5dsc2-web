@@ -1,0 +1,1 @@
+ALTER TABLE `rounds` ADD `stage_type` text;

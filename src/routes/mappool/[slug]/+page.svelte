@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import BeatmapCard from '$lib/components/BeatmapCard.svelte';
 	import Layout from '$lib/components/Layout.svelte';
+	import { Mod } from '$lib/enums';
 	import { blur } from 'svelte/transition';
 	import type { PageProps } from './$types';
 
@@ -10,7 +11,7 @@
 
 	let { mappools, mappackUrl } = $derived(data.round);
 
-	const order = ['NM', 'HD', 'HR', 'DT', 'EZ', 'TB'] as const;
+	const order = Object.values(Mod);
 
 	let orderedMappool = $derived(
 		mappools.sort((a, b) => order.indexOf(a.slotName) - order.indexOf(b.slotName)),

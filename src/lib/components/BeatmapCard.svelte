@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { calcModStat } from '$lib/calc-mod-stat';
+	import { Mod } from '$lib/enums';
 	import type { Beatmap, Beatmapset, Mappool } from '$lib/server/db/schema';
 	import { tooltip } from 'svooltip';
 
@@ -20,7 +21,7 @@
 		return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 	};
 
-	const modClass = {
+	const modClass: Record<Mod, { bg: string; text: string }> = {
 		NM: { bg: 'bg-mod-nomod', text: 'text-mod-nomod' },
 		HD: { bg: 'bg-mod-hidden', text: 'text-mod-hidden' },
 		HR: { bg: 'bg-mod-hardrock', text: 'text-mod-hardrock' },
@@ -89,7 +90,7 @@
 					<i class="icon-[fa7-solid--music] size-3 {modClass[map.slotName].text}"></i>
 					<span class="text-white">
 						{numFormatter.format(
-							map.slotName === 'DT' ? calcModStat.dt.bpm(map.beatmap.bpm) : map.beatmap.bpm,
+							map.slotName === Mod.DT ? calcModStat.dt.bpm(map.beatmap.bpm) : map.beatmap.bpm,
 						)}
 					</span>
 				</div>
@@ -97,7 +98,7 @@
 					<i class="icon-[fa7-solid--clock] size-3 {modClass[map.slotName].text}"></i>
 					<span class="text-white">
 						{formatTime(
-							map.slotName === 'DT'
+							map.slotName === Mod.DT
 								? calcModStat.dt.length(map.beatmap.length)
 								: map.beatmap.length,
 						)}
@@ -113,7 +114,7 @@
 					<span class={modClass[map.slotName].text}>CS</span>
 					<span class="text-white">
 						{numFormatter.format(
-							map.slotName === 'HR'
+							map.slotName === Mod.HR
 								? calcModStat.hr.cs(map.beatmap.circleSize)
 								: map.beatmap.circleSize,
 						)}
@@ -123,9 +124,9 @@
 					<span class={modClass[map.slotName].text}>AR</span>
 					<span class="text-white">
 						{numFormatter.format(
-							map.slotName === 'DT'
+							map.slotName === Mod.DT
 								? calcModStat.dt.ar(map.beatmap.approachRate)
-								: map.slotName === 'HR'
+								: map.slotName === Mod.HR
 									? calcModStat.hr.ar(map.beatmap.approachRate)
 									: map.beatmap.approachRate,
 						)}
@@ -135,9 +136,9 @@
 					<span class={modClass[map.slotName].text}>OD</span>
 					<span class="text-white">
 						{numFormatter.format(
-							map.slotName === 'DT'
+							map.slotName === Mod.DT
 								? calcModStat.dt.od(map.beatmap.overallDifficulty)
-								: map.slotName === 'HR'
+								: map.slotName === Mod.HR
 									? calcModStat.hr.od(map.beatmap.overallDifficulty)
 									: map.beatmap.overallDifficulty,
 						)}

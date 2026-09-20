@@ -1,3 +1,4 @@
+import type { Mod, StageType } from '$lib/enums';
 import { integer, real, snakeCase, text, unique } from 'drizzle-orm/sqlite-core';
 import { instant } from './timestamp';
 
@@ -49,6 +50,7 @@ export const rounds = snakeCase.table('rounds', {
 	id: integer().primaryKey({ autoIncrement: true }),
 	slug: text().notNull().unique(),
 	name: text().notNull(),
+	stageType: text().$type<StageType>(),
 	mappackUrl: text(),
 	mappoolPublishedAt: instant(),
 });
@@ -60,7 +62,7 @@ export const mappools = snakeCase.table(
 		roundId: integer()
 			.notNull()
 			.references(() => rounds.id),
-		slotName: text().notNull().$type<'NM' | 'HD' | 'HR' | 'DT' | 'EZ' | 'TB'>(),
+		slotName: text().$type<Mod>().notNull(),
 		slotIndex: integer().notNull(),
 		beatmapId: integer()
 			.notNull()

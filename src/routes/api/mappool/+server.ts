@@ -1,4 +1,5 @@
 import { env } from '$env/dynamic/private';
+import { Mod } from '$lib/enums';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { osuApi } from '$lib/server/osu';
@@ -8,7 +9,7 @@ import type { Beatmap } from 'osu-api-v2-js';
 import { z } from 'zod';
 import type { RequestHandler } from './$types';
 
-const modSchema = z.enum(['NM', 'HD', 'HR', 'DT', 'EZ', 'TB']);
+const modSchema = z.enum(Mod);
 
 const slotSchema = z.object({
 	id: z.number(),
@@ -25,7 +26,6 @@ const requestSchema = z.object({
 	pool: z.partialRecord(modSchema, z.array(slotSchema)),
 });
 
-type Mod = z.infer<typeof modSchema>;
 type RequestBody = z.infer<typeof requestSchema>;
 
 async function findRound(input: RequestBody) {
@@ -71,7 +71,7 @@ async function fetchAndValidateMaps(pool: RequestBody['pool']) {
 }
 
 async function getStarRating(map: Beatmap, mod: Mod) {
-	if (mod === 'NM' || mod === 'TB') {
+	if (mod === Mod.NM || mod === Mod.TB) {
 		return map.difficulty_rating;
 	}
 
