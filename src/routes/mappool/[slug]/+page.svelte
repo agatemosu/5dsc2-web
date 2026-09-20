@@ -20,16 +20,20 @@
 <Layout title="mappool">
 	<div class="flex min-w-0 gap-2.5 overflow-x-auto">
 		{#each data.rounds as round (round.slug)}
-			<a
-				href={resolve('/mappool/[slug]', { slug: round.slug })}
-				class="shrink-0 px-5 py-3 text-sm text-white {page.params.slug === round.slug
-					? 'bg-accent'
-					: round.mappoolPublishedAt !== null
-						? 'bg-gray'
-						: 'bg-dark'}"
-			>
-				{round.name}
-			</a>
+			{#if round.mappoolPublishedAt !== null}
+				<a
+					href={resolve('/mappool/[slug]', { slug: round.slug })}
+					class="shrink-0 px-5 py-3 text-sm text-white {page.params.slug === round.slug
+						? 'bg-accent'
+						: 'bg-gray'}"
+				>
+					{round.name}
+				</a>
+			{:else}
+				<div class="shrink-0 cursor-not-allowed bg-dark px-5 py-3 text-sm text-white">
+					{round.name}
+				</div>
+			{/if}
 		{/each}
 	</div>
 
