@@ -17,7 +17,10 @@ export const players = snakeCase.table('players', {
 		.references(() => users.id, { onDelete: 'cascade' }),
 	registeredAt: integer({ mode: 'timestamp' }).notNull(),
 	availability: text().notNull(),
-	qualifierRoomId: text('qualifier_room_id').references(() => qualifierRooms.id),
+	qualifierRoomId: text('qualifier_room_id').references(() => qualifierRooms.id, {
+		onDelete: 'set null',
+		onUpdate: 'cascade',
+	}),
 	seed: integer(),
 });
 
