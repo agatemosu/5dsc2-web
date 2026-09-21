@@ -73,21 +73,21 @@ $$
 
 ## Información General de los Partidos
 
-**Procedimiento Partidos**
+### Procedimiento de los Partidos
 
 - Los jugadores recibirán una notificación 15 minutos antes de su hora asignada.
 - Aquel jugador que llegue 5 minutos tarde, perderá su protección de mapa y bans.
 - Aquel jugador que no llegue pasados 10 minutos de su hora asignada, será dado como perdedor del match.
 - Los mapas de calentamiento están permitidos, deben durar un máximo de 3:30 minutos.
 
-**Protecciones, Picks y Bans**
+### Protecciones, Picks y Bans
 
 - La seed más alta de los clasificatorios se reserva el derecho de elegir entre la primera protección de mapa o la segunda protección de mapa. Solo habrá una protección de mapa disponible en cada partido, 1 para cada jugador. Estos mapas no podrán ser baneados posteriormente y podrán ser pickeados en cualquier momento.
 - Un !roll decidirá el orden de picks y bans. El jugador con el !roll más alto podrá elegir entre el orden de picks o bans, dejando al otro jugador con la opción restante.
 - El orden de bans será ABAB. (AB en la Fase de Liga)
 - El doble ban no está permitido.
 
-**Temporizadores y Timeouts**
+### Temporizadores y Timeouts
 
 - Habrá un temporizador de hasta 90 segundos para pickear un mapa y posteriormente 30 segundos para estar listo posteriormente.
 - Cada jugador podrá ser avisado hasta 2 veces por no estar listo antes de que acabe cada temporizador. Al tercer aviso será dado por perdedor del partido.
