@@ -11,7 +11,7 @@ export const GET: RequestHandler = async () => {
 
 	const lastPublishedRound = await db.query.rounds.findFirst({
 		where: {
-			mappoolPublishedAt: { gt: Temporal.Now.instant() },
+			mappoolPublishedAt: { lt: Temporal.Now.instant() },
 		},
 		orderBy: {
 			mappoolPublishedAt: 'desc',
