@@ -48,12 +48,15 @@ export class RefreshPlayersCommand extends SlashCommand {
 	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
-		if (options.refresh_global_ranks && !ctx.member!.roles.includes(env.DISCORD_STAFF_ROLE_ID)) {
-			return 'No tienes permiso para refrescar las clasificaciones.';
+		const isRef = ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID);
+		const isStaff = ctx.member!.roles.includes(env.DISCORD_STAFF_ROLE_ID);
+
+		if (!isRef && !isStaff) {
+			return 'No tienes permiso para usar este comando.';
 		}
 
-		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
-			return 'No tienes permiso para usar este comando.';
+		if (options.refresh_global_ranks && !isStaff) {
+			return 'No tienes permiso para refrescar las clasificaciones.';
 		}
 
 		const players = await db.query.players.findMany({
