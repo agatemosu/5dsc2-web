@@ -50,7 +50,7 @@ export const rounds = snakeCase.table('rounds', {
 	id: integer().primaryKey({ autoIncrement: true }),
 	slug: text().notNull().unique(),
 	name: text().notNull(),
-	stageType: text().$type<StageType>(),
+	stageType: text().$type<StageType>().notNull(),
 	mappackUrl: text(),
 	mappoolPublishedAt: instant(),
 });
