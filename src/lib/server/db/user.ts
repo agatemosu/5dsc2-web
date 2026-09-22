@@ -5,8 +5,9 @@ import * as table from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
 export async function getUserByOsuId(osuId: number) {
-	const [result] = await db.select().from(table.users).where(eq(table.users.osuId, osuId));
-	return result;
+	return await db.query.users.findFirst({
+		where: { osuId: osuId },
+	});
 }
 
 export async function createUser(osuUser: OsuUser) {

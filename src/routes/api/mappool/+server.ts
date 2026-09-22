@@ -9,8 +9,6 @@ import type { Beatmap } from 'osu-api-v2-js';
 import { z } from 'zod';
 import type { RequestHandler } from './$types';
 
-const modSchema = z.enum(Mod);
-
 const slotSchema = z.object({
 	id: z.number(),
 	custom: z.boolean(),
@@ -21,9 +19,9 @@ const slotSchema = z.object({
 const requestSchema = z.object({
 	acronym: z.string(),
 	title: z.string(),
-	release_date: z.iso.datetime(),
+	release_date: z.iso.datetime({ offset: true }).transform((v) => Temporal.Instant.from(v)),
 	mappack_link: z.url(),
-	pool: z.partialRecord(modSchema, z.array(slotSchema)),
+	pool: z.partialRecord(z.enum(Mod), z.array(slotSchema)),
 });
 
 type RequestBody = z.infer<typeof requestSchema>;
@@ -86,7 +84,7 @@ export const POST: RequestHandler = async (event) => {
 			return error(401, 'No API Key defined');
 		}
 
-		if (event.locals.apiKey !== env.API_KEY) {
+		if (event.locals.apiKey !== env.POOLING_API_KEY) {
 			return error(401, 'Invalid API Key');
 		}
 	}
@@ -200,7 +198,7 @@ export const POST: RequestHandler = async (event) => {
 			.update(table.rounds)
 			.set({
 				mappackUrl: result.data.mappack_link,
-				mappoolPublishedAt: Temporal.Instant.from(result.data.release_date),
+				mappoolPublishedAt: result.data.release_date,
 			})
 			.where(eq(table.rounds.id, round.id));
 	});

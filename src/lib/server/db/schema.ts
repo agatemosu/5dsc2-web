@@ -1,4 +1,4 @@
-import type { Mod, StageType } from '$lib/enums';
+import type { DraftEntry, MatchStatus, Mod, StageType } from '$lib/enums';
 import { integer, real, snakeCase, text, unique } from 'drizzle-orm/sqlite-core';
 import { instant } from './timestamp';
 
@@ -51,8 +51,26 @@ export const rounds = snakeCase.table('rounds', {
 	slug: text().notNull().unique(),
 	name: text().notNull(),
 	stageType: text().$type<StageType>().notNull(),
+	bestOf: integer(),
 	mappackUrl: text(),
 	mappoolPublishedAt: instant(),
+});
+
+export const matches = snakeCase.table('matches', {
+	id: text().primaryKey(),
+	roundId: integer()
+		.notNull()
+		.references(() => rounds.id),
+	bracket: text(),
+	status: text().$type<MatchStatus>().notNull(),
+	startTime: instant().notNull(),
+	teamRedId: integer().references(() => players.id),
+	teamBlueId: integer().references(() => players.id),
+	teamRedPoints: integer(),
+	teamBluePoints: integer(),
+	rundown: text({ mode: 'json' }).$type<DraftEntry[]>().notNull(),
+	refereeName: text(),
+	osuMatchId: integer(),
 });
 
 export const mappools = snakeCase.table(
@@ -112,6 +130,7 @@ export type Player = typeof players.$inferSelect;
 export type OsuUser = typeof osuUsers.$inferSelect;
 export type DiscordUser = typeof discordUsers.$inferSelect;
 export type Round = typeof rounds.$inferSelect;
+export type Match = typeof matches.$inferSelect;
 export type QualifierRoom = typeof qualifierRooms.$inferSelect;
 export type Mappool = typeof mappools.$inferSelect;
 export type Beatmap = typeof beatmaps.$inferSelect;

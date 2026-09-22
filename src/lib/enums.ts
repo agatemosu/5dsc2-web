@@ -14,3 +14,28 @@ export enum StageType {
 	Bracket = 'BRACKET',
 	GrandFinal = 'GRAND_FINAL',
 }
+
+export enum MatchStatus {
+	Planned = 'PLANNED',
+	Ongoing = 'ONGOING',
+	Finished = 'FINISHED',
+}
+
+export enum DraftAction {
+	Protect = 'PROTECT',
+	Ban = 'BAN',
+	Pick = 'PICK',
+	Tiebreaker = 'TIEBREAKER',
+}
+
+export enum DraftActor {
+	Red = 'RED',
+	Blue = 'BLUE',
+}
+
+export interface DraftEntry {
+	action: DraftAction;
+	actor: DraftActor;
+	pick: string;
+	winner?: DraftActor;
+}
