@@ -11,9 +11,9 @@
 	let { children, extra, title }: Props = $props();
 </script>
 
-<div class="mt-20 grid flex-1 2xl:grid-cols-2">
+<div class="grid flex-1 md:mt-20 2xl:grid-cols-2">
 	{#if title}
-		<div class="flex max-w-3xl flex-col gap-5">
+		<div class="flex max-w-3xl flex-col gap-5 max-md:hidden">
 			<TituloSuperGrande />
 
 			<div class="flex items-center justify-center bg-accent px-32 py-5 text-4xl text-white">
@@ -25,7 +25,7 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="mx-5 min-w-0 bg-dark p-5">
+	<div class="min-w-0 overflow-auto bg-dark p-5 md:mx-5">
 		{@render children()}
 	</div>
 </div>

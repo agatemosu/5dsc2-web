@@ -3,6 +3,12 @@
 	import logo from '$lib/assets/logo.svg?url';
 	import { getNavigationItems } from '$lib/navigation';
 
+	interface Props {
+		title: string;
+	}
+
+	let { title }: Props = $props();
+
 	let open = $state(false);
 
 	const items = getNavigationItems();
@@ -10,7 +16,10 @@
 
 <header class="sticky top-0 z-50 bg-black lg:hidden">
 	<div class="flex h-16 items-center justify-between px-4">
-		<img src={logo} width="48" alt="Logo" />
+		<div class="flex gap-6">
+			<img src={logo} width="48" alt="Logo" />
+			<span class="text-white text-xl">{title}</span>
+		</div>
 
 		<button
 			class="flex size-10 flex-col items-center justify-center gap-1.5"

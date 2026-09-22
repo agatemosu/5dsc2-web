@@ -3,15 +3,15 @@ import { definePageMetaTags } from 'svelte-meta-tags';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const pageTags = definePageMetaTags({
-		title: 'Jugadores',
-	});
-
 	const players = await db.query.players.findMany({
 		columns: { registeredAt: true, seed: true },
 		with: {
 			osu: true,
 		},
+	});
+
+	const pageTags = definePageMetaTags({
+		title: `Jugadores (${players.length})`,
 	});
 
 	const allHaveSeed = players.length > 1 && players.every((player) => player.seed != null);

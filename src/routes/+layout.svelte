@@ -33,7 +33,7 @@
 
 	<div class="relative flex flex-1 flex-col">
 		<Header user={data.user?.osu} />
-		<MobileHeader />
+		<MobileHeader title={metaTags.title as string} />
 
 		{@render children()}
 	</div>
