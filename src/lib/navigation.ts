@@ -15,10 +15,7 @@ export const getNavigationItems = () => {
 
 	if (isPastOrDev(dates.liga_fase_1.start)) {
 		// items.push({ text: 'liga', href: '/liga' });
-	}
-
-	if (isPastOrDev(dates.ro16.start)) {
-		// items.push({ text: 'liga', href: '/matches' });
+		items.push({ text: 'partidos', href: '/matches' });
 	}
 
 	if (isPastOrDev(dates.qualifiers.end)) {
