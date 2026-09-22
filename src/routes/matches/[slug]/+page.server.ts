@@ -6,7 +6,7 @@ import { definePageMetaTags } from 'svelte-meta-tags';
 import { StageType } from '$lib/enums';
 
 export const load: PageServerLoad = async (event) => {
-	if (isFutureAndProd(dates.liga_fase_1.start)) {
+	if (isFutureAndProd(dates.qualifiers.end)) {
 		return error(403);
 	}
 

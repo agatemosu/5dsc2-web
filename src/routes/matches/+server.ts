@@ -6,7 +6,7 @@ import type { RequestHandler } from './$types';
 import { StageType } from '$lib/enums';
 
 export const GET: RequestHandler = async () => {
-    if (isFutureAndProd(dates.liga_fase_1.start)) {
+    if (isFutureAndProd(dates.qualifiers.end)) {
         return error(403);
     }
 

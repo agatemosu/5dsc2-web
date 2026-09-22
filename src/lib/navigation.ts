@@ -13,12 +13,9 @@ export const getNavigationItems = () => {
 		items.push({ text: 'salas', href: '/rooms' });
 	}
 
-	if (isPastOrDev(dates.liga_fase_1.start)) {
+	if (isPastOrDev(dates.qualifiers.end)) {
 		// items.push({ text: 'liga', href: '/liga' });
 		items.push({ text: 'partidos', href: '/matches' });
-	}
-
-	if (isPastOrDev(dates.qualifiers.end)) {
 		// items.push({ text: 'stats', href: '/stats' });
 	}
 
