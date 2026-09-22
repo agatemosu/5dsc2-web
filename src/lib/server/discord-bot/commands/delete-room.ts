@@ -3,13 +3,13 @@ import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import {
-	AutocompleteContext,
-	CommandContext,
 	CommandOptionType,
 	SlashCommand,
-	SlashCreator,
 	type AutocompleteChoice,
+	type AutocompleteContext,
+	type CommandContext,
 	type MessageOptions,
+	type SlashCreator,
 } from 'slash-create';
 
 interface Options {

@@ -4,11 +4,11 @@ import * as table from '$lib/server/db/schema';
 import { osuApi } from '$lib/server/osu';
 import { sql } from 'drizzle-orm';
 import {
-	CommandContext,
 	CommandOptionType,
 	SlashCommand,
-	SlashCreator,
+	type CommandContext,
 	type MessageOptions,
+	type SlashCreator,
 } from 'slash-create';
 
 interface Options {

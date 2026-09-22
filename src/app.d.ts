@@ -1,4 +1,4 @@
-import { SessionValidationResult } from '$lib/server/auth';
+import type { SessionValidationResult } from '$lib/server/auth';
 import '@poppanator/sveltekit-svg/dist/svg.d.ts';
 import type { MetaTagsProps } from 'svelte-meta-tags';
 

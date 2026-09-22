@@ -2,15 +2,15 @@ import { env } from '$env/dynamic/private';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import {
-	BaseInteractionContext,
 	ButtonStyle,
-	CommandContext,
 	ComponentType,
 	SlashCommand,
-	SlashCreator,
 	type AnyComponent,
+	type BaseInteractionContext,
+	type CommandContext,
 	type MessageEmbedOptions,
 	type MessageOptions,
+	type SlashCreator,
 } from 'slash-create';
 
 enum Action {

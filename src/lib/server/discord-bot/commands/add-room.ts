@@ -3,11 +3,11 @@ import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import {
-	CommandContext,
 	CommandOptionType,
 	SlashCommand,
-	SlashCreator,
+	type CommandContext,
 	type MessageOptions,
+	type SlashCreator,
 } from 'slash-create';
 
 interface Options {

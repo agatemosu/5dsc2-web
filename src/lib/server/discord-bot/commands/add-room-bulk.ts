@@ -4,11 +4,11 @@ import * as table from '$lib/server/db/schema';
 import * as csv from 'csv-parse/sync';
 import { DrizzleQueryError } from 'drizzle-orm';
 import {
-	CommandContext,
 	CommandOptionType,
 	SlashCommand,
-	SlashCreator,
+	type CommandContext,
 	type MessageOptions,
+	type SlashCreator,
 } from 'slash-create';
 import { z } from 'zod';
 
