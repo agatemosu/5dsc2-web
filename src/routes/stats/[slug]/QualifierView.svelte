@@ -1,15 +1,12 @@
 <script lang="ts">
-	import type { Beatmap, Beatmapset, Mappool, OsuUser, Score } from '$lib/server/db/schema';
+	import type { Score } from '$lib/server/db/schema';
 	import { calcZsums } from '$lib/stats/qualifier-stats';
 	import { modClass, tw } from '$lib/tailwind';
+	import type { FullMappool, PlayerOnlyOsu } from '$lib/types';
 
 	interface Props {
-		maps: Array<
-			Mappool & {
-				beatmap: Beatmap & { beatmapset: Beatmapset };
-			}
-		>;
-		scores: Array<Score & { player: { osu: Pick<OsuUser, 'username'> } }>;
+		maps: FullMappool[];
+		scores: Array<Score & { player: PlayerOnlyOsu }>;
 	}
 
 	let { maps, scores }: Props = $props();
@@ -70,7 +67,7 @@
 			<tr class="bg-dark">
 				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
-					{playerMap.get(zsum.playerId)!.osu.username}
+					{(playerMap.get(zsum.playerId) as PlayerOnlyOsu).osu.username}
 				</td>
 				<td class="px-4 py-2 text-center text-background">
 					{zsumFormatter.format(zsum.zSum)}
@@ -79,7 +76,9 @@
 					{scoreFormatter.format(zsum.avgScore)}
 				</td>
 				{#each zsum.scores as score (score.id)}
-					{@const scoreIndex = scoresByPick.get(score.pick)!.findIndex((s) => s.id === score.id)}
+					{@const scoreIndex = (scoresByPick.get(score.pick) as Score[]).findIndex(
+						(s) => s.id === score.id,
+					)}
 					<td class="px-4 py-2 text-center {getScoreClass(scoreIndex)}">
 						#{scoreIndex + 1} - {scoreFormatter.format(score.score)}
 					</td>

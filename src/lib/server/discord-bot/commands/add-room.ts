@@ -6,6 +6,7 @@ import {
 	CommandOptionType,
 	SlashCommand,
 	type CommandContext,
+	type Member,
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
@@ -83,7 +84,7 @@ export class AddRoomCommand extends SlashCommand {
 	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
-		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
+		if (!(ctx.member as Member).roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
 			return 'No tienes permiso para usar este comando.';
 		}
 

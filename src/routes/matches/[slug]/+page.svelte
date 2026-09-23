@@ -2,9 +2,9 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import Layout from '$lib/components/Layout.svelte';
+	import Match from '$lib/components/Match.svelte';
 	import { blur } from 'svelte/transition';
 	import type { PageProps } from './$types';
-	import Match from '$lib/components/Match.svelte';
 
 	let { data }: PageProps = $props();
 </script>
@@ -38,7 +38,7 @@
 			class="flex w-full flex-1 flex-col gap-2.5 overflow-x-auto"
 		>
 			{#each data.round.matches as match (match.id)}
-				<Match bestOf={data.round.bestOf!} {match} />
+				<Match bestOf={data.round.bestOf ?? 0} {match} />
 			{/each}
 		</div>
 	{/key}

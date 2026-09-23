@@ -2,13 +2,11 @@
 	import { Mod } from '$lib/enums';
 	import { calcModStat } from '$lib/mods/calc-stat';
 	import { modClass } from '$lib/tailwind';
-	import type { Beatmap, Beatmapset, Mappool } from '$lib/server/db/schema';
+	import type { FullMappool } from '$lib/types';
 	import { tooltip } from 'svooltip';
 
 	interface Props {
-		map: Mappool & {
-			beatmap: Beatmap & { beatmapset: Beatmapset };
-		};
+		map: FullMappool;
 	}
 
 	let { map }: Props = $props();

@@ -3,7 +3,7 @@
 	import PlayerCard from './PlayerCard.svelte';
 
 	interface Props {
-		players: (Pick<Player, 'seed'> & { osu: OsuUser })[];
+		players: Array<Pick<Player, 'seed'> & { osu: OsuUser }>;
 	}
 
 	let { players }: Props = $props();

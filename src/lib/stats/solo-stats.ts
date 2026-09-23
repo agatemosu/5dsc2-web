@@ -54,7 +54,7 @@ export function calcMatchCosts(inputs: Score[]): SoloStat[] {
 		let total = 0;
 
 		for (const [pick, score] of picks) {
-			const pickMedian = pickMedians.get(pick)!;
+			const pickMedian = pickMedians.get(pick) as number;
 
 			if (pickMedian !== 0) {
 				total += score / pickMedian;
@@ -73,7 +73,7 @@ export function calcMatchCosts(inputs: Score[]): SoloStat[] {
 
 	const result: SoloStat[] = [];
 	for (const [playerId, totalMatchCost] of playerMatchCosts) {
-		const played = mapsPlayed.get(playerId)!;
+		const played = mapsPlayed.get(playerId) as number;
 
 		const averageMatchCost = totalMatchCost / played;
 		const mapFactor = Math.pow(played / medianMapsPlayed, 1 / 3);

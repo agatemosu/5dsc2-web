@@ -19,23 +19,23 @@
 			? `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.webp`
 			: `https://cdn.discordapp.com/embed/avatars/${(BigInt(discord.id) >> 22n) % 6n}.png`;
 
-		const username = discord.globalName
+		const displayText = discord.globalName
 			? `${discord.globalName} (@${discord.username})`
 			: discord.username;
 
-		return { avatar, username };
+		return { avatar, displayText, username: discord.username };
 	});
 </script>
 
 <div class="mt-2 flex w-full max-w-2xl justify-between place-self-center bg-accent px-4 py-2">
 	<div class="flex items-center gap-3">
-		{#if discord}
+		{#if discordData}
 			<img
-				src={discordData!.avatar}
-				alt={`Avatar de ${discord.username}`}
+				src={discordData.avatar}
+				alt={`Avatar de ${discordData.username}`}
 				class="size-10 rounded-full"
 			/>
-			<span class="text-xl text-white">{discordData!.username}</span>
+			<span class="text-xl text-white">{discordData.displayText}</span>
 		{:else}
 			<i class="icon-[simple-icons--discord] size-10 text-white"></i>
 			<span class="text-xl text-white">Discord (sin vincular)</span>

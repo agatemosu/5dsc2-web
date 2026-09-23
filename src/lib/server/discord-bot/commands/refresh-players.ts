@@ -7,6 +7,7 @@ import {
 	CommandOptionType,
 	SlashCommand,
 	type CommandContext,
+	type Member,
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
@@ -48,8 +49,8 @@ export class RefreshPlayersCommand extends SlashCommand {
 	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
-		const isRef = ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID);
-		const isStaff = ctx.member!.roles.includes(env.DISCORD_STAFF_ROLE_ID);
+		const isRef = (ctx.member as Member).roles.includes(env.DISCORD_REFEREE_ROLE_ID);
+		const isStaff = (ctx.member as Member).roles.includes(env.DISCORD_STAFF_ROLE_ID);
 
 		if (!isRef && !isStaff) {
 			return 'No tienes permiso para usar este comando.';

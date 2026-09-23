@@ -3,10 +3,9 @@ import { DraftAction, DraftActor, MatchStatus } from '$lib/enums';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { error, json } from '@sveltejs/kit';
+import { eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
 import type { RequestHandler } from './$types';
-import { eq } from 'drizzle-orm';
-import { inArray } from 'drizzle-orm';
 
 const teamSchema = z.object({
 	id: z.number(),
@@ -119,7 +118,7 @@ export const POST: RequestHandler = async (event) => {
 
 		const insert: table.Match = {
 			id: match.id,
-			roundId: roundIds.get(match.stage)!,
+			roundId: roundIds.get(match.stage) as number,
 			bracket: match.bracket,
 			status: match.status,
 			startTime: match.datetime,

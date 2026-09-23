@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { OsuUser, Score } from '$lib/server/db/schema';
+	import type { Score } from '$lib/server/db/schema';
 	import { calcMatchCosts } from '$lib/stats/solo-stats';
-	import { tw, gradeClass, pickClass } from '$lib/tailwind';
+	import { gradeClass, pickClass, tw } from '$lib/tailwind';
+	import type { PlayerOnlyOsu } from '$lib/types';
 
 	interface Props {
-		scores: Array<Score & { player: { osu: Pick<OsuUser, 'username'> } }>;
+		scores: Array<Score & { player: PlayerOnlyOsu }>;
 	}
 
 	let { scores }: Props = $props();
@@ -51,7 +52,7 @@
 			<tr class="bg-dark odd:bg-[#353535]">
 				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
-					{playerMap.get(player.playerId)!.osu.username}
+					{(playerMap.get(player.playerId) as PlayerOnlyOsu).osu.username}
 				</td>
 				<td class="px-4 py-2 text-center text-background">
 					{matchCostFormatter.format(player.matchCost)}

@@ -8,6 +8,7 @@ import {
 	type AutocompleteChoice,
 	type AutocompleteContext,
 	type CommandContext,
+	type Member,
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
@@ -47,7 +48,7 @@ export class DeleteRoomCommand extends SlashCommand {
 	}
 
 	async autocomplete(ctx: AutocompleteContext): Promise<AutocompleteChoice[]> {
-		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
+		if (!(ctx.member as Member).roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
 			return [];
 		}
 
@@ -76,7 +77,7 @@ export class DeleteRoomCommand extends SlashCommand {
 	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
-		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
+		if (!(ctx.member as Member).roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
 			return 'No tienes permiso para usar este comando.';
 		}
 

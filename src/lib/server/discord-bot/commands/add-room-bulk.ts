@@ -6,7 +6,9 @@ import { DrizzleQueryError } from 'drizzle-orm';
 import {
 	CommandOptionType,
 	SlashCommand,
+	type AttachmentData,
 	type CommandContext,
+	type Member,
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
@@ -55,13 +57,13 @@ export class AddRoomBulkCommand extends SlashCommand {
 	async run(ctx: CommandContext): Promise<string | MessageOptions> {
 		const options = ctx.options as Options;
 
-		if (!ctx.member!.roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
+		if (!(ctx.member as Member).roles.includes(env.DISCORD_REFEREE_ROLE_ID)) {
 			return 'No tienes permiso para usar este comando.';
 		}
 
-		const attachment = ctx.attachments.get(options.file)!;
+		const attachment = ctx.attachments.get(options.file) as AttachmentData;
 
-		if (!attachment.content_type!.includes('text/csv')) {
+		if (!(attachment.content_type as string).includes('text/csv')) {
 			return 'No es un archivo CSV.';
 		}
 

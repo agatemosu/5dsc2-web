@@ -147,7 +147,7 @@ export const POST: RequestHandler = async (event) => {
 	const mappoolInsert = await Promise.all(
 		Object.entries(result.data.pool).flatMap(([mod, slots]) =>
 			slots.map(async (slot, index) => {
-				const map = mapsById.get(slot.id)!;
+				const map = mapsById.get(slot.id) as Beatmap;
 
 				return {
 					roundId: round.id,
