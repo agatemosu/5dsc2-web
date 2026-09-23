@@ -25,13 +25,7 @@ export function calcZsums(scores: Score[]): QualifierStat[] {
 		mapStats.set(pick, { average, stdDev });
 	}
 
-	const playerScores = new Map<number, Score[]>();
-	for (const score of scores) {
-		if (!playerScores.has(score.playerId)) {
-			playerScores.set(score.playerId, []);
-		}
-		playerScores.get(score.playerId)!.push(score);
-	}
+	const playerScores = Map.groupBy(scores, (score) => score.playerId);
 
 	const playerStats: QualifierStat[] = [];
 	for (const [playerId, scores] of playerScores) {

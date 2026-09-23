@@ -88,7 +88,7 @@
 								player.higestScore.grade
 							].text}"
 						>
-							{player.higestScore.grade}
+							{player.higestScore.grade.replace(/H$/, '')}
 						</div>
 					</div>
 				</td>
