@@ -25,7 +25,7 @@
 			<h2 class="pb-5 text-2xl text-white not-first:pt-14">
 				{dateFormatter.format(Temporal.PlainDate.from(plainDate))}
 			</h2>
-			<div class="grid md:grid-cols-2 gap-5">
+			<div class="grid gap-5 md:grid-cols-2">
 				{#each rooms as room (room.id)}
 					<Room
 						{room}

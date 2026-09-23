@@ -35,7 +35,9 @@ export const load: PageServerLoad = async (event) => {
 		return error(403);
 	}
 
-	const rounds = await db.query.rounds.findMany();
+	const rounds = await db.query.rounds.findMany({
+		columns: { slug: true, name: true, mappoolPublishedAt: true },
+	});
 
 	return {
 		rounds,

@@ -18,7 +18,7 @@
 	<div class="flex h-16 items-center justify-between px-4">
 		<div class="flex gap-6">
 			<img src={logo} width="48" alt="Logo" />
-			<span class="text-white text-xl">{title}</span>
+			<span class="text-xl text-white">{title}</span>
 		</div>
 
 		<button

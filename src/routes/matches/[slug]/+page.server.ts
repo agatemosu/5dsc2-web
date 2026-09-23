@@ -43,6 +43,7 @@ export const load: PageServerLoad = async (event) => {
 		where: {
 			stageType: { NOT: StageType.Qualifiers },
 		},
+		columns: { slug: true, name: true, mappoolPublishedAt: true },
 	});
 
 	return {

@@ -13,6 +13,7 @@ export const GET: RequestHandler = async () => {
 		where: {
 			mappoolPublishedAt: { lt: Temporal.Now.instant() },
 		},
+		columns: { slug: true },
 		orderBy: {
 			mappoolPublishedAt: 'desc',
 		},

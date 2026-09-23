@@ -5,10 +5,10 @@ import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	const rounds = await db.query.rounds.findMany({
-		columns: { slug: true, stageType: true },
 		where: {
 			mappoolPublishedAt: { isNotNull: true },
 		},
+		columns: { slug: true, stageType: true },
 	});
 
 	return await sitemap.response({

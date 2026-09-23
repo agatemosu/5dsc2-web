@@ -59,16 +59,12 @@ export class RefreshPlayersCommand extends SlashCommand {
 			return 'No tienes permiso para refrescar las clasificaciones.';
 		}
 
-		const players = await db.query.players.findMany({
-			columns: {},
-			with: {
-				user: {
-					columns: { osuId: true },
-				},
-			},
+		const players = await db.query.users.findMany({
+			where: { player: true },
+			columns: { osuId: true },
 		});
 
-		const osuIds = players.map((player) => player.user.osuId);
+		const osuIds = players.map((player) => player.osuId);
 
 		if (osuIds.length === 0) {
 			return 'No hay jugadores para actualizar.';
