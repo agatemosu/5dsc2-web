@@ -29,7 +29,7 @@
 		href="https://osu.ppy.sh/beatmapsets/{map.beatmap.beatmapsetId}#osu/{map.beatmapId}"
 		target="_blank"
 		rel="external"
-		class="aspect-7/4 w-32 md:w-56"
+		class="aspect-7/4 w-32 shrink-0 md:w-56"
 	>
 		<img
 			src="https://assets.ppy.sh/beatmaps/{map.beatmap.beatmapset.id}/covers/cover.jpg"
@@ -62,9 +62,7 @@
 	</div>
 
 	<!-- Song info -->
-	<div
-		class="min-w-40 flex-1 pt-2 p-2 md:basis-auto md:py-4 md:px-0"
-	>
+	<div class="min-w-40 flex-1 p-2 pt-2 md:basis-auto md:px-0 md:py-4">
 		<div class="truncate font-sans text-sm {modClass[map.slotName].text}">
 			{map.beatmap.beatmapset.artist}
 		</div>
@@ -82,7 +80,7 @@
 	</div>
 
 	<!-- Stats -->
-	<div class="w-full px-3 py-3 md:w-auto md:self-center md:pr-10 md:p-0">
+	<div class="w-full px-3 py-3 md:w-auto md:self-center md:p-0 md:pr-10">
 		<div class="flex flex-col gap-2 text-xs">
 			<div class="flex justify-around">
 				<div
