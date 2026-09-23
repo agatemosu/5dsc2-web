@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { modClass } from '$lib/mods/css';
 	import type { Beatmap, Beatmapset, Mappool, OsuUser, Score } from '$lib/server/db/schema';
 	import { calcZsums } from '$lib/stats/qualifier-stats';
-	import { tw } from '$lib/tailwind';
+	import { modClass, tw } from '$lib/tailwind';
 
 	interface Props {
 		maps: Array<
@@ -43,8 +42,8 @@
 
 	let zsums = $derived(calcZsums(scores));
 
-	const playerMap = $derived(new Map(scores.map((score) => [score.playerId, score.player])));
-	const scoresByPick = $derived(
+	let playerMap = $derived(new Map(scores.map((score) => [score.playerId, score.player])));
+	let scoresByPick = $derived(
 		Map.groupBy(
 			scores.toSorted((a, b) => b.score - a.score),
 			(item) => item.pick,

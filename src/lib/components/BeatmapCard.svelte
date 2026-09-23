@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Mod } from '$lib/enums';
 	import { calcModStat } from '$lib/mods/calc-stat';
-	import { modClass } from '$lib/mods/css';
+	import { modClass } from '$lib/tailwind';
 	import type { Beatmap, Beatmapset, Mappool } from '$lib/server/db/schema';
 	import { tooltip } from 'svooltip';
 

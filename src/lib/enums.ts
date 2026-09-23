@@ -9,7 +9,6 @@ export enum Mod {
 }
 
 export enum Grade {
-	F = 'F',
 	D = 'D',
 	C = 'C',
 	B = 'B',

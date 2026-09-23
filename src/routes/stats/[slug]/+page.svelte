@@ -6,6 +6,7 @@
 	import { blur } from 'svelte/transition';
 	import type { PageProps } from './$types';
 	import QualifierView from './QualifierView.svelte';
+	import SoloView from './SoloView.svelte';
 
 	let { data }: PageProps = $props();
 
@@ -32,7 +33,7 @@
 
 	let views = $derived([
 		...(data.round.stageType === StageType.Qualifiers ? ['qualifier-results'] : []),
-		// 'solo-results',
+		'solo-results',
 		// 'mappool-summary',
 		// 'map-leaderboard',
 	] as View[]);
@@ -69,7 +70,10 @@
 			<div class="flex items-center gap-4 text-white">
 				vista:
 
-				<select class="cursor-pointer bg-[#353535] p-2 text-white hover:brightness-125">
+				<select
+					bind:value={view}
+					class="cursor-pointer bg-[#353535] p-2 text-white hover:brightness-125"
+				>
 					{#each views as view (view)}
 						<option value={view}>{viewLabels[view]}</option>
 					{/each}
@@ -77,9 +81,13 @@
 			</div>
 
 			<div class="w-full overflow-x-auto">
-				{#if view === 'qualifier-results'}
-					<QualifierView maps={orderedMappool} scores={data.round.scores} />
-				{/if}
+				<div class="flex w-fit min-w-full justify-center">
+					{#if view === 'qualifier-results'}
+						<QualifierView maps={orderedMappool} scores={data.round.scores} />
+					{:else}
+						<SoloView scores={data.round.scores} />
+					{/if}
+				</div>
 			</div>
 		</div>
 	{/key}

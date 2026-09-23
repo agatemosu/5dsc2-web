@@ -28,6 +28,9 @@ export const load: PageServerLoad = async (event) => {
 						with: { osu: true },
 					},
 				},
+				orderBy: {
+					startTime: 'asc',
+				},
 			},
 		},
 	});

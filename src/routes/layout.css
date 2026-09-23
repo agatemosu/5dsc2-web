@@ -34,6 +34,15 @@
 	--color-mod-doubletime: #865fe3;
 	--color-mod-easy: #93c278;
 	--color-mod-tiebreaker: #8b97a3;
+
+	--color-grade-ssh: #d7d7d7;
+	--color-grade-ss: #d7d7d7;
+	--color-grade-sh: #ffde00;
+	--color-grade-s: #ffde00;
+	--color-grade-a: #92dc43;
+	--color-grade-b: #467be6;
+	--color-grade-c: #b565de;
+	--color-grade-d: #e53643;
 }
 
 html {

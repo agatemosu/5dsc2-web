@@ -20,7 +20,7 @@
 			.join(', ');
 	};
 
-	const picks = $derived(
+	let picks = $derived(
 		match.rundown.filter(
 			(run) => run.action === DraftAction.Pick || run.action === DraftAction.Tiebreaker,
 		),
