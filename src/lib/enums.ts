@@ -4,7 +4,20 @@ export enum Mod {
 	HR = 'HR',
 	DT = 'DT',
 	EZ = 'EZ',
+	// HT = 'HT',
 	TB = 'TB',
+}
+
+export enum Grade {
+	F = 'F',
+	D = 'D',
+	C = 'C',
+	B = 'B',
+	A = 'A',
+	S = 'S',
+	SH = 'SH',
+	SS = 'SS',
+	SSH = 'SSH',
 }
 
 export enum StageType {

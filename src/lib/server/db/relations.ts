@@ -49,6 +49,10 @@ export const relations = defineRelations(schema, (r) => ({
 			from: r.rounds.id,
 			to: r.matches.roundId,
 		}),
+		scores: r.many.scores({
+			from: r.rounds.id,
+			to: r.scores.roundId,
+		}),
 	},
 	matches: {
 		red: r.one.players({
@@ -58,6 +62,13 @@ export const relations = defineRelations(schema, (r) => ({
 		blue: r.one.players({
 			from: r.matches.teamBlueId,
 			to: r.players.id,
+		}),
+	},
+	scores: {
+		player: r.one.players({
+			from: r.scores.playerId,
+			to: r.players.id,
+			optional: false,
 		}),
 	},
 	mappools: {
