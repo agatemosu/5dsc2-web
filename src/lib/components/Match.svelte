@@ -34,7 +34,7 @@
 		class="relative grid h-10 grid-cols-5 items-center bg-linear-to-r from-[#264f6d] via-[#309ddf] to-[#264f6d] shadow-lg/25"
 	>
 		{#if match.status === MatchStatus.Ongoing}
-			<div class="absolute -top-3 left-1/2 z-40 flex -translate-x-1/2 font-bold shadow-lg/25">
+			<div class="absolute -top-3 left-1/2 z-40 flex -translate-x-1/2 shadow-lg/25">
 				<div class="bg-gray-tertiary -mr-2 flex items-center pr-3 pl-2">
 					<i class="icon-[mingcute--fast-forward-line] size-6 text-[#999999]"></i>
 				</div>
@@ -57,11 +57,9 @@
 				/>
 			{/if}
 		</a>
-		<span class="z-10 -ml-4 text-left text-xl font-bold text-white">{match.red?.osu.username}</span>
-		<span class="text-center text-sm font-bold text-white">vs.</span>
-		<span class="z-10 -mr-4 text-right text-xl font-bold text-white"
-			>{match.blue?.osu.username}</span
-		>
+		<span class="z-10 -ml-4 text-left text-xl text-white">{match.red?.osu.username}</span>
+		<span class="text-center text-sm text-white">vs.</span>
+		<span class="z-10 -mr-4 text-right text-xl text-white">{match.blue?.osu.username}</span>
 		<a
 			href={match.blue != null ? `https://osu.ppy.sh/users/${match.blue.osu.id}` : null}
 			target="_blank"
@@ -75,9 +73,7 @@
 				/>
 			{/if}
 		</a>
-		<div
-			class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-[#3b3b3b] px-6 py-0.5 font-bold shadow-lg/25"
-		>
+		<div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-[#3b3b3b] px-6 py-0.5 shadow-lg/25">
 			{#if match.status === MatchStatus.Planned}
 				<span class="text-sm text-white">
 					<InstantTooltip instant={match.startTime}>
@@ -107,18 +103,16 @@
 			<div class="flex gap-2">
 				<!-- bans red -->
 				<div class="flex w-20 flex-col">
-					<span class="text-sm font-bold text-team-red">PROTECT</span>
-					<span class="mb-1 text-sm font-bold"
-						>{filterRundown(DraftAction.Protect, DraftActor.Red)}</span
-					>
-					<span class="text-sm font-bold text-team-red">BANS</span>
-					<span class="text-sm font-bold">{filterRundown(DraftAction.Ban, DraftActor.Red)}</span>
+					<span class="text-sm text-team-red">PROTECT</span>
+					<span class="mb-1 text-sm">{filterRundown(DraftAction.Protect, DraftActor.Red)}</span>
+					<span class="text-sm text-team-red">BANS</span>
+					<span class="text-sm">{filterRundown(DraftAction.Ban, DraftActor.Red)}</span>
 				</div>
 
 				<div class="mt-5 flex flex-1 flex-col gap-2 pb-1">
 					<!-- ref and link -->
 					<div class="flex flex-1 items-center">
-						<div class="flex flex-1 items-center justify-end font-bold">
+						<div class="flex flex-1 items-center justify-end">
 							<span class="mr-1">Árbitro:</span>
 							<a
 								href="https://osu.ppy.sh/users/{match.refereeName}"
@@ -131,13 +125,13 @@
 
 						<span class="mx-2 h-8 w-[0.18rem] bg-[#464646]"></span>
 
-						<span class="font-bold">
+						<span>
 							Bo{bestOf}
 						</span>
 
 						<span class="mx-2 h-8 w-[0.18rem] bg-[#464646]"></span>
 
-						<div class="flex flex-1 items-center font-bold">
+						<div class="flex flex-1 items-center">
 							<span class="mr-1">Partido:</span>
 							<a
 								href="https://osu.ppy.sh/community/matches/{match.osuMatchId}"
@@ -154,7 +148,7 @@
 						{#each picks as item, i (item.pick)}
 							<div class="flex flex-col items-center gap-1">
 								<span
-									class="flex w-10 items-center justify-center rounded-sm py-0.5 text-xs font-bold text-shadow-md/20 {item.winner
+									class="flex w-10 items-center justify-center rounded-sm py-0.5 text-xs text-shadow-md/20 {item.winner
 										? item.winner === DraftActor.Red
 											? 'bg-team-red'
 											: 'bg-team-blue'
@@ -178,12 +172,10 @@
 
 				<!-- bans blue -->
 				<div class="flex w-20 flex-col text-right">
-					<span class="text-sm font-bold text-team-blue">PROTECT</span>
-					<span class="mb-1 text-sm font-bold"
-						>{filterRundown(DraftAction.Protect, DraftActor.Blue)}</span
-					>
-					<span class="text-sm font-bold text-team-blue">BANS</span>
-					<span class="text-sm font-bold">{filterRundown(DraftAction.Ban, DraftActor.Blue)}</span>
+					<span class="text-sm text-team-blue">PROTECT</span>
+					<span class="mb-1 text-sm">{filterRundown(DraftAction.Protect, DraftActor.Blue)}</span>
+					<span class="text-sm text-team-blue">BANS</span>
+					<span class="text-sm">{filterRundown(DraftAction.Ban, DraftActor.Blue)}</span>
 				</div>
 			</div>
 		</div>

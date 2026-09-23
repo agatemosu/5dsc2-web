@@ -72,7 +72,7 @@
 	</div>
 
 	<div class="max-xs:mb-2 self-center max-md:mb-1 md:mr-10">
-		<div class="max-xs:flex-col flex justify-items-end gap-1 text-xs font-bold md:flex-col">
+		<div class="max-xs:flex-col flex justify-items-end gap-1 text-xs md:flex-col">
 			<div class="grid grid-cols-3 gap-3">
 				<div class="flex items-center gap-1" use:tooltip={{ content: 'Estrellas' }}>
 					<i class="icon-[fa7-solid--star] size-3 {modClass[map.slotName].text}"></i>

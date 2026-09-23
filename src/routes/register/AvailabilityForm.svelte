@@ -82,7 +82,7 @@
 			<button
 				type="submit"
 				class={[
-					'bg-[#FEBA66] px-16 py-2 text-3xl font-bold text-white uppercase shadow-md',
+					'bg-[#FEBA66] px-16 py-2 text-3xl text-white uppercase shadow-md',
 					loggedInDiscord ? 'cursor-pointer hover:opacity-60' : 'cursor-not-allowed brightness-50',
 				]}
 			>

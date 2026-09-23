@@ -35,7 +35,7 @@
 		<div
 			out:blur={{ duration: 200 }}
 			in:blur={{ delay: 200, duration: 200 }}
-			class="flex flex-col gap-2.5"
+			class="flex w-full flex-col gap-2.5 h-full overflow-x-auto"
 		>
 			{#each data.round.matches as match (match.id)}
 				<Match bestOf={data.round.bestOf!} {match} />
