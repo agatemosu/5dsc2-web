@@ -23,20 +23,23 @@
 	};
 </script>
 
-<div class="flex h-32 bg-gray">
+<div class="flex min-h-32 flex-wrap bg-gray md:flex-nowrap">
+	<!-- Cover -->
 	<a
 		href="https://osu.ppy.sh/beatmapsets/{map.beatmap.beatmapsetId}#osu/{map.beatmapId}"
 		target="_blank"
 		rel="external"
+		class="aspect-7/4 w-32 md:w-56"
 	>
 		<img
 			src="https://assets.ppy.sh/beatmaps/{map.beatmap.beatmapset.id}/covers/cover.jpg"
 			alt="Cover de {map.beatmap.beatmapset.title}"
-			class="h-full w-56 object-cover"
+			class="h-full w-full object-cover"
 		/>
 	</a>
 
-	<div class="flex w-18 flex-col gap-2.5 py-2.5 pl-2.5">
+	<!-- Slot / ID -->
+	<div class="flex w-18 shrink-0 flex-col gap-2.5 p-2.5">
 		<div
 			class="py-2 text-center text-sm text-white {modClass[map.slotName].bg}"
 			use:tooltip={{
@@ -48,22 +51,29 @@
 		>
 			{map.slotName}{map.slotIndex}
 		</div>
+
 		{#if map.custom}
 			<div class="bg-white py-1 text-center text-xs text-black">custom</div>
 		{/if}
-		<div class="text-center align-bottom text-xs text-gray-2 select-all">
+
+		<div class="text-center text-xs text-gray-2 select-all">
 			{map.beatmapId}
 		</div>
 	</div>
 
-	<div class="flex flex-1 flex-col justify-center py-4 pl-2.5">
-		<div class="max-w-52 truncate font-sans {modClass[map.slotName].text}">
+	<!-- Song info -->
+	<div
+		class="min-w-40 flex-1 pt-2 p-2 md:basis-auto md:py-4 md:px-0"
+	>
+		<div class="truncate font-sans text-sm {modClass[map.slotName].text}">
 			{map.beatmap.beatmapset.artist}
 		</div>
-		<div class="max-w-52 truncate text-2xl leading-9 text-white">
+
+		<div class="truncate text-xl leading-7 text-white md:text-2xl md:leading-9">
 			{map.beatmap.beatmapset.title}
 		</div>
-		<div class="max-w-52 truncate text-white">
+
+		<div class="truncate text-sm text-white">
 			<span class={modClass[map.slotName].text}>
 				{map.beatmap.version}
 			</span>
@@ -71,14 +81,19 @@
 		</div>
 	</div>
 
-	<div class="max-xs:mb-2 self-center max-md:mb-1 md:mr-10">
-		<div class="max-xs:flex-col flex justify-items-end gap-1 text-xs md:flex-col">
-			<div class="grid grid-cols-3 gap-3">
-				<div class="flex items-center gap-1" use:tooltip={{ content: 'Estrellas' }}>
+	<!-- Stats -->
+	<div class="w-full px-3 py-3 md:w-auto md:self-center md:pr-10 md:p-0">
+		<div class="flex flex-col gap-2 text-xs">
+			<div class="flex justify-around">
+				<div
+					class="flex w-14 items-center justify-center gap-1"
+					use:tooltip={{ content: 'Estrellas' }}
+				>
 					<i class="icon-[fa7-solid--star] size-3 {modClass[map.slotName].text}"></i>
 					<span class="text-white">{numFormatter.format(map.starRating)}</span>
 				</div>
-				<div class="flex items-center gap-1" use:tooltip={{ content: 'BPM' }}>
+
+				<div class="flex w-14 items-center justify-center gap-1" use:tooltip={{ content: 'BPM' }}>
 					<i class="icon-[fa7-solid--music] size-3 {modClass[map.slotName].text}"></i>
 					<span class="text-white">
 						{numFormatter.format(
@@ -86,7 +101,11 @@
 						)}
 					</span>
 				</div>
-				<div class="flex items-center gap-1" use:tooltip={{ content: 'Duración' }}>
+
+				<div
+					class="flex w-14 items-center justify-center gap-1"
+					use:tooltip={{ content: 'Duración' }}
+				>
 					<i class="icon-[fa7-solid--clock] size-3 {modClass[map.slotName].text}"></i>
 					<span class="text-white">
 						{formatTime(
@@ -98,11 +117,10 @@
 				</div>
 			</div>
 
-			<span class="max-xs:hidden mx-2 h-6 w-full max-w-[0.18rem] rounded-xl bg-[#464646] md:hidden"
-			></span>
+			<div class="mx-auto h-px w-full bg-[#464646] md:hidden"></div>
 
-			<div class="grid grid-cols-3 gap-3">
-				<div class="flex items-center gap-1">
+			<div class="flex justify-around">
+				<div class="flex w-14 items-center justify-center gap-1">
 					<span class={modClass[map.slotName].text}>CS</span>
 					<span class="text-white">
 						{numFormatter.format(
@@ -112,7 +130,8 @@
 						)}
 					</span>
 				</div>
-				<div class="flex items-center gap-1">
+
+				<div class="flex w-14 items-center justify-center gap-1">
 					<span class={modClass[map.slotName].text}>AR</span>
 					<span class="text-white">
 						{numFormatter.format(
@@ -124,7 +143,8 @@
 						)}
 					</span>
 				</div>
-				<div class="flex items-center gap-1">
+
+				<div class="flex w-14 items-center justify-center gap-1">
 					<span class={modClass[map.slotName].text}>OD</span>
 					<span class="text-white">
 						{numFormatter.format(
