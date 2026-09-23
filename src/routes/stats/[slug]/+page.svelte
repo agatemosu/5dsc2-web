@@ -38,7 +38,7 @@
 	] as View[]);
 </script>
 
-<Layout title="stats">
+<Layout>
 	<div class="flex min-w-0 scrollbar-thin gap-2.5 overflow-x-auto">
 		{#each data.rounds as round (round.slug)}
 			{#if round.hasScores}
