@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { calcModStat } from '$lib/calc-mod-stat';
 	import { Mod } from '$lib/enums';
+	import { calcModStat } from '$lib/mods/calc-stat';
+	import { modClass } from '$lib/mods/css';
 	import type { Beatmap, Beatmapset, Mappool } from '$lib/server/db/schema';
 	import { tooltip } from 'svooltip';
 
@@ -19,15 +20,6 @@
 		const seconds = Math.floor(time % 60);
 
 		return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-	};
-
-	const modClass: Record<Mod, { bg: string; text: string }> = {
-		NM: { bg: 'bg-mod-nomod', text: 'text-mod-nomod' },
-		HD: { bg: 'bg-mod-hidden', text: 'text-mod-hidden' },
-		HR: { bg: 'bg-mod-hardrock', text: 'text-mod-hardrock' },
-		DT: { bg: 'bg-mod-doubletime', text: 'text-mod-doubletime' },
-		EZ: { bg: 'bg-mod-easy', text: 'text-mod-easy' },
-		TB: { bg: 'bg-mod-tiebreaker', text: 'text-mod-tiebreaker' },
 	};
 </script>
 
