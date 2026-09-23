@@ -4,6 +4,7 @@ interface QualifierStat {
 	playerId: number;
 	zSum: number;
 	avgScore: number;
+	scores: Score[];
 }
 
 export function calcZsums(scores: Score[]): QualifierStat[] {
@@ -51,6 +52,7 @@ export function calcZsums(scores: Score[]): QualifierStat[] {
 			playerId,
 			zSum,
 			avgScore: totalScore / scores.length,
+			scores,
 		};
 
 		playerStats.push(stat);
