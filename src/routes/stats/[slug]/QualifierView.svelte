@@ -55,27 +55,33 @@
 <table class="min-w-max">
 	<thead>
 		<tr>
-			<th class="py-2 text-white underline">#</th>
-			<th class="py-2 text-white underline">player</th>
-			<th class="py-2 text-white underline">z-sum</th>
-			<th class="py-2 text-white underline">avg. score</th>
+			<th class="px-2 py-2 text-center text-white underline">#</th>
+			<th class="px-4 py-2 text-left text-white underline">player</th>
+			<th class="px-4 py-2 text-center text-white underline">z-sum</th>
+			<th class="px-4 py-2 text-center text-white underline">avg. score</th>
 			{#each maps as map (map.id)}
-				<th class="py-2 underline {modClass[map.slotName].text}">{map.slotName}{map.slotIndex}</th>
+				<th class="px-4 py-2 text-center underline {modClass[map.slotName].text}">
+					{map.slotName}{map.slotIndex}
+				</th>
 			{/each}
 		</tr>
 	</thead>
 	<tbody>
 		{#each zsums as zsum, i (zsum.playerId)}
 			<tr class="bg-dark">
-				<td class="py-2 px-2 text-center {getPositionClass(i)}">#{i + 1}</td>
-				<td class="py-2 px-4 text-left text-background">{playerMap.get(zsum.playerId)!.osu.username}</td>
-				<td class="py-2 px-6 text-center text-background">{zsumFormatter.format(zsum.zSum)}</td>
-				<td class="py-2 px-6 text-center text-background"
-					>{scoreFormatter.format(zsum.avgScore)}</td
-				>
+				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
+				<td class="px-4 py-2 text-left text-background">
+					{playerMap.get(zsum.playerId)!.osu.username}
+				</td>
+				<td class="px-4 py-2 text-center text-background">
+					{zsumFormatter.format(zsum.zSum)}
+				</td>
+				<td class="px-4 py-2 text-center text-background">
+					{scoreFormatter.format(zsum.avgScore)}
+				</td>
 				{#each zsum.scores as score (score.id)}
 					{@const scoreIndex = scoresByPick.get(score.pick)!.findIndex((s) => s.id === score.id)}
-					<td class="py-2 px-4 text-center {getScoreClass(scoreIndex)}">
+					<td class="px-4 py-2 text-center {getScoreClass(scoreIndex)}">
 						#{scoreIndex + 1} - {scoreFormatter.format(score.score)}
 					</td>
 				{/each}
