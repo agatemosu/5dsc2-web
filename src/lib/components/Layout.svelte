@@ -25,7 +25,7 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="min-w-0 overflow-auto bg-dark p-5 md:mx-5">
+	<div class="flex min-w-0 flex-col overflow-auto bg-dark p-5 md:mx-5">
 		{@render children()}
 	</div>
 </div>

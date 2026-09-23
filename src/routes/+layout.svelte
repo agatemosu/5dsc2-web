@@ -28,7 +28,7 @@
 	>
 		<source srcset={bgAvif} type="image/avif" />
 		<source srcset={bgWebp} type="image/webp" />
-		<img src={bgJpg} alt="" class="h-full w-full object-cover object-center" />
+		<img src={bgJpg} alt="Background" class="h-full w-full object-cover object-center" />
 	</picture>
 
 	<div class="relative flex flex-1 flex-col">
