@@ -39,7 +39,7 @@
 </script>
 
 <Layout title="stats">
-	<div class="flex min-w-0 gap-2.5 overflow-x-auto">
+	<div class="flex min-w-0 scrollbar-thin gap-2.5 overflow-x-auto">
 		{#each data.rounds as round (round.slug)}
 			{#if round.hasScores}
 				<a

@@ -10,7 +10,7 @@
 </script>
 
 <Layout title="partidos">
-	<div class="flex min-w-0 gap-2.5 overflow-x-auto">
+	<div class="flex min-w-0 scrollbar-thin gap-2.5 overflow-x-auto">
 		{#each data.rounds as round (round.slug)}
 			{#if round.mappoolPublishedAt && Temporal.Instant.compare(Temporal.Now.instant(), round.mappoolPublishedAt) >= 0}
 				<a
@@ -35,7 +35,7 @@
 		<div
 			out:blur={{ duration: 200 }}
 			in:blur={{ delay: 200, duration: 200 }}
-			class="flex h-full w-full flex-col gap-2.5 overflow-x-auto"
+			class="flex w-full flex-1 flex-col gap-2.5 overflow-x-auto"
 		>
 			{#each data.round.matches as match (match.id)}
 				<Match bestOf={data.round.bestOf!} {match} />

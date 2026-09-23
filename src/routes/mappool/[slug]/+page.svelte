@@ -19,7 +19,7 @@
 </script>
 
 <Layout title="mappool">
-	<div class="flex min-w-0 gap-2.5 overflow-x-auto">
+	<div class="flex min-w-0 scrollbar-thin gap-2.5 overflow-x-auto">
 		{#each data.rounds as round (round.slug)}
 			{#if round.mappoolPublishedAt && Temporal.Instant.compare(Temporal.Now.instant(), round.mappoolPublishedAt) >= 0}
 				<a
