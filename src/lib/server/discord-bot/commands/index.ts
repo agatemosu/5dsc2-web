@@ -4,6 +4,7 @@ import { AddRoomCommand } from './add-room.ts';
 import { DeleteRoomCommand } from './delete-room.ts';
 import { ListRoomsCommand } from './list-rooms.ts';
 import { RefreshPlayersCommand } from './refresh-players.ts';
+import { RemovePlayerRoleCommand } from './remove-player-role.ts';
 
 export const commands: (typeof SlashCommand)[] = [
 	AddRoomBulkCommand,
@@ -11,4 +12,5 @@ export const commands: (typeof SlashCommand)[] = [
 	DeleteRoomCommand,
 	ListRoomsCommand,
 	RefreshPlayersCommand,
+	RemovePlayerRoleCommand,
 ];

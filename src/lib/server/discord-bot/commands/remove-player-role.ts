@@ -8,7 +8,7 @@ import {
 	type SlashCreator,
 } from 'slash-create';
 
-export class RefreshPlayersCommand extends SlashCommand {
+export class RemovePlayerRoleCommand extends SlashCommand {
 	constructor(creator: SlashCreator) {
 		super(creator, {
 			name: 'remove-player-role',
