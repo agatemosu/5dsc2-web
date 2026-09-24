@@ -26,8 +26,10 @@
 
 <div class="flex flex-col gap-4 overflow-auto">
 	{#each mapsWithScores as map (map.map.id)}
-		<div class="grid h-80 w-5xl grid-cols-2 overflow-clip bg-[#212121]">
-			<StatsBeatmapCard map={map.map} />
+		<div class="grid h-80 w-5xl grid-cols-2 overflow-clip">
+			<div class="bg-gray">
+				<StatsBeatmapCard map={map.map} />
+			</div>
 			<div class="flex flex-col overflow-y-scroll">
 				{#each map.scores as scoreData, i (i)}
 					<div

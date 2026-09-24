@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import InstantTooltip from '$lib/components/InstantTooltip.svelte';
+	import type { OsuUser } from '$lib/interfaces/osu';
 	import type { QualifierRoom } from '$lib/server/db/schema';
-	import type { PlayerOnlyOsu } from '$lib/types';
 	import { tooltip } from 'svooltip';
 
 	interface Props {
-		room: QualifierRoom & { players: PlayerOnlyOsu[] };
+		room: QualifierRoom & { players: Array<{ osu: Pick<OsuUser, 'username'> }> };
 		loggedIn: boolean;
 		selectedRoom: string | null;
 	}
