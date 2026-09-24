@@ -15,19 +15,11 @@
 		{#if !data.allHaveSeed}
 			<PlayerGrid players={data.players} />
 		{:else}
-			<h2
-				class="-mt-2.5 mb-2.5 bg-dark py-2 text-center text-xl text-white"
-			>
-				clasificados
-			</h2>
+			<h2 class="-mt-2.5 mb-2.5 bg-dark py-2 text-center text-xl text-white">clasificados</h2>
 
 			<PlayerGrid players={data.players.slice(0, 32)} />
 
-			<h2
-				class="mt-2.5 mb-2.5 bg-dark py-2 text-center text-xl text-white"
-			>
-				no clasificados
-			</h2>
+			<h2 class="mt-2.5 mb-2.5 bg-dark py-2 text-center text-xl text-white">no clasificados</h2>
 
 			<PlayerGrid players={data.players.slice(32)} />
 		{/if}
