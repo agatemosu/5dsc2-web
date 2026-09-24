@@ -1,17 +1,18 @@
 import type { Score } from '$lib/server/db/schema';
+import type { PlayerOnlyOsu, ScoreWithPlayer } from '$lib/types';
 import { median, normalizeScore } from './util';
 
 interface SoloStat {
-	playerId: number;
+	player: PlayerOnlyOsu;
 	matchCost: number;
 	avgScore: number;
 	avgAcc: number;
 	mapNum: number;
 	higestScore: Score;
-	scores: Score[];
+	scores: ScoreWithPlayer[];
 }
 
-export function calcMatchCosts(inputs: Score[]): SoloStat[] {
+export function calcMatchCosts(inputs: ScoreWithPlayer[]): SoloStat[] {
 	const normalizedScores = inputs.map(normalizeScore);
 
 	const bestScores = new Map<number, Map<string, number>>();
@@ -79,7 +80,7 @@ export function calcMatchCosts(inputs: Score[]): SoloStat[] {
 		const mapFactor = Math.pow(played / medianMapsPlayed, 1 / 3);
 		const matchCost = averageMatchCost * mapFactor;
 
-		const playerScores = normalizedScores.filter((score) => score.playerId === playerId);
+		const playerScores = normalizedScores.filter((score) => score.player.id === playerId);
 
 		const avgScore =
 			playerScores.reduce((sum, score) => sum + score.normalizedScore, 0) / playerScores.length;
@@ -92,7 +93,7 @@ export function calcMatchCosts(inputs: Score[]): SoloStat[] {
 		);
 
 		result.push({
-			playerId,
+			player: highestScore.player,
 			matchCost,
 			avgScore,
 			avgAcc,

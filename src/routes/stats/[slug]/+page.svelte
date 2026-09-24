@@ -83,7 +83,7 @@
 			<div class="w-full overflow-x-auto">
 				<div class="flex w-fit min-w-full justify-center">
 					{#if view === 'qualifier-results'}
-						<QualifierView maps={orderedMappool} scores={data.round.scores} />
+						<QualifierView scores={data.round.scores} maps={orderedMappool} />
 					{:else}
 						<SoloView scores={data.round.scores} />
 					{/if}

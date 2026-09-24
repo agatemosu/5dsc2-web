@@ -31,7 +31,7 @@ export const load: PageServerLoad = async (event) => {
 			scores: {
 				with: {
 					player: {
-						columns: {},
+						columns: { id: true },
 						with: {
 							osu: {
 								columns: { username: true },

@@ -1,11 +1,10 @@
 <script lang="ts">
-	import type { Score } from '$lib/server/db/schema';
 	import { calcMatchCosts } from '$lib/stats/solo-stats';
 	import { gradeClass, pickClass, tw } from '$lib/tailwind';
-	import type { PlayerOnlyOsu } from '$lib/types';
+	import type { ScoreWithPlayer } from '$lib/types';
 
 	interface Props {
-		scores: Array<Score & { player: PlayerOnlyOsu }>;
+		scores: ScoreWithPlayer[];
 	}
 
 	let { scores }: Props = $props();
@@ -32,7 +31,6 @@
 	}
 
 	let matchCosts = $derived(calcMatchCosts(scores));
-	let playerMap = $derived(new Map(scores.map((score) => [score.playerId, score.player])));
 </script>
 
 <table class="min-w-max">
@@ -48,11 +46,11 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each matchCosts as player, i (player.playerId)}
+		{#each matchCosts as player, i (player.player.id)}
 			<tr class="bg-dark odd:bg-[#353535]">
 				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
-					{(playerMap.get(player.playerId) as PlayerOnlyOsu).osu.username}
+					{player.player.osu.username}
 				</td>
 				<td class="px-4 py-2 text-center text-background">
 					{matchCostFormatter.format(player.matchCost)}

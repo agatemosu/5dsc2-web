@@ -1,10 +1,10 @@
-import type { Score } from '$lib/server/db/schema';
+import type { PlayerOnlyOsu, ScoreWithPlayer } from '$lib/types';
 
 interface QualifierStat {
-	playerId: number;
+	player: PlayerOnlyOsu;
 	zSum: number;
 	avgScore: number;
-	scores: Score[];
+	scores: ScoreWithPlayer[];
 }
 
 interface MapStat {
@@ -12,10 +12,16 @@ interface MapStat {
 	stdDev: number;
 }
 
-export function calcZsums(scores: Score[]): QualifierStat[] {
+export function calcZsums(scores: ScoreWithPlayer[]): QualifierStat[] {
 	const mapGroups = new Map<string, number[]>();
 	for (const score of scores) {
-		mapGroups.getOrInsert(score.pick, []).push(score.score);
+		const group = mapGroups.get(score.pick);
+
+		if (group) {
+			group.push(score.score);
+		} else {
+			mapGroups.set(score.pick, [score.score]);
+		}
 	}
 
 	const mapStats = new Map<string, MapStat>();
@@ -27,10 +33,12 @@ export function calcZsums(scores: Score[]): QualifierStat[] {
 		mapStats.set(pick, { average, stdDev });
 	}
 
-	const playerScores = Map.groupBy(scores, (score) => score.playerId);
+	const playerScores = Map.groupBy(scores, (score) => score.player.id);
 
 	const playerStats: QualifierStat[] = [];
-	for (const [playerId, scores] of playerScores) {
+	for (const scores of playerScores.values()) {
+		const player = scores[0].player;
+
 		let zSum = 0;
 		let totalScore = 0;
 
@@ -45,7 +53,7 @@ export function calcZsums(scores: Score[]): QualifierStat[] {
 		}
 
 		const stat: QualifierStat = {
-			playerId,
+			player,
 			zSum,
 			avgScore: totalScore / scores.length,
 			scores,

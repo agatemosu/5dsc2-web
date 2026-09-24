@@ -1,6 +1,6 @@
 import { Mod } from '$lib/enums';
 import { fromLegacyBitset } from '$lib/mods/bitset';
-import type { Score } from '$lib/server/db/schema';
+import type { NormalizedScoreWithPlayer, ScoreWithPlayer } from '$lib/types';
 
 export function median(values: number[]): number {
 	if (values.length === 0) {
@@ -13,7 +13,7 @@ export function median(values: number[]): number {
 	return sorted.length % 2 === 0 ? (sorted[middle - 1] + sorted[middle]) / 2 : sorted[middle];
 }
 
-export function normalizeScore(score: Score): Score & { normalizedScore: number } {
+export function normalizeScore(score: ScoreWithPlayer): NormalizedScoreWithPlayer {
 	const mods = fromLegacyBitset(score.modsBitset);
 
 	let multiplier = 1;

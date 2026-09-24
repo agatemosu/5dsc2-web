@@ -2,14 +2,14 @@
 	import type { Score } from '$lib/server/db/schema';
 	import { calcZsums } from '$lib/stats/qualifier-stats';
 	import { modClass, tw } from '$lib/tailwind';
-	import type { FullMappool, PlayerOnlyOsu } from '$lib/types';
+	import type { FullMappool, ScoreWithPlayer } from '$lib/types';
 
 	interface Props {
+		scores: ScoreWithPlayer[];
 		maps: FullMappool[];
-		scores: Array<Score & { player: PlayerOnlyOsu }>;
 	}
 
-	let { maps, scores }: Props = $props();
+	let { scores, maps }: Props = $props();
 
 	const zsumFormatter = new Intl.NumberFormat('es-ES', {
 		maximumFractionDigits: 2,
@@ -39,7 +39,6 @@
 
 	let zsums = $derived(calcZsums(scores));
 
-	let playerMap = $derived(new Map(scores.map((score) => [score.playerId, score.player])));
 	let scoresByPick = $derived(
 		Map.groupBy(
 			scores.toSorted((a, b) => b.score - a.score),
@@ -63,11 +62,11 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each zsums as zsum, i (zsum.playerId)}
+		{#each zsums as zsum, i (zsum.player.id)}
 			<tr class="bg-dark">
 				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
-					{(playerMap.get(zsum.playerId) as PlayerOnlyOsu).osu.username}
+					{zsum.player.osu.username}
 				</td>
 				<td class="px-4 py-2 text-center text-background">
 					{zsumFormatter.format(zsum.zSum)}
