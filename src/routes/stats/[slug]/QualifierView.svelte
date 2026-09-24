@@ -31,8 +31,8 @@
 		if (scoreIndex === 0) return tw('bg-qualifier-gold/20 text-qualifier-gold');
 		if (scoreIndex === 1) return tw('bg-qualifier-silver/40 text-qualifier-silver');
 		if (scoreIndex === 2) return tw('bg-qualifier-bronze/20 text-qualifier-bronze');
-		if (scoreIndex <= 8) return tw('bg-[#353535]/50 text-background/50');
-		if (scoreIndex <= 16) return tw('bg-dark text-background/50');
+		if (scoreIndex < 8) return tw('bg-[#353535]/50 text-background/50');
+		if (scoreIndex < 16) return tw('bg-dark text-background/50');
 
 		return tw('bg-dark text-background/25');
 	}
