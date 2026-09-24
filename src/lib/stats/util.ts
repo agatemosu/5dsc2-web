@@ -28,7 +28,6 @@ export function normalizeScore(score: ScoreWithPlayer): NormalizedScoreWithPlaye
 				multiplier *= 1.1;
 				break;
 
-
 			case Mod.DT:
 				multiplier *= 1.2;
 				break;
