@@ -15,17 +15,17 @@ export function groupMapScores(scores: ScoreWithPlayer[], maps: FullMappool[]): 
 
 	const result: SoloStat[] = [];
 	for (const [pick, scores] of scoreGroups) {
-		const sortedScores = scores.toSorted((a, b) => b.score - a.score);
+		scores.sort((a, b) => b.score - a.score);
 		const map = mapKeyed.get(pick);
 
-		if (!map || sortedScores.length === 0) {
+		if (!map || scores.length === 0) {
 			continue;
 		}
 
 		result.push({
 			map,
-			highestScore: sortedScores[0],
-			scores: sortedScores,
+			highestScore: scores[0],
+			scores: scores,
 		});
 	}
 
