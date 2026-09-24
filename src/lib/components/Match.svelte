@@ -150,7 +150,7 @@
 						{#each picks as item, i (item.pick)}
 							<div class="flex flex-col items-center gap-1">
 								<span
-									class="flex w-10 items-center justify-center rounded-sm py-0.5 text-xs text-shadow-md/20 {item.winner
+									class="flex w-10 items-center justify-center rounded-sm py-0.5 text-xs text-white text-shadow-md/20 {item.winner
 										? item.winner === DraftActor.Red
 											? 'bg-team-red'
 											: 'bg-team-blue'
