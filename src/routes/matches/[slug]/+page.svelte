@@ -50,7 +50,7 @@
 		type="search"
 		bind:value={search}
 		placeholder="buscar jugador..."
-		class="mb-5 w-full bg-dark px-4 py-3 text-white outline-none placeholder:text-gray-2"
+		class="mb-5 w-full bg-gray px-4 py-3 text-white outline-none placeholder:text-gray-2"
 	/>
 
 	{#key page.params.slug}
