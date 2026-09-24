@@ -7,6 +7,21 @@
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+
+	let search = $state('');
+
+	let filteredMatches = $derived(
+		data.round.matches.filter((match) => {
+			const query = search.toLowerCase().trim();
+
+			if (!query) return true;
+
+			return (
+				match.red?.osu.username.toLowerCase().includes(query) ||
+				match.blue?.osu.username.toLowerCase().includes(query)
+			);
+		}),
+	);
 </script>
 
 <Layout title="partidos">
@@ -31,13 +46,20 @@
 
 	<div class="py-5 text-4xl text-white">{data.round.name}</div>
 
+	<input
+		type="search"
+		bind:value={search}
+		placeholder="buscar jugador..."
+		class="mb-5 w-full bg-dark px-4 py-3 text-white outline-none placeholder:text-gray-2"
+	/>
+
 	{#key page.params.slug}
 		<div
 			out:blur={{ duration: 200 }}
 			in:blur={{ delay: 200, duration: 200 }}
 			class="flex w-full flex-1 flex-col gap-2.5 overflow-x-auto"
 		>
-			{#each data.round.matches as match (match.id)}
+			{#each filteredMatches as match (match.id)}
 				<Match bestOf={data.round.bestOf ?? 0} {match} />
 			{/each}
 		</div>
