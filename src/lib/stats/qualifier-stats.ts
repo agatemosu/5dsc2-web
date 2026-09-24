@@ -1,10 +1,11 @@
-import type { PlayerOnlyOsu, ScoreWithPlayer } from '$lib/types';
+import type { NormalizedScoreWithPlayer, PlayerOnlyOsu, ScoreWithPlayer } from '$lib/types';
+import { normalizeScore } from './util';
 
 interface QualifierStat {
 	player: PlayerOnlyOsu;
 	zSum: number;
 	avgScore: number;
-	scores: ScoreWithPlayer[];
+	scores: NormalizedScoreWithPlayer[];
 }
 
 interface MapStat {
@@ -12,9 +13,11 @@ interface MapStat {
 	stdDev: number;
 }
 
-export function calcZsums(scores: ScoreWithPlayer[]): QualifierStat[] {
+export function calcZsums(inputs: ScoreWithPlayer[]): QualifierStat[] {
+	const normalizedScores = inputs.map(normalizeScore);
+
 	const mapGroups = new Map<string, number[]>();
-	for (const score of scores) {
+	for (const score of normalizedScores) {
 		const group = mapGroups.get(score.pick);
 
 		if (group) {
@@ -33,7 +36,7 @@ export function calcZsums(scores: ScoreWithPlayer[]): QualifierStat[] {
 		mapStats.set(pick, { average, stdDev });
 	}
 
-	const playerScores = Map.groupBy(scores, (score) => score.player.id);
+	const playerScores = Map.groupBy(normalizedScores, (score) => score.player.id);
 
 	const playerStats: QualifierStat[] = [];
 	for (const scores of playerScores.values()) {
@@ -49,7 +52,7 @@ export function calcZsums(scores: ScoreWithPlayer[]): QualifierStat[] {
 				zSum += (score.score - mapStat.average) / mapStat.stdDev;
 			}
 
-			totalScore += score.score;
+			totalScore += score.normalizedScore;
 		}
 
 		const stat: QualifierStat = {

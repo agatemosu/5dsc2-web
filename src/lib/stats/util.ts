@@ -21,12 +21,16 @@ export function normalizeScore(score: ScoreWithPlayer): NormalizedScoreWithPlaye
 	for (const mod of mods) {
 		switch (mod) {
 			case Mod.HD:
-			case Mod.HR:
 				multiplier *= 1.06;
 				break;
 
+			case Mod.HR:
+				multiplier *= 1.1;
+				break;
+
+
 			case Mod.DT:
-				multiplier *= 1.12;
+				multiplier *= 1.2;
 				break;
 		}
 	}

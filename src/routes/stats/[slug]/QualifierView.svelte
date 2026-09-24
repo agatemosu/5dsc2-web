@@ -79,7 +79,7 @@
 						(s) => s.id === score.id,
 					)}
 					<td class="px-4 py-2 text-center {getScoreClass(scoreIndex)}">
-						#{scoreIndex + 1} - {scoreFormatter.format(score.score)}
+						#{scoreIndex + 1} - {scoreFormatter.format(score.normalizedScore)}
 					</td>
 				{/each}
 			</tr>
