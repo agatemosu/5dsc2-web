@@ -44,7 +44,7 @@
 	</InstantTooltip>
 
 	<div
-		class="flex flex-1 items-center"
+		class="flex items-center"
 		use:tooltip={{
 			content:
 				room.players.length === 0
@@ -62,31 +62,31 @@
 		<a
 			href="https://osu.ppy.sh/community/matches/{room.mpLinkId}"
 			target="_blank"
-			class="bg-dark px-2 py-0.5 text-xs text-white"
+			class="ml-auto bg-dark px-2 py-0.5 text-xs text-white"
 		>
 			MP LINK
 		</a>
-	{/if}
+	{:else}
+		<form class="ml-auto" method="post" action="?/select" use:enhance>
+			<input type="hidden" name="room_id" value={room.id} />
 
-	<form method="post" action="?/select" use:enhance>
-		<input type="hidden" name="room_id" value={room.id} />
-
-		<button
-			disabled={isThisSelectedRoom || !loggedIn || !hasSpaceAvailable || isPast}
-			class="size-8 p-1 transition-colors {isThisSelectedRoom
-				? 'cursor-not-allowed bg-pink-950'
-				: loggedIn && hasSpaceAvailable && !isPast
-					? 'cursor-pointer bg-emerald-500'
-					: 'cursor-not-allowed bg-dark'}"
-			aria-label="Unirse a esta sala"
-		>
-			<i
-				class="size-full transition-colors {isThisSelectedRoom
-					? 'icon-[tabler--login-2] text-pink-500'
+			<button
+				disabled={isThisSelectedRoom || !loggedIn || !hasSpaceAvailable || isPast}
+				class="size-8 p-1 transition-colors {isThisSelectedRoom
+					? 'cursor-not-allowed bg-pink-950'
 					: loggedIn && hasSpaceAvailable && !isPast
-						? 'icon-[tabler--login-2] text-green-200'
-						: 'icon-[tabler--lock] text-neutral-500'}"
-			></i>
-		</button>
-	</form>
+						? 'cursor-pointer bg-emerald-500'
+						: 'cursor-not-allowed bg-dark'}"
+				aria-label="Unirse a esta sala"
+			>
+				<i
+					class="size-full transition-colors {isThisSelectedRoom
+						? 'icon-[tabler--login-2] text-pink-500'
+						: loggedIn && hasSpaceAvailable && !isPast
+							? 'icon-[tabler--login-2] text-green-200'
+							: 'icon-[tabler--lock] text-neutral-500'}"
+				></i>
+			</button>
+		</form>
+	{/if}
 </div>
