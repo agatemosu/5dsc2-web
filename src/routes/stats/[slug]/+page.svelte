@@ -25,7 +25,7 @@
 		'qualifier-results': 'resultados de qualifiers',
 		'solo-results': 'resultados individuales',
 		'mappool-summary': 'resumen de mappool',
-		'map-leaderboard': 'leaderbord de mapas',
+		'map-leaderboard': 'leaderboard de mapas',
 	};
 
 	let view: View = $derived(

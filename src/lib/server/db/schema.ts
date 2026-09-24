@@ -44,6 +44,7 @@ export const qualifierRooms = snakeCase.table('qualifier_rooms', {
 	id: text().primaryKey(),
 	startTime: instant().notNull(),
 	mpLinkId: integer(),
+	refereeName: text(),
 });
 
 export const rounds = snakeCase.table('rounds', {

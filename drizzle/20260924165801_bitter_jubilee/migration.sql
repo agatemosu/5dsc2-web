@@ -1,0 +1,1 @@
+ALTER TABLE `qualifier_rooms` ADD `referee_name` text;

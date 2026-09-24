@@ -46,7 +46,11 @@
 	<div
 		class="flex flex-1 items-center"
 		use:tooltip={{
-			content: listFormatter.format(room.players.map((player) => player.osu.username)),
+			content:
+				room.players.length === 0
+					? ''
+					: listFormatter.format(room.players.map((player) => player.osu.username)) +
+						(room.refereeName === null ? '' : ` (Árbitro: ${room.refereeName})`),
 			visibility: room.players.length > 0,
 		}}
 	>
