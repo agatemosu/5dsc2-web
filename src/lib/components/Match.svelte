@@ -73,7 +73,7 @@
 				/>
 			{/if}
 		</a>
-		<div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-[#3b3b3b] px-6 py-0.5 shadow-lg/25">
+		<div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-gray px-6 py-0.5 shadow-lg/25">
 			{#if match.status === MatchStatus.Planned}
 				<span class="text-sm text-white">
 					<InstantTooltip instant={match.startTime}>

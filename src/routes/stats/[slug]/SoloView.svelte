@@ -47,7 +47,7 @@
 	</thead>
 	<tbody>
 		{#each matchCosts as player, i (player.player.id)}
-			<tr class="bg-dark odd:bg-[#353535]">
+			<tr class="bg-dark odd:bg-gray">
 				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
 					{player.player.osu.username}

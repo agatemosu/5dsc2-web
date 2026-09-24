@@ -5,6 +5,7 @@
 	import { Mod, StageType } from '$lib/enums';
 	import { blur } from 'svelte/transition';
 	import type { PageProps } from './$types';
+	import MapView from './MapView.svelte';
 	import QualifierView from './QualifierView.svelte';
 	import SoloView from './SoloView.svelte';
 
@@ -35,7 +36,7 @@
 		...(data.round.stageType === StageType.Qualifiers ? ['qualifier-results'] : []),
 		'solo-results',
 		// 'mappool-summary',
-		// 'map-leaderboard',
+		'map-leaderboard',
 	] as View[]);
 </script>
 
@@ -72,7 +73,7 @@
 
 				<select
 					bind:value={view}
-					class="cursor-pointer bg-[#353535] p-2 text-white hover:brightness-125"
+					class="cursor-pointer bg-gray p-2 text-white hover:brightness-125"
 				>
 					{#each views as view (view)}
 						<option value={view}>{viewLabels[view]}</option>
@@ -84,8 +85,14 @@
 				<div class="flex w-fit min-w-full justify-center">
 					{#if view === 'qualifier-results'}
 						<QualifierView scores={data.round.scores} maps={orderedMappool} />
-					{:else}
+					{:else if view === 'solo-results'}
 						<SoloView scores={data.round.scores} />
+					{:else if view === 'map-leaderboard'}
+						<MapView
+							scores={data.round.scores}
+							maps={orderedMappool}
+							playerId={data.user?.player?.id}
+						/>
 					{/if}
 				</div>
 			</div>
