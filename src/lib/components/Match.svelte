@@ -99,7 +99,7 @@
 		</div>
 	</div>
 	{#if match.status !== MatchStatus.Planned}
-		<div class="bg-gray-tertiary mx-4 mb-1 px-2 py-1">
+		<div class="mx-4 mb-1 bg-gray px-2 py-1">
 			<div class="flex gap-2">
 				<!-- bans red -->
 				<div class="flex w-20 flex-col">
