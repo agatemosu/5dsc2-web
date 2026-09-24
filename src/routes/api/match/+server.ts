@@ -125,7 +125,7 @@ export const POST: RequestHandler = async (event) => {
 			teamRedId,
 			teamBlueId,
 			teamRedPoints: match.red.points ?? null,
-			teamBluePoints: match.red.points ?? null,
+			teamBluePoints: match.blue.points ?? null,
 			rundown: match.rundown,
 			refereeName: match.referee,
 			osuMatchId,

@@ -35,7 +35,7 @@
 	>
 		{#if match.status === MatchStatus.Ongoing}
 			<div class="absolute -top-3 left-1/2 z-40 flex -translate-x-1/2 shadow-lg/25">
-				<div class="bg-gray-tertiary -mr-2 flex items-center pr-3 pl-2">
+				<div class="-mr-2 flex items-center bg-gray pr-3 pl-2">
 					<i class="icon-[mingcute--fast-forward-line] size-6 text-[#999999]"></i>
 				</div>
 				<div class="z-20 flex items-center bg-[#7cdd56] px-2 text-sm">En curso</div>
@@ -88,7 +88,7 @@
 					<span class={match.teamRedPoints > match.teamBluePoints ? 'text-team-red' : 'text-white'}>
 						{match.teamRedPoints}
 					</span>
-					-
+					<span class="text-white">-</span>
 					<span
 						class={match.teamBluePoints > match.teamRedPoints ? 'text-team-blue' : 'text-white'}
 					>
@@ -99,21 +99,23 @@
 		</div>
 	</div>
 	{#if match.status !== MatchStatus.Planned}
-		<div class="bg-gray-tertiary mx-4 mb-1 px-2 py-1">
+		<div class="mx-4 mb-1 bg-gray px-2 py-1">
 			<div class="flex gap-2">
 				<!-- bans red -->
 				<div class="flex w-20 flex-col">
 					<span class="text-sm text-team-red">PROTECT</span>
-					<span class="mb-1 text-sm">{filterRundown(DraftAction.Protect, DraftActor.Red)}</span>
+					<span class="mb-1 text-sm text-white"
+						>{filterRundown(DraftAction.Protect, DraftActor.Red)}</span
+					>
 					<span class="text-sm text-team-red">BANS</span>
-					<span class="text-sm">{filterRundown(DraftAction.Ban, DraftActor.Red)}</span>
+					<span class="text-sm text-white">{filterRundown(DraftAction.Ban, DraftActor.Red)}</span>
 				</div>
 
 				<div class="mt-5 flex flex-1 flex-col gap-2 pb-1">
 					<!-- ref and link -->
 					<div class="flex flex-1 items-center">
 						<div class="flex flex-1 items-center justify-end">
-							<span class="mr-1">Árbitro:</span>
+							<span class="mr-1 text-white">Árbitro:</span>
 							<a
 								href="https://osu.ppy.sh/users/{match.refereeName}"
 								target="_blank"
@@ -123,16 +125,16 @@
 							</a>
 						</div>
 
-						<span class="mx-2 h-8 w-[0.18rem] bg-[#464646]"></span>
+						<span class="mx-2 h-8 w-[0.18rem] bg-gray-2"></span>
 
-						<span>
+						<span class="text-white">
 							Bo{bestOf}
 						</span>
 
-						<span class="mx-2 h-8 w-[0.18rem] bg-[#464646]"></span>
+						<span class="mx-2 h-8 w-[0.18rem] bg-gray-2"></span>
 
 						<div class="flex flex-1 items-center">
-							<span class="mr-1">Partido:</span>
+							<span class="mr-1 text-white">Partido:</span>
 							<a
 								href="https://osu.ppy.sh/community/matches/{match.osuMatchId}"
 								target="_blank"
@@ -164,7 +166,7 @@
 							</div>
 
 							{#if i < picks.length - 1}
-								<i class="mb-2 icon-[flowbite--caret-right-solid]"></i>
+								<i class="mb-2 icon-[flowbite--caret-right-solid] text-white"></i>
 							{/if}
 						{/each}
 					</div>
@@ -173,9 +175,11 @@
 				<!-- bans blue -->
 				<div class="flex w-20 flex-col text-right">
 					<span class="text-sm text-team-blue">PROTECT</span>
-					<span class="mb-1 text-sm">{filterRundown(DraftAction.Protect, DraftActor.Blue)}</span>
+					<span class="mb-1 text-sm text-white"
+						>{filterRundown(DraftAction.Protect, DraftActor.Blue)}</span
+					>
 					<span class="text-sm text-team-blue">BANS</span>
-					<span class="text-sm">{filterRundown(DraftAction.Ban, DraftActor.Blue)}</span>
+					<span class="text-sm text-white">{filterRundown(DraftAction.Ban, DraftActor.Blue)}</span>
 				</div>
 			</div>
 		</div>
