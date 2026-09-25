@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
 
 export const load = async () => {
-	if (isFutureAndProd(dates.liga_fase_1.start)) {
+	if (isFutureAndProd(dates.qualifiers.end)) {
 		return error(403);
 	}
 
