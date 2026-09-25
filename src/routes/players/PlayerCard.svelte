@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { OsuUser, Player } from '$lib/server/db/schema';
+	import type { PlayerWithOsu } from '$lib/types';
 
 	interface Props {
-		player: Pick<Player, 'seed'> & { osu: OsuUser };
+		player: PlayerWithOsu<'seed'>;
 	}
 
 	let { player }: Props = $props();

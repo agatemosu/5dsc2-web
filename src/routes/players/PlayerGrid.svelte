@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { OsuUser, Player } from '$lib/server/db/schema';
+	import type { PlayerWithOsu } from '$lib/types';
 	import PlayerCard from './PlayerCard.svelte';
 
 	interface Props {
-		players: Array<Pick<Player, 'seed'> & { osu: OsuUser }>;
+		players: PlayerWithOsu<'seed'>[];
 	}
 
 	let { players }: Props = $props();

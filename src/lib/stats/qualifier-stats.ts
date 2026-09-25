@@ -1,8 +1,8 @@
-import type { NormalizedScoreWithPlayer, PlayerOnlyOsu, ScoreWithPlayer } from '$lib/types';
+import type { NormalizedScoreWithPlayer, PlayerWithOsu, ScoreWithPlayer } from '$lib/types';
 import { normalizeScore } from './util';
 
 interface QualifierStat {
-	player: PlayerOnlyOsu;
+	player: PlayerWithOsu<'id', 'username'>;
 	zSum: number;
 	avgScore: number;
 	scores: NormalizedScoreWithPlayer[];

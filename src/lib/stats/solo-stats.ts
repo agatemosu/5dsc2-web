@@ -1,9 +1,9 @@
 import type { Score } from '$lib/server/db/schema';
-import type { PlayerOnlyOsu, ScoreWithPlayer } from '$lib/types';
+import type { PlayerWithOsu, ScoreWithPlayer } from '$lib/types';
 import { median, normalizeScore } from './util';
 
 interface SoloStat {
-	player: PlayerOnlyOsu;
+	player: PlayerWithOsu<'id', 'username'>;
 	matchCost: number;
 	avgScore: number;
 	avgAcc: number;

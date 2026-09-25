@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { DraftAction, DraftActor, MatchStatus } from '$lib/enums';
-	import type { Match, OsuUser, Player } from '$lib/server/db/schema';
+	import type { MatchWithPlayers } from '$lib/types';
 	import InstantTooltip from './InstantTooltip.svelte';
 
 	interface Props {
 		bestOf: number;
-		match: Match & {
-			red: (Player & { osu: OsuUser }) | null;
-			blue: (Player & { osu: OsuUser }) | null;
-		};
+		match: MatchWithPlayers;
 	}
 
 	let { bestOf, match }: Props = $props();
