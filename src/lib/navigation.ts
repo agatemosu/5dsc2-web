@@ -14,7 +14,7 @@ export const getNavigationItems = () => {
 	}
 
 	if (isPastOrDev(dates.qualifiers.end)) {
-		// items.push({ text: 'liga', href: '/liga' });
+		// items.push({ text: 'liga', href: '/league' });
 		items.push({ text: 'partidos', href: '/matches' });
 		items.push({ text: 'stats', href: '/stats' });
 	}
