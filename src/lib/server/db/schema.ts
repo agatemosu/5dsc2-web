@@ -47,6 +47,17 @@ export const qualifierRooms = snakeCase.table('qualifier_rooms', {
 	refereeName: text(),
 });
 
+export const leagueLeaderboard = snakeCase.table('league_leaderboard', {
+	userId: integer()
+		.primaryKey()
+		.references(() => players.userId),
+	wins: integer().notNull(),
+	draws: integer().notNull(),
+	losses: integer().notNull(),
+	difference: integer().notNull(),
+	points: integer().notNull(),
+});
+
 export const rounds = snakeCase.table('rounds', {
 	id: integer().primaryKey({ autoIncrement: true }),
 	slug: text().notNull().unique(),
@@ -151,6 +162,7 @@ export type Player = typeof players.$inferSelect;
 export type OsuUser = typeof osuUsers.$inferSelect;
 export type DiscordUser = typeof discordUsers.$inferSelect;
 export type QualifierRoom = typeof qualifierRooms.$inferSelect;
+export type LeagueLeaderboard = typeof leagueLeaderboard.$inferSelect;
 export type Round = typeof rounds.$inferSelect;
 export type Match = typeof matches.$inferSelect;
 export type Score = typeof scores.$inferSelect;

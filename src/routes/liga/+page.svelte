@@ -1,44 +1,9 @@
 <script lang="ts">
 	import Layout from '$lib/components/Layout.svelte';
 
-	const lb = [
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-	] as const;
+	let { data } = $props();
+
+	let sortedLeaderboard = $derived(data.leagueLeaderboard.toSorted((a, b) => b.points - a.points));
 </script>
 
 <Layout title="liga">
@@ -71,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each lb as item, i (i)}
+				{#each sortedLeaderboard as item, i (i)}
 					{#if i === 8 || i === 24}
 						<tr>
 							<td colspan="7" class="py-2">
@@ -83,14 +48,18 @@
 					<tr class:bg-gray={i % 2 === 0}>
 						<td class="px-4 py-3 text-left">{i + 1}</td>
 						<td class="flex items-center gap-2.5 px-4 py-1 text-left">
-							<img src="https://a.ppy.sh/{item.id}" alt="Avatar de {item.player}" class="size-10" />
-							{item.player}
+							<img
+								src="https://a.ppy.sh/{item.user.osu.id}"
+								alt="Avatar de {item.user.osu.username}"
+								class="size-10"
+							/>
+							{item.user.osu.username}
 						</td>
-						<td class="px-4 py-3 text-center text-green-300">{item.g}</td>
-						<td class="px-4 py-3 text-center text-neutral-400">{item.e}</td>
-						<td class="py-3 pr-10 pl-4 text-center text-rose-400">{item.p}</td>
-						<td class="px-4 py-3 text-right">{item.diff}</td>
-						<td class="px-4 py-3 text-right">{item.puntos}</td>
+						<td class="px-4 py-3 text-center text-green-300">{item.wins}</td>
+						<td class="px-4 py-3 text-center text-neutral-400">{item.draws}</td>
+						<td class="py-3 pr-10 pl-4 text-center text-rose-400">{item.losses}</td>
+						<td class="px-4 py-3 text-right">{item.difference}</td>
+						<td class="px-4 py-3 text-right">{item.points}</td>
 					</tr>
 				{/each}
 			</tbody>

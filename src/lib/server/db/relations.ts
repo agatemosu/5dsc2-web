@@ -40,6 +40,13 @@ export const relations = defineRelations(schema, (r) => ({
 			to: r.players.qualifierRoomId,
 		}),
 	},
+	leagueLeaderboard: {
+		user: r.one.users({
+			from: r.leagueLeaderboard.userId,
+			to: r.users.id,
+			optional: false,
+		}),
+	},
 	rounds: {
 		mappools: r.many.mappools({
 			from: r.rounds.id,
