@@ -20,6 +20,9 @@ export const load = async () => {
 					osu: {
 						columns: { id: true, username: true },
 					},
+					player: {
+						columns: { seed: true },
+					},
 				},
 			},
 		},

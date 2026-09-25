@@ -3,7 +3,11 @@
 
 	let { data } = $props();
 
-	let sortedLeaderboard = $derived(data.leagueLeaderboard.toSorted((a, b) => b.points - a.points));
+	let sortedLeaderboard = $derived(
+		data.leagueLeaderboard.toSorted(
+			(a, b) => b.points - a.points || b.difference - a.difference || (a.user.player?.seed ?? -1) - (b.user.player?.seed ?? -1)
+		),
+	);
 </script>
 
 <Layout title="liga">
