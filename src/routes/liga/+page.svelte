@@ -2,70 +2,72 @@
 	import Layout from '$lib/components/Layout.svelte';
 
 	const lb = [
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
-		{ player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
+		{ id: 6961543, player: 'Yuri Enjoyer', g: 7, e: 0, p: 2, diff: 5, puntos: 17 },
 	] as const;
 </script>
 
 <Layout title="liga">
-	<div class="absolute top-0 left-0 flex w-20 flex-col">
-		<div class="flex h-135 items-center justify-center bg-accent">
+	<div class="absolute top-0 left-0 flex w-15 flex-col md:w-20">
+		<div class="flex h-112 items-center justify-center bg-accent">
 			<div class="-rotate-90 text-2xl whitespace-nowrap text-white">Round of 16</div>
 		</div>
 
-		<div class="flex h-230 items-center justify-center bg-accent-dark">
+		<div class="flex h-196 items-center justify-center bg-accent-dark">
 			<div class="-rotate-90 text-2xl whitespace-nowrap text-white">La purga</div>
 		</div>
 
-		<div class="flex h-180 items-center justify-center bg-gray">
+		<div class="flex h-156 items-center justify-center bg-gray">
 			<div class="-rotate-90 text-2xl whitespace-nowrap text-white">Eliminados</div>
 		</div>
 	</div>
-	<div class="ml-20 h-535 text-white">
-		<table class="min-w-max border-separate border-spacing-y-2">
+	<div class="ml-15 h-454 overflow-auto text-white md:ml-20">
+		<table class="min-w-full">
 			<thead>
 				<tr>
-					<th class="px-4 py-3 text-left font-normal text-white underline">posición</th>
-					<th class="w-full px-4 py-3 text-left font-normal text-white underline">jugador</th>
-					<th class="px-4 py-3 text-center font-normal text-green-300 underline">g</th>
-					<th class="px-4 py-3 text-center font-normal text-neutral-400 underline">e</th>
-					<th class="py-2 pr-10 pl-4 text-center font-normal text-rose-400 underline">p</th>
-					<th class="px-4 py-3 text-right font-normal text-white underline">diff</th>
-					<th class="px-4 py-3 text-right font-normal text-white underline">puntos</th>
+					<th class="w-24 px-4 pb-3 text-left font-normal text-white underline">posición</th>
+					<th class="w-full min-w-52 px-4 pb-3 text-left font-normal text-white underline"
+						>jugador</th
+					>
+					<th class="w-16 px-4 pb-3 text-center font-normal text-green-300 underline">g</th>
+					<th class="w-16 px-4 pb-3 text-center font-normal text-neutral-400 underline">e</th>
+					<th class="w-16 pr-10 pb-3 pl-4 text-center font-normal text-rose-400 underline">p</th>
+					<th class="w-20 px-4 pb-3 text-right font-normal text-white underline">diff</th>
+					<th class="w-24 px-4 pb-3 text-right font-normal text-white underline">puntos</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -80,10 +82,13 @@
 
 					<tr class:bg-gray={i % 2 === 0}>
 						<td class="px-4 py-3 text-left">{i + 1}</td>
-						<td class="px-4 py-3 text-left">{item.player}</td>
+						<td class="flex items-center gap-2.5 px-4 py-1 text-left">
+							<img src="https://a.ppy.sh/{item.id}" alt="Avatar de {item.player}" class="size-10" />
+							{item.player}
+						</td>
 						<td class="px-4 py-3 text-center text-green-300">{item.g}</td>
 						<td class="px-4 py-3 text-center text-neutral-400">{item.e}</td>
-						<td class="py-2 pr-10 pl-4 text-center text-rose-400">{item.p}</td>
+						<td class="py-3 pr-10 pl-4 text-center text-rose-400">{item.p}</td>
 						<td class="px-4 py-3 text-right">{item.diff}</td>
 						<td class="px-4 py-3 text-right">{item.puntos}</td>
 					</tr>
