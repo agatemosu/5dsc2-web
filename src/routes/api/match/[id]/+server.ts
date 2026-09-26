@@ -5,7 +5,7 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = async (event) => {
 	const match = await db.query.matches.findFirst({
 		where: { id: event.params.id },
-		columns: { teamRedPoints: true, teamBluePoints: true, rundown: true },
+		columns: { rundown: true },
 	});
 
 	if (!match) {
