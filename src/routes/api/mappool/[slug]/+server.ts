@@ -9,7 +9,7 @@ export const GET: RequestHandler = async (event) => {
 			return error(401, 'No API Key defined');
 		}
 
-		if (event.locals.apiKey !== env.API_KEY) {
+		if (event.locals.apiKey !== env.POOLING_API_KEY) {
 			return error(401, 'Invalid API Key');
 		}
 	}
