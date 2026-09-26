@@ -113,7 +113,7 @@
 				</div>
 			</div>
 
-			<div class="mx-auto h-px w-full bg-[#464646] md:hidden"></div>
+			<div class="mx-auto h-px w-full bg-neutral-600 md:hidden"></div>
 
 			<div class="flex justify-around">
 				<div class="flex w-14 items-center justify-center gap-1">

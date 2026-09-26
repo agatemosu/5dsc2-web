@@ -28,16 +28,16 @@
 	class="mb-7 min-h-12 min-w-xl bg-linear-to-r from-team-red from-50% to-team-blue to-50% shadow-lg"
 >
 	<div
-		class="relative grid h-10 grid-cols-5 items-center bg-linear-to-r from-[#264f6d] via-[#309ddf] to-[#264f6d] shadow-lg/25"
+		class="relative grid h-10 grid-cols-5 items-center bg-linear-to-r from-accent-dark via-accent to-accent-dark shadow-lg/25"
 	>
 		{#if match.status === MatchStatus.Ongoing}
 			<div class="absolute -top-3 left-1/2 z-40 flex -translate-x-1/2 shadow-lg/25">
 				<div class="-mr-2 flex items-center bg-gray pr-3 pl-2">
-					<i class="icon-[mingcute--fast-forward-line] size-6 text-[#999999]"></i>
+					<i class="icon-[mingcute--fast-forward-line] size-6 text-gray-2"></i>
 				</div>
-				<div class="z-20 flex items-center bg-[#7cdd56] px-2 text-sm">En curso</div>
-				<div class="-ml-2 flex items-center bg-[#a262d9] pr-2 pl-4">
-					<i class="icon-[simple-icons--twitch] size-4 text-[#533b68]"></i>
+				<div class="z-20 flex items-center bg-lime-500 px-2 text-sm">En curso</div>
+				<div class="-ml-2 flex items-center bg-purple-500 pr-2 pl-4">
+					<i class="icon-[simple-icons--twitch] size-4 text-purple-950"></i>
 				</div>
 			</div>
 		{/if}
@@ -116,19 +116,19 @@
 							<a
 								href="https://osu.ppy.sh/users/{match.refereeName}"
 								target="_blank"
-								class="text-[#ff6b21]"
+								class="text-orange-500"
 							>
 								{match.refereeName}
 							</a>
 						</div>
 
-						<span class="mx-2 h-8 w-[0.18rem] bg-gray-2"></span>
+						<span class="mx-2 h-8 w-[0.18rem] bg-neutral-600"></span>
 
 						<span class="text-white">
 							Bo{bestOf}
 						</span>
 
-						<span class="mx-2 h-8 w-[0.18rem] bg-gray-2"></span>
+						<span class="mx-2 h-8 w-[0.18rem] bg-neutral-600"></span>
 
 						<div class="flex flex-1 items-center">
 							<span class="mr-1 text-white">Partido:</span>
@@ -137,7 +137,7 @@
 								target="_blank"
 								aria-label="Enlace del partido en la web de osu!"
 							>
-								<i class="icon-[mingcute--external-link-line] size-6 text-[#ff6b21]"></i>
+								<i class="icon-[mingcute--external-link-line] size-6 text-orange-500"></i>
 							</a>
 						</div>
 					</div>
@@ -151,7 +151,7 @@
 										? item.winner === DraftActor.Red
 											? 'bg-team-red'
 											: 'bg-team-blue'
-										: 'bg-[#999999]'}"
+										: 'bg-neutral-400'}"
 								>
 									{item.pick}
 								</span>

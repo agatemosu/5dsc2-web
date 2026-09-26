@@ -60,11 +60,11 @@
 			<div></div>
 
 			{#each hours as hour (hour)}
-				<span class="text-center text-2xl text-dimmed">{hour}</span>
+				<span class="text-center text-2xl text-gray-2">{hour}</span>
 			{/each}
 
 			{#each days as day, row (day)}
-				<h3 class="place-self-end text-2xl text-dimmed">{day}</h3>
+				<h3 class="place-self-end text-2xl text-gray-2">{day}</h3>
 
 				{#each hours as hour, col (hour)}
 					<input
@@ -82,7 +82,7 @@
 			<button
 				type="submit"
 				class={[
-					'bg-[#FEBA66] px-16 py-2 text-3xl text-white uppercase shadow-md',
+					'bg-orange-300 px-16 py-2 text-3xl text-white uppercase shadow-md',
 					loggedInDiscord ? 'cursor-pointer hover:opacity-60' : 'cursor-not-allowed brightness-50',
 				]}
 			>
