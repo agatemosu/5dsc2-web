@@ -14,6 +14,7 @@ export async function createUser(osuUser: OsuUser) {
 	await db.insert(table.osuUsers).values({
 		id: osuUser.id,
 		username: osuUser.username,
+		coverUrl: osuUser.cover.url,
 		globalRank: osuUser.statistics.global_rank,
 		countryRank: osuUser.statistics.country_rank,
 	});
@@ -33,6 +34,7 @@ export async function refreshOsuUser(osuUser: OsuUser, refreshRanks: boolean) {
 		.update(table.osuUsers)
 		.set({
 			username: osuUser.username,
+			coverUrl: osuUser.cover.url,
 			globalRank: refreshRanks ? osuUser.statistics.global_rank : undefined,
 			countryRank: refreshRanks ? osuUser.statistics.country_rank : undefined,
 		})

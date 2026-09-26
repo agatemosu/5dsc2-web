@@ -3,9 +3,14 @@ interface UserStatistics {
 	global_rank: number;
 }
 
+interface UserCover {
+	url: string;
+}
+
 export interface OsuUser {
 	country_code: string;
 	id: number;
+	cover: UserCover;
 	statistics: UserStatistics;
 	username: string;
 }
