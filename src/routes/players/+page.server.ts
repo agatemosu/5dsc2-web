@@ -19,8 +19,8 @@ export const load: PageServerLoad = async () => {
 		players.every((player) => player.seed !== null || player.qualifierRoomId === null);
 	players.sort((a, b) => {
 		if (allHaveSeed) {
-			const aSeed = a.seed == null || a.seed === -1 ? Number.POSITIVE_INFINITY : a.seed;
-			const bSeed = b.seed == null || b.seed === -1 ? Number.POSITIVE_INFINITY : b.seed;
+			const aSeed = a.seed == null ? Number.POSITIVE_INFINITY : a.seed;
+			const bSeed = b.seed == null ? Number.POSITIVE_INFINITY : b.seed;
 
 			return aSeed - bSeed;
 		}

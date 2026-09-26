@@ -5,7 +5,11 @@
 
 	let sortedLeaderboard = $derived(
 		data.leagueLeaderboard.toSorted(
-			(a, b) => b.points - a.points || b.difference - a.difference || (a.user.player?.seed ?? -1) - (b.user.player?.seed ?? -1)
+			(a, b) =>
+				b.points - a.points ||
+				b.difference - a.difference ||
+				(a.user.player?.seed ?? Number.NEGATIVE_INFINITY) -
+					(b.user.player?.seed ?? Number.NEGATIVE_INFINITY),
 		),
 	);
 </script>

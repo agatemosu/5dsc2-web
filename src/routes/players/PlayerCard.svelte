@@ -3,7 +3,7 @@
 	import type { PlayerWithOsu } from '$lib/types';
 
 	interface Props {
-		player: PlayerWithOsu<'seed'>;
+		player: PlayerWithOsu<'seed' | 'qualifierRoomId'>;
 	}
 
 	let { player }: Props = $props();
@@ -15,14 +15,13 @@
 	];
 
 	let eliminated = $derived(
-		player.seed && (player.seed > MAX_QUALIFIED_SEED || player.seed === -1),
+		player.seed ? player.seed > MAX_QUALIFIED_SEED : player.qualifierRoomId === null,
 	);
 
 	let gradientRule = $derived.by(() => {
-		if (!player.seed || eliminated) return;
+		if (player.seed === null || eliminated) return;
 
-		const seed = player.seed; // ts thinks that can be undefined inside the predicate
-		const rule = gradientRules.find((rule) => seed === rule.seed)?.style;
+		const rule = gradientRules.find((rule) => player.seed === rule.seed)?.style;
 		return rule;
 	});
 </script>
@@ -33,13 +32,13 @@
 	></div>
 
 	<div class="relative z-10 flex items-center">
-		<a href="https://osu.ppy.sh/users/{player.osu.id}" target="_blank">
+		<a href="https://osu.ppy.sh/users/{player.osu.id}" target="_blank" class="shrink-0">
 			<img src="https://a.ppy.sh/{player.osu.id}" alt={player.osu.username} class="size-20" />
 		</a>
 
-		<div class="ml-3 flex flex-1">
-			<div class="flex flex-1 flex-col items-start self-center">
-				<span class="text-2xl text-white">
+		<div class="ml-3 flex min-w-0 flex-1">
+			<div class="flex min-w-0 flex-1 flex-col items-start self-center">
+				<span class="block max-w-full truncate text-2xl text-white">
 					{player.osu.username}
 				</span>
 				<div class="flex items-baseline gap-3 text-accent-dark">
@@ -50,7 +49,9 @@
 		</div>
 
 		{#if player.seed}
-			<span class="mr-4 text-5xl text-background">#{player.seed}</span>
+			<div class="mr-4 text-background {player.seed <= 3 ? 'text-5xl' : 'text-4xl'}">
+				#{player.seed}
+			</div>
 		{/if}
 	</div>
 </article>
