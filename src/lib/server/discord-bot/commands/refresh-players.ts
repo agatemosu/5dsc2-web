@@ -81,6 +81,7 @@ export class RefreshPlayersCommand extends SlashCommand {
 			return {
 				id: user.id,
 				username: user.username,
+				coverUrl: user.cover.url,
 				globalRank: user.statistics_rulesets.osu?.global_rank ?? 0,
 				countryRank: 0,
 			} satisfies table.OsuUser;
@@ -93,6 +94,7 @@ export class RefreshPlayersCommand extends SlashCommand {
 				target: table.osuUsers.id,
 				set: {
 					username: sql`excluded.username`,
+					coverUrl: sql`excluded.cover_url`,
 					globalRank:
 						options.refresh_global_ranks === true
 							? sql`case when excluded.global_rank = 0 then ${table.osuUsers.globalRank} else excluded.global_rank end`

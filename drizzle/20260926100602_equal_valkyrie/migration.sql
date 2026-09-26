@@ -1,0 +1,1 @@
+ALTER TABLE `osu_users` ADD `cover_url` text;

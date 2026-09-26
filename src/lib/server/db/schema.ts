@@ -29,6 +29,7 @@ export const players = snakeCase.table('players', {
 export const osuUsers = snakeCase.table('osu_users', {
 	id: integer().primaryKey(),
 	username: text().notNull(),
+	coverUrl: text(),
 	globalRank: integer().notNull(),
 	countryRank: integer().notNull(),
 });

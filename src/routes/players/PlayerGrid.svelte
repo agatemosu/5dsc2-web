@@ -3,7 +3,7 @@
 	import PlayerCard from './PlayerCard.svelte';
 
 	interface Props {
-		players: PlayerWithOsu<'seed'>[];
+		players: PlayerWithOsu<'seed' | 'qualifierRoomId'>[];
 	}
 
 	let { players }: Props = $props();
