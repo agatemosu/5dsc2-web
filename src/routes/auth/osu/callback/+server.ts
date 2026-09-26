@@ -1,3 +1,4 @@
+import { MAX_REGISTER_RANK, MIN_REGISTER_RANK } from '$lib/consts';
 import { dates, isFutureAndProd } from '$lib/dates';
 import type { OsuUser } from '$lib/interfaces/osu';
 import { createSession, generateSessionToken, setSessionTokenCookie } from '$lib/server/auth';
@@ -43,7 +44,10 @@ export const GET: RequestHandler = async (event) => {
 		return error(403, 'Debes ser de España para registrarte.');
 	}
 
-	if (osuUser.statistics.global_rank >= 100_000 || osuUser.statistics.global_rank < 10_000) {
+	if (
+		osuUser.statistics.global_rank > MAX_REGISTER_RANK ||
+		osuUser.statistics.global_rank < MIN_REGISTER_RANK
+	) {
 		return error(403, 'Debes ser 5 dígitos para registrarte.');
 	}
 

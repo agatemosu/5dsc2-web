@@ -1,4 +1,5 @@
 import { env } from '$env/dynamic/private';
+import { MAX_QUALIFIED_SEED } from '$lib/consts';
 import { db } from '$lib/server/db';
 import {
 	SlashCommand,
@@ -39,7 +40,7 @@ export class RemovePlayerRoleCommand extends SlashCommand {
 		});
 
 		const discordIds = players
-			.filter((player) => player.player?.seed && player.player.seed > 36)
+			.filter((player) => player.player?.seed && player.player.seed > MAX_QUALIFIED_SEED)
 			.map((player) => player.discordId);
 
 		if (discordIds.length === 0) {

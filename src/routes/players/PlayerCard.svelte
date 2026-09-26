@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { MAX_QUALIFIED_SEED } from '$lib/consts';
 	import type { PlayerWithOsu } from '$lib/types';
 
 	interface Props {
@@ -13,7 +14,9 @@
 		{ seed: 1, style: 'from-qualifier-gold' },
 	];
 
-	let eliminated = $derived(player.seed && (player.seed > 32 || player.seed === -1));
+	let eliminated = $derived(
+		player.seed && (player.seed > MAX_QUALIFIED_SEED || player.seed === -1),
+	);
 
 	let gradientRule = $derived.by(() => {
 		if (!player.seed || eliminated) return;

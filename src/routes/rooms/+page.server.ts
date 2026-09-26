@@ -1,3 +1,4 @@
+import { ROOM_SIZE } from '$lib/consts';
 import { dates, isFutureAndProd, isPastAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
@@ -63,7 +64,7 @@ export const actions: Actions = {
 
 		const players = await db.$count(table.players, eq(table.players.qualifierRoomId, roomId));
 
-		if (players >= 16) {
+		if (players >= ROOM_SIZE) {
 			return fail(409);
 		}
 

@@ -1,3 +1,4 @@
+import { ROOM_SIZE } from '$lib/consts';
 import { db } from '$lib/server/db';
 import { text } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -33,7 +34,7 @@ export const GET: RequestHandler = async () => {
 			dateFormatter.format(room.startTime),
 			timeFormatter.format(room.startTime),
 			...room.players.map((player) => player.osu.username),
-			...Array(16 - room.players.length).fill(null),
+			...Array(ROOM_SIZE - room.players.length).fill(null),
 		].join(','),
 	);
 

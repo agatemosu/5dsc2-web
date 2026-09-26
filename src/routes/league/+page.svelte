@@ -49,7 +49,7 @@
 						</tr>
 					{/if}
 
-					<tr class:bg-gray={i % 2 === 0}>
+					<tr class={i % 2 === 0 ? 'bg-gray' : null}>
 						<td class="px-4 py-3 text-left">{i + 1}</td>
 						<td class="flex items-center gap-2.5 px-4 py-1 text-left">
 							<img

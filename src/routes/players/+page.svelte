@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Layout from '$lib/components/Layout.svelte';
+	import { MAX_QUALIFIED_SEED } from '$lib/consts';
 	import type { PageProps } from './$types';
 	import PlayerGrid from './PlayerGrid.svelte';
 
@@ -17,11 +18,11 @@
 		{:else}
 			<h2 class="-mt-2.5 mb-2.5 bg-dark py-2 text-center text-xl text-white">clasificados</h2>
 
-			<PlayerGrid players={data.players.slice(0, 32)} />
+			<PlayerGrid players={data.players.slice(0, MAX_QUALIFIED_SEED)} />
 
 			<h2 class="mt-2.5 mb-2.5 bg-dark py-2 text-center text-xl text-white">no clasificados</h2>
 
-			<PlayerGrid players={data.players.slice(32)} />
+			<PlayerGrid players={data.players.slice(MAX_QUALIFIED_SEED)} />
 		{/if}
 	</div>
 </Layout>
