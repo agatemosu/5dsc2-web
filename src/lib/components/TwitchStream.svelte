@@ -1,20 +1,26 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { tw } from '$lib/tailwind';
 	import { tooltip } from 'svooltip';
 
 	const socials = [
 		{
-			icon: 'icon-[simple-icons--youtube]',
+			icon: tw('icon-[simple-icons--osu]'),
+			href: 'https://osu.ppy.sh/community/forums/topics/2238623',
+			alt: 'Forum Post',
+		},
+		{
+			icon: tw('icon-[simple-icons--youtube]'),
 			href: 'https://www.youtube.com/@SpanishCup',
 			alt: 'YouTube',
 		},
 		{
-			icon: 'icon-[simple-icons--twitch]',
+			icon: tw('icon-[simple-icons--twitch]'),
 			href: 'https://www.twitch.tv/spanishcup',
 			alt: 'Twitch',
 		},
 		{
-			icon: 'icon-[simple-icons--discord]',
+			icon: tw('icon-[simple-icons--discord]'),
 			href: 'https://discord.com/invite/CY2dHK2Zek',
 			alt: 'Discord',
 		},
