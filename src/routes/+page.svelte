@@ -1,8 +1,11 @@
 <script lang="ts">
 	import BotonRegistrate from '$lib/components/BotonRegistrate.svelte';
 	import Fechas from '$lib/components/Fechas.svelte';
+	import ProximoPartidoSection from '$lib/components/ProximoPartidoSection.svelte';
 	import TituloSuperGrande from '$lib/components/TituloSuperGrande.svelte';
 	import TwitchStream from '$lib/components/TwitchStream.svelte';
+
+	let { data } = $props();
 </script>
 
 <main class="mx-auto mt-20 grid w-full flex-1 lg:grid-cols-2">
@@ -15,7 +18,7 @@
 			</div>
 		</div>
 
-		<!-- <ProximoPartidoSection /> -->
+		<ProximoPartidoSection nextMatch={data.nextMatch} lastMatches={data.lastMatches} />
 	</div>
 
 	<div class="m-5 mt-0 flex flex-col items-end justify-between gap-5">

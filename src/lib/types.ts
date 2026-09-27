@@ -36,3 +36,16 @@ export type MatchWithPlayers = Match & {
 // stats
 export type ScoreWithPlayer = Score & { player: PlayerWithOsu<'id', 'username'> };
 export type NormalizedScoreWithPlayer = ScoreWithPlayer & { normalizedScore: number };
+
+// home
+export type MatchPlayer = PlayerWithOsu<'seed', 'id' | 'username'>;
+
+export type NextMatch = Pick<Match, 'startTime'> & {
+	red: MatchPlayer;
+	blue: MatchPlayer;
+};
+
+export type LastMatch = Pick<Match, 'startTime' | 'teamRedPoints' | 'teamBluePoints'> & {
+	red: MatchPlayer;
+	blue: MatchPlayer;
+};
