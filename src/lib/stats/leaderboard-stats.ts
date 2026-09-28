@@ -7,16 +7,18 @@ interface SoloStat {
 }
 
 export function groupMapScores(scores: ScoreWithPlayer[], maps: FullMappool[]): SoloStat[] {
-	const mapKeyed = new Map(maps.map((map) => [`${map.slotName}${map.slotIndex}`, map]));
-
-	const scoreGroups = Map.groupBy(scores, (score) => score.pick);
+	const scoreGroups = Map.groupBy(
+		scores.toSorted((a, b) => b.score - a.score),
+		(score) => score.pick,
+	);
 
 	const result: SoloStat[] = [];
-	for (const [pick, scores] of scoreGroups) {
-		scores.sort((a, b) => b.score - a.score);
-		const map = mapKeyed.get(pick);
 
-		if (!map || scores.length === 0) {
+	for (const map of maps) {
+		const pick = `${map.slotName}${map.slotIndex}`;
+		const scores = scoreGroups.get(pick);
+
+		if (!scores || scores.length === 0) {
 			continue;
 		}
 
