@@ -8,37 +8,48 @@ interface SoloStat {
 	avgScore: number;
 	avgAcc: number;
 	mapNum: number;
-	higestScore: Score;
+	highestScore: Score;
 	scores: ScoreWithPlayer[];
 }
 
 export function calcMatchCosts(inputs: ScoreWithPlayer[]): SoloStat[] {
 	const normalizedScores = inputs.map(normalizeScore);
 
-	const bestScores = new Map<number, Map<string, number>>();
-	for (const score of normalizedScores) {
-		let playerPicks = bestScores.get(score.playerId);
+	// Group scores by player.
+	const scoresByPlayer = Map.groupBy(normalizedScores, (score) => score.player.id);
 
-		if (!playerPicks) {
-			playerPicks = new Map();
-			bestScores.set(score.playerId, playerPicks);
+	// For each player, get the maximum normalized score for every pick.
+	const bestByPlayer = new Map<number, Map<string, number>>();
+
+	// Also collect all players' map counts.
+	const mapCounts: number[] = [];
+
+	for (const [playerId, scores] of scoresByPlayer) {
+		mapCounts.push(scores.length);
+
+		const bestByPick = new Map<string, number>();
+		for (const score of scores) {
+			const previous = bestByPick.get(score.pick);
+
+			if (previous === undefined || score.normalizedScore > previous) {
+				bestByPick.set(score.pick, score.normalizedScore);
+			}
 		}
 
-		const currentBest = playerPicks.get(score.pick);
-
-		if (currentBest === undefined || score.normalizedScore > currentBest) {
-			playerPicks.set(score.pick, score.normalizedScore);
-		}
+		bestByPlayer.set(playerId, bestByPick);
 	}
 
-	const pickScores = new Map<string, number[]>();
-	for (const picks of bestScores.values()) {
-		for (const [pick, score] of picks) {
-			let scores = pickScores.get(pick);
+	const medianMapCount = median(mapCounts);
+
+	// Calculate the median best score for each pick.
+	const medianByPick = new Map<string, number[]>();
+	for (const bestByPick of bestByPlayer.values()) {
+		for (const [pick, score] of bestByPick) {
+			let scores = medianByPick.get(pick);
 
 			if (!scores) {
 				scores = [];
-				pickScores.set(pick, scores);
+				medianByPick.set(pick, scores);
 			}
 
 			scores.push(score);
@@ -46,44 +57,29 @@ export function calcMatchCosts(inputs: ScoreWithPlayer[]): SoloStat[] {
 	}
 
 	const pickMedians = new Map<string, number>();
-	for (const [pick, scores] of pickScores) {
+	for (const [pick, scores] of medianByPick) {
 		pickMedians.set(pick, median(scores));
 	}
 
-	const playerMatchCosts = new Map<number, number>();
-	for (const [playerId, picks] of bestScores) {
-		let total = 0;
+	const result: SoloStat[] = [];
+	for (const [playerId, playerScores] of scoresByPlayer) {
+		const bestByPick = bestByPlayer.get(playerId) as Map<string, number>;
 
-		for (const [pick, score] of picks) {
+		let pickCostSum = 0;
+
+		for (const [pick, bestScore] of bestByPick) {
 			const pickMedian = pickMedians.get(pick) as number;
 
 			if (pickMedian !== 0) {
-				total += score / pickMedian;
+				pickCostSum += bestScore / pickMedian;
 			}
 		}
 
-		playerMatchCosts.set(playerId, total);
-	}
-
-	const mapsPlayed = new Map<number, number>();
-	for (const [playerId, picks] of bestScores) {
-		mapsPlayed.set(playerId, picks.size);
-	}
-
-	const medianMapsPlayed = median([...mapsPlayed.values()]);
-
-	const result: SoloStat[] = [];
-	for (const [playerId, totalMatchCost] of playerMatchCosts) {
-		const played = mapsPlayed.get(playerId) as number;
-
-		const averageMatchCost = totalMatchCost / played;
-		const mapFactor = Math.pow(played / medianMapsPlayed, 1 / 3);
-		const matchCost = averageMatchCost * mapFactor;
-
-		const playerScores = normalizedScores.filter((score) => score.player.id === playerId);
+		const matchCost =
+			(pickCostSum / playerScores.length) * Math.pow(playerScores.length / medianMapCount, 1 / 3);
 
 		const avgScore =
-			playerScores.reduce((sum, score) => sum + score.normalizedScore, 0) / playerScores.length;
+			[...bestByPick.values()].reduce((sum, score) => sum + score, 0) / bestByPick.size;
 
 		const avgAcc =
 			playerScores.reduce((sum, score) => sum + score.accuracy, 0) / playerScores.length;
@@ -97,8 +93,8 @@ export function calcMatchCosts(inputs: ScoreWithPlayer[]): SoloStat[] {
 			matchCost,
 			avgScore,
 			avgAcc,
-			mapNum: played,
-			higestScore: highestScore,
+			mapNum: playerScores.length,
+			highestScore,
 			scores: playerScores,
 		});
 	}

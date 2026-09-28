@@ -71,25 +71,25 @@
 						<div class="flex flex-col">
 							<div class="flex items-baseline gap-2">
 								<span class="text-background tabular-nums">
-									{scoreFormatter.format(player.higestScore.score)}
+									{scoreFormatter.format(player.highestScore.score)}
 								</span>
 
-								<span class="text-xs {pickClass(player.higestScore.pick).text}">
-									{accuracyFormatter.format(player.higestScore.accuracy)}
+								<span class="text-xs {pickClass(player.highestScore.pick).text}">
+									{accuracyFormatter.format(player.highestScore.accuracy)}
 								</span>
 							</div>
 
-							<div class="truncate text-xs {pickClass(player.higestScore.pick).text}">
-								{player.higestScore.pick}
+							<div class="truncate text-xs {pickClass(player.highestScore.pick).text}">
+								{player.highestScore.pick}
 							</div>
 						</div>
 
 						<div
 							class="flex size-10 items-center justify-center text-2xl drop-shadow-[0_0_5px]/80 drop-shadow-inherit {gradeClass[
-								player.higestScore.grade
+								player.highestScore.grade
 							].text}"
 						>
-							{player.higestScore.grade.replace(/H$/, '')}
+							{player.highestScore.grade.replace(/H$/, '')}
 						</div>
 					</div>
 				</td>

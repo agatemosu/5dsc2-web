@@ -18,13 +18,14 @@ export function calcZsums(inputs: ScoreWithPlayer[]): QualifierStat[] {
 
 	const mapGroups = new Map<string, number[]>();
 	for (const score of normalizedScores) {
-		const group = mapGroups.get(score.pick);
+		let group = mapGroups.get(score.pick);
 
-		if (group) {
-			group.push(score.score);
-		} else {
-			mapGroups.set(score.pick, [score.score]);
-		}
+		if (!group) {
+			group = []
+			mapGroups.set(score.pick, group)
+		} 
+
+		group.push(score.score);
 	}
 
 	const mapStats = new Map<string, MapStat>();
