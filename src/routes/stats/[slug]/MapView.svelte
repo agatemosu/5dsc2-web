@@ -18,6 +18,7 @@
 
 	const accuracyFormatter = new Intl.NumberFormat('es-ES', {
 		style: 'percent',
+		minimumFractionDigits: 2,
 		maximumFractionDigits: 2,
 	});
 

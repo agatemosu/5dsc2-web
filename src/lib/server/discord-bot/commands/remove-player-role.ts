@@ -68,8 +68,8 @@ export class RemovePlayerRoleCommand extends SlashCommand {
 
 		if (errorIds.length > 0) {
 			const mentions = errorIds.map((discordId) => `<@${discordId}>`);
-			const listFmt = new Intl.ListFormat('es-ES');
-			text += ` No se pudo quitar el rol a ${listFmt.format(mentions)}`;
+			const listFormatter = new Intl.ListFormat('es-ES');
+			text += ` No se pudo quitar el rol a ${listFormatter.format(mentions)}`;
 		}
 
 		return text;

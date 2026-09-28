@@ -10,6 +10,7 @@
 	let { scores }: Props = $props();
 
 	const matchCostFormatter = new Intl.NumberFormat('es-ES', {
+		minimumFractionDigits: 3,
 		maximumFractionDigits: 3,
 	});
 
@@ -19,6 +20,7 @@
 
 	const accuracyFormatter = new Intl.NumberFormat('es-ES', {
 		style: 'percent',
+		minimumFractionDigits: 2,
 		maximumFractionDigits: 2,
 	});
 
