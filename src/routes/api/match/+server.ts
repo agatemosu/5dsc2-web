@@ -20,17 +20,15 @@ const draftEntry = z.object({
 	winner: z.string().toUpperCase().pipe(z.enum(DraftActor)).optional(),
 });
 
-const zEmptyNull = z.string().transform((v) => (v === '' ? null : v));
-
 const matchSchema = z.object({
 	id: z.string(),
 	stage: z.string(),
-	bracket: zEmptyNull,
+	bracket: z.string().nullable(),
 	datetime: z.iso.datetime({ offset: true }).transform((v) => Temporal.Instant.from(v)),
-	referee: zEmptyNull,
+	referee: z.string().nullable(),
 	red: teamSchema,
 	blue: teamSchema,
-	mp_link: zEmptyNull.pipe(z.url({ hostname: /^osu\.ppy\.sh$/ }).nullable()),
+	mp_link: z.url({ hostname: /^osu\.ppy\.sh$/ }).nullable(),
 	rundown: z.array(draftEntry),
 	first_to: z.number(),
 	status: z.enum(MatchStatus),
