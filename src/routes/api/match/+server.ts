@@ -3,7 +3,7 @@ import { DraftAction, DraftActor, MatchStatus } from '$lib/enums';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { error, json } from '@sveltejs/kit';
-import { eq, inArray } from 'drizzle-orm';
+import { eq, inArray, sql } from 'drizzle-orm';
 import { z } from 'zod';
 import type { RequestHandler } from './$types';
 
@@ -34,6 +34,11 @@ const matchSchema = z.object({
 	rundown: z.array(draftEntry),
 	first_to: z.number(),
 	status: z.enum(MatchStatus),
+});
+
+const matchSyncSchema = z.object({
+	upsert: z.array(matchSchema),
+	delete: z.array(z.string()),
 });
 
 async function findRounds(slugs: string[]) {
@@ -74,7 +79,7 @@ export const POST: RequestHandler = async (event) => {
 	}
 
 	const body = await event.request.json();
-	const result = z.array(matchSchema).safeParse(body);
+	const result = matchSyncSchema.safeParse(body);
 
 	if (!result.success) {
 		return error(400, {
@@ -85,27 +90,33 @@ export const POST: RequestHandler = async (event) => {
 		});
 	}
 
-	const roundNames = new Set(result.data.map((m) => m.stage));
+	const { upsert, delete: deleteIds } = result.data;
+
+	if (upsert.length === 0 && deleteIds.length === 0) {
+		return json({
+			success: true,
+			upserted: 0,
+			deleted: 0,
+		});
+	}
+
+	const roundNames = new Set(upsert.map((m) => m.stage));
 	const roundIds = await findRounds(Array.from(roundNames));
 
 	if (roundNames.size !== roundIds.size) {
 		return error(404, 'Some round not found');
 	}
 
-	const osuIds = new Set(result.data.flatMap((m) => [m.red.id, m.blue.id]));
+	const osuIds = new Set(upsert.flatMap((m) => [m.red.id, m.blue.id]));
 	const playerIds = await findPlayers(Array.from(osuIds));
 
 	if (osuIds.size !== playerIds.size) {
 		return error(404, 'Some player not found');
 	}
 
-	const insertMatches = result.data.map((match) => {
-		const teamRedId = playerIds.get(match.red.id);
-		const teamBlueId = playerIds.get(match.blue.id);
-
-		if (teamRedId === undefined || teamBlueId === undefined) {
-			throw error(500, 'Some player not found');
-		}
+	const insertMatches = upsert.map((match) => {
+		const teamRedId = playerIds.get(match.red.id) as number;
+		const teamBlueId = playerIds.get(match.blue.id) as number;
 
 		let osuMatchId: number | null = null;
 		if (match.mp_link) {
@@ -135,13 +146,36 @@ export const POST: RequestHandler = async (event) => {
 	});
 
 	await db.transaction(async (tx) => {
-		// Delete ALL matches
-		await tx.delete(table.matches);
+		if (deleteIds.length > 0) {
+			await tx.delete(table.matches).where(inArray(table.matches.id, deleteIds));
+		}
 
-		await tx.insert(table.matches).values(insertMatches);
+		if (insertMatches.length > 0) {
+			await tx
+				.insert(table.matches)
+				.values(insertMatches)
+				.onConflictDoUpdate({
+					target: table.matches.id,
+					set: {
+						roundId: sql`excluded.round_id`,
+						bracket: sql`excluded.bracket`,
+						status: sql`excluded.status`,
+						startTime: sql`excluded.start_time`,
+						teamRedId: sql`excluded.team_red_id`,
+						teamBlueId: sql`excluded.team_blue_id`,
+						teamRedPoints: sql`excluded.team_red_points`,
+						teamBluePoints: sql`excluded.team_blue_points`,
+						rundown: sql`excluded.rundown`,
+						refereeName: sql`excluded.referee_name`,
+						osuMatchId: sql`excluded.osu_match_id`,
+					},
+				});
+		}
 	});
 
 	return json({
 		success: true,
+		upserted: insertMatches.length,
+		deleted: deleteIds.length,
 	});
 };

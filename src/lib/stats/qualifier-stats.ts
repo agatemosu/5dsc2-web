@@ -21,9 +21,9 @@ export function calcZsums(inputs: ScoreWithPlayer[]): QualifierStat[] {
 		let group = mapGroups.get(score.pick);
 
 		if (!group) {
-			group = []
-			mapGroups.set(score.pick, group)
-		} 
+			group = [];
+			mapGroups.set(score.pick, group);
+		}
 
 		group.push(score.score);
 	}

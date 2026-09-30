@@ -2,7 +2,7 @@ import { env } from '$env/dynamic/private';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { error, json } from '@sveltejs/kit';
-import { eq, inArray } from 'drizzle-orm';
+import { eq, inArray, sql } from 'drizzle-orm';
 import { z } from 'zod';
 import type { RequestHandler } from './$types';
 
@@ -13,6 +13,11 @@ const leaderboardSchema = z.object({
 	p: z.number(),
 	pick_diff: z.number(),
 	pts: z.number(),
+});
+
+const leaderboardSyncSchema = z.object({
+	upsert: z.array(leaderboardSchema),
+	delete: z.array(z.number()),
 });
 
 async function findPlayers(osuIds: number[]) {
@@ -41,7 +46,7 @@ export const POST: RequestHandler = async (event) => {
 	}
 
 	const body = await event.request.json();
-	const result = z.array(leaderboardSchema).safeParse(body);
+	const result = leaderboardSyncSchema.safeParse(body);
 
 	if (!result.success) {
 		return error(400, {
@@ -52,19 +57,25 @@ export const POST: RequestHandler = async (event) => {
 		});
 	}
 
-	const osuIds = new Set(result.data.map((m) => m.player));
+	const { upsert, delete: deleteIds } = result.data;
+
+	if (upsert.length === 0 && deleteIds.length === 0) {
+		return json({
+			success: true,
+			upserted: 0,
+			deleted: 0,
+		});
+	}
+
+	const osuIds = new Set([...upsert.map((m) => m.player), ...deleteIds]);
 	const userIds = await findPlayers(Array.from(osuIds));
 
 	if (osuIds.size !== userIds.size) {
 		return error(404, 'Some player not found');
 	}
 
-	const insertItems = result.data.map((item) => {
-		const userId = userIds.get(item.player);
-
-		if (userId === undefined) {
-			throw error(500, 'Some player not found');
-		}
+	const insertItems = upsert.map((item) => {
+		const userId = userIds.get(item.player) as number;
 
 		const insert: table.LeagueLeaderboard = {
 			userId: userId,
@@ -79,9 +90,30 @@ export const POST: RequestHandler = async (event) => {
 	});
 
 	await db.transaction(async (tx) => {
-		// Delete ALL leaderboard
-		await tx.delete(table.leagueLeaderboard);
-		await tx.insert(table.leagueLeaderboard).values(insertItems);
+		if (deleteIds.length > 0) {
+			await tx.delete(table.leagueLeaderboard).where(
+				inArray(
+					table.leagueLeaderboard.userId,
+					deleteIds.map((osuId) => userIds.get(osuId) as number),
+				),
+			);
+		}
+
+		if (insertItems.length > 0) {
+			await tx
+				.insert(table.leagueLeaderboard)
+				.values(insertItems)
+				.onConflictDoUpdate({
+					target: table.leagueLeaderboard.userId,
+					set: {
+						wins: sql`excluded.wins`,
+						draws: sql`excluded.draws`,
+						losses: sql`excluded.losses`,
+						difference: sql`excluded.difference`,
+						points: sql`excluded.points`,
+					},
+				});
+		}
 	});
 
 	return json({
