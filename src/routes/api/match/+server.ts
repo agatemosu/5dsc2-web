@@ -171,6 +171,21 @@ export const POST: RequestHandler = async (event) => {
 		}
 	});
 
+	await fetch(`${env.MATCH_EVENTS_URL}/publish`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${env.MATCH_EVENTS_SECRET}`,
+		},
+		body: JSON.stringify({
+			type: 'matches:changed',
+			matches: insertMatches.map((match) => ({
+				id: match.id,
+				rundown: match.rundown,
+			})),
+		}),
+	});
+
 	return json({
 		success: true,
 		upserted: insertMatches.length,
