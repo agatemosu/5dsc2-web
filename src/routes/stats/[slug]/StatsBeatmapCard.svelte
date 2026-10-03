@@ -105,8 +105,8 @@
 				<span class="text-white">
 					{formatTime(
 						map.slotName === Mod.DT
-							? calcModStat.dt.length(map.beatmap.length)
-							: map.beatmap.length,
+							? calcModStat.dt.length(map.beatmap.drainLength)
+							: map.beatmap.drainLength,
 					)}
 				</span>
 			</div>

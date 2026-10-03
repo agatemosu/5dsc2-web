@@ -136,7 +136,7 @@ export const beatmaps = snakeCase.table('beatmaps', {
 	circleSize: real().notNull(),
 	approachRate: real().notNull(),
 	overallDifficulty: real().notNull(),
-	length: integer().notNull(),
+	drainLength: integer().notNull(),
 	bpm: real().notNull(),
 	version: text().notNull(),
 });

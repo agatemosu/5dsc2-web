@@ -1,0 +1,1 @@
+ALTER TABLE `beatmaps` RENAME COLUMN `length` TO `drain_length`;
