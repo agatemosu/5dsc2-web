@@ -52,7 +52,7 @@
 	<thead>
 		<tr>
 			<th class="px-2 py-2 text-center font-normal text-white underline">#</th>
-			<th class="px-4 py-2 text-left font-normal text-white underline">player</th>
+			<th class="px-4 py-2 text-left font-normal text-white underline">jugador</th>
 			<th class="px-4 py-2 text-center font-normal text-white underline">z-sum</th>
 			<th class="px-4 py-2 text-center font-normal text-white underline">avg. score</th>
 			{#each maps as map (map.id)}
