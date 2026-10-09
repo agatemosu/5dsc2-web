@@ -80,22 +80,32 @@
 						})}
 					</InstantTooltip>
 				</span>
-			{:else if match.teamRedPoints != null && match.teamBluePoints != null}
+			{:else if match.teamRedPoints !== null && match.teamBluePoints !== null}
 				<span class="text-xl">
 					<span class={match.teamRedPoints > match.teamBluePoints ? 'text-team-red' : 'text-white'}>
-						{match.teamRedPoints}
+						{Math.max(match.teamRedPoints, 0)}
 					</span>
 					<span class="text-white">-</span>
 					<span
 						class={match.teamBluePoints > match.teamRedPoints ? 'text-team-blue' : 'text-white'}
 					>
-						{match.teamBluePoints}
+						{Math.max(match.teamBluePoints, 0)}
 					</span>
 				</span>
+
+				{#if match.teamRedPoints === -1 || match.teamBluePoints === -1}
+					<div
+						class={`absolute top-1.5 ss-forfeit-bg px-2 text-sm font-semibold text-black ${
+							match.teamBluePoints === -1 ? 'left-full ml-2' : 'right-full mr-2'
+						}`}
+					>
+						FORFEIT
+					</div>
+				{/if}
 			{/if}
 		</div>
 	</div>
-	{#if match.status !== MatchStatus.Planned}
+	{#if match.status !== MatchStatus.Planned && match.teamRedPoints !== -1 && match.teamBluePoints !== -1}
 		<div class="mx-4 mb-1 bg-gray px-2 py-1">
 			<div class="flex gap-2">
 				<!-- bans red -->

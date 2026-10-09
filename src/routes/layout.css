@@ -68,3 +68,13 @@ mjx-container svg {
 [align='right'] {
 	text-align: right;
 }
+
+@utility ss-forfeit-bg {
+	background-image: repeating-linear-gradient(
+		-45deg,
+		#ff6b26,
+		#ff6b26 10px,
+		#cc5b27 10px,
+		#cc5b27 20px
+	);
+}
