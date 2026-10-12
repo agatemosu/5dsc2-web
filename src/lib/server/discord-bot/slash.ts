@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { GenericServer, SlashCreator } from 'slash-create';
+
 import { commands } from './commands';
 
 export const creator = new SlashCreator({

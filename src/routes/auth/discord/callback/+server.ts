@@ -5,6 +5,7 @@ import { getDiscordClient } from '$lib/server/oauth';
 import { UserError } from '$lib/user-error';
 import { error, redirect } from '@sveltejs/kit';
 import type { OAuth2Tokens } from 'arctic';
+
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async (event) => {

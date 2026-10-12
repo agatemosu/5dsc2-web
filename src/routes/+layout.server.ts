@@ -1,6 +1,7 @@
-import { defineBaseMetaTags } from 'svelte-meta-tags';
-import type { LayoutServerLoad } from './$types';
 import header from '$lib/assets/header.jpg';
+import { defineBaseMetaTags } from 'svelte-meta-tags';
+
+import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ url, locals }) => {
 	const baseTags = defineBaseMetaTags({

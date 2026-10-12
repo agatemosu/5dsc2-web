@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import type { EncodedAvailability } from '$lib/availability';
 	import Layout from '$lib/components/Layout.svelte';
+
 	import AvailabilityForm from './AvailabilityForm.svelte';
 	import DiscordLink from './DiscordLink.svelte';
 

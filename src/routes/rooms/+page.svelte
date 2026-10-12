@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Layout from '$lib/components/Layout.svelte';
+
 	import type { PageProps } from './$types';
 	import Room from './Room.svelte';
 

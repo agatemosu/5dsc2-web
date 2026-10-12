@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { NextMatch } from '$lib/types';
+
 	import ProximoPartidoPlayer from './ProximoPartidoPlayer.svelte';
 
 	interface Props {

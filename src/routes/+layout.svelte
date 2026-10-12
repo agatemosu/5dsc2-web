@@ -7,6 +7,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import MobileHeader from '$lib/components/MobileHeader.svelte';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
+
 	import './layout.css';
 
 	let { children, data } = $props();

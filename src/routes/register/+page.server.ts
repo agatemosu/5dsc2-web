@@ -6,6 +6,7 @@ import { addRoleToUser } from '$lib/server/discord';
 import { UserError } from '$lib/user-error';
 import { fail } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {

@@ -5,6 +5,7 @@
 	import Layout from '$lib/components/Layout.svelte';
 	import { Mod } from '$lib/enums';
 	import { blur } from 'svelte/transition';
+
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();

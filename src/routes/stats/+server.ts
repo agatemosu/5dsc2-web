@@ -2,6 +2,7 @@ import { resolve } from '$app/paths';
 import { dates, isFutureAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import { error, redirect } from '@sveltejs/kit';
+
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {

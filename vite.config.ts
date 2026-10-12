@@ -1,11 +1,11 @@
 import 'temporal-polyfill/global';
 import svg from '@poppanator/sveltekit-svg';
-import remarkGfm from 'remark-gfm';
 import adapter from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { svelteMarkdown } from '@sveltek/markdown';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeMathjax from 'rehype-mathjax';
+import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import { defineConfig } from 'vite';
 

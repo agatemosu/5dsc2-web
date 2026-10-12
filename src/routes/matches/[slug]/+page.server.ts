@@ -1,9 +1,10 @@
-import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 import { dates, isFutureAndProd } from '$lib/dates';
-import { db } from '$lib/server/db';
-import { definePageMetaTags } from 'svelte-meta-tags';
 import { StageType } from '$lib/enums';
+import { db } from '$lib/server/db';
+import { error } from '@sveltejs/kit';
+import { definePageMetaTags } from 'svelte-meta-tags';
+
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	if (isFutureAndProd(dates.qualifiers.end)) {

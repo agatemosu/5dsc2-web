@@ -1,6 +1,7 @@
 import { MatchStatus } from '$lib/enums';
 import { db } from '$lib/server/db';
 import type { LastMatch, NextMatch } from '$lib/types';
+
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

@@ -1,5 +1,6 @@
 import type { Score } from '$lib/server/db/schema';
 import type { PlayerWithOsu, ScoreWithPlayer } from '$lib/types';
+
 import { median, normalizeScore } from './util';
 
 interface SoloStat {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dates } from '$lib/dates';
+
 	import InstantTooltip from './InstantTooltip.svelte';
 
 	const formatter = new Intl.DateTimeFormat('es-ES', {

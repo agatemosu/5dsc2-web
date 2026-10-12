@@ -2,6 +2,7 @@
 	import { groupMapScores } from '$lib/stats/leaderboard-stats';
 	import { gradeClass } from '$lib/tailwind';
 	import type { FullMappool, ScoreWithPlayer } from '$lib/types';
+
 	import StatsBeatmapCard from './StatsBeatmapCard.svelte';
 
 	interface Props {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+
 	import TituloSuperGrande from './TituloSuperGrande.svelte';
 
 	interface Props {

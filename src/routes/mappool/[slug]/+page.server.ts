@@ -2,6 +2,7 @@ import { dates, isFutureAndProd } from '$lib/dates';
 import { db } from '$lib/server/db';
 import { error } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {

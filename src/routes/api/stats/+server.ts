@@ -6,6 +6,7 @@ import * as table from '$lib/server/db/schema';
 import { error, json } from '@sveltejs/kit';
 import { eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
+
 import type { RequestHandler } from './$types';
 
 const scoreSchema = z.object({

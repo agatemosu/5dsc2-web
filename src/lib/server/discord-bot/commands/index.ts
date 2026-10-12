@@ -1,4 +1,5 @@
 import type { SlashCommand } from 'slash-create';
+
 import { AddRoomBulkCommand } from './add-room-bulk.ts';
 import { AddRoomCommand } from './add-room.ts';
 import { DeleteRoomCommand } from './delete-room.ts';

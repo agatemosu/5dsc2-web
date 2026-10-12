@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Layout from '$lib/components/Layout.svelte';
 	import { MAX_QUALIFIED_SEED } from '$lib/consts';
+
 	import type { PageProps } from './$types';
 	import PlayerGrid from './PlayerGrid.svelte';
 

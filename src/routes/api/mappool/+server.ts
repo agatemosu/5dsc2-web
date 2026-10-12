@@ -7,6 +7,7 @@ import { error, json } from '@sveltejs/kit';
 import { eq, sql } from 'drizzle-orm';
 import type { Beatmap } from 'osu-api-v2-js';
 import { z } from 'zod';
+
 import type { RequestHandler } from './$types';
 
 const slotSchema = z.object({

@@ -4,6 +4,7 @@
 	import Layout from '$lib/components/Layout.svelte';
 	import { Mod, StageType } from '$lib/enums';
 	import { blur } from 'svelte/transition';
+
 	import type { PageProps } from './$types';
 	import MapView from './MapView.svelte';
 	import QualifierView from './QualifierView.svelte';

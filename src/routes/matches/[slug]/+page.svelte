@@ -4,6 +4,7 @@
 	import Layout from '$lib/components/Layout.svelte';
 	import Match from '$lib/components/Match.svelte';
 	import { blur } from 'svelte/transition';
+
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();

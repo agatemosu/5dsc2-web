@@ -5,6 +5,7 @@ import * as table from '$lib/server/db/schema';
 import { error, json } from '@sveltejs/kit';
 import { eq, inArray, sql } from 'drizzle-orm';
 import { z } from 'zod';
+
 import type { RequestHandler } from './$types';
 
 const teamSchema = z.object({

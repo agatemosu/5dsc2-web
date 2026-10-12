@@ -1,9 +1,10 @@
 import { StageType } from '$lib/enums';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
-import * as sitemap from 'super-sitemap/sveltekit';
-import type { RequestHandler } from './$types';
 import { eq, exists } from 'drizzle-orm';
+import * as sitemap from 'super-sitemap/sveltekit';
+
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	const rounds = await db.query.rounds.findMany({

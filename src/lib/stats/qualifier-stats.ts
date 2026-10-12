@@ -1,4 +1,5 @@
 import type { NormalizedScoreWithPlayer, PlayerWithOsu, ScoreWithPlayer } from '$lib/types';
+
 import { normalizeScore } from './util';
 
 interface QualifierStat {

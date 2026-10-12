@@ -5,6 +5,7 @@ import * as table from '$lib/server/db/schema';
 import { error, fail } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {

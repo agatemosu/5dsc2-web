@@ -6,6 +6,7 @@ import { createUser, getUserByOsuId, refreshOsuUser } from '$lib/server/db/user'
 import { getOsuClient } from '$lib/server/oauth';
 import { error, redirect } from '@sveltejs/kit';
 import type { OAuth2Tokens } from 'arctic';
+
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async (event) => {

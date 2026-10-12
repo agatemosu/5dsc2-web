@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { DraftAction, DraftActor, MatchStatus } from '$lib/enums';
 	import type { MatchWithPlayers } from '$lib/types';
+
 	import InstantTooltip from './InstantTooltip.svelte';
 
 	interface Props {

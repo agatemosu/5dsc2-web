@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PlayerWithOsu } from '$lib/types';
+
 	import PlayerCard from './PlayerCard.svelte';
 
 	interface Props {
