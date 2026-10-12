@@ -1,6 +1,7 @@
-import { getDiscordClient } from '$lib/server/oauth';
 import { error, redirect } from '@sveltejs/kit';
 import { generateState } from 'arctic';
+
+import { getDiscordClient } from '#lib/server/oauth.ts';
 
 import type { RequestHandler } from './$types';
 
@@ -22,5 +23,5 @@ export const GET: RequestHandler = (event) => {
 		sameSite: 'lax',
 	});
 
-	return redirect(302, url);
+	return redirect(302, url, { external: true });
 };

@@ -1,8 +1,9 @@
-import type { Pathname } from '$app/types';
-import { dates, isPastOrDev } from '$lib/dates';
+import type { ResolvedPathname } from '$app/types';
+
+import { dates, isPastOrDev } from '#lib/dates.ts';
 
 export const getNavigationItems = () => {
-	const items: Array<{ text: string; href: Pathname }> = [
+	const items: Array<{ text: string; href: ResolvedPathname }> = [
 		{ text: 'inicio', href: '/' },
 		{ text: 'info', href: '/info' },
 		{ text: 'jugadores', href: '/players' },

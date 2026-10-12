@@ -1,6 +1,7 @@
-import { ROOM_SIZE } from '$lib/consts';
-import { db } from '$lib/server/db';
 import { text } from '@sveltejs/kit';
+
+import { ROOM_SIZE } from '#lib/consts.ts';
+import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
 

@@ -1,5 +1,5 @@
-import type { Score } from '$lib/server/db/schema';
-import type { PlayerWithOsu, ScoreWithPlayer } from '$lib/types';
+import type { Score } from '#lib/server/db/schema.ts';
+import type { PlayerWithOsu, ScoreWithPlayer } from '#lib/types.ts';
 
 import { median, normalizeScore } from './util';
 

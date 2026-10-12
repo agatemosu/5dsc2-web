@@ -1,12 +1,13 @@
-import { env } from '$env/dynamic/private';
-import { Mod } from '$lib/enums';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
-import { osuApi } from '$lib/server/osu';
+import * as env from '$app/env/private';
 import { error, json } from '@sveltejs/kit';
 import { eq, sql } from 'drizzle-orm';
 import type { Beatmap } from 'osu-api-v2-js';
 import { z } from 'zod';
+
+import { Mod } from '#lib/enums.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
+import { osuApi } from '#lib/server/osu.ts';
 
 import type { RequestHandler } from './$types';
 

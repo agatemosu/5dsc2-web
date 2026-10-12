@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { calcMatchCosts } from '$lib/stats/solo-stats';
-	import { gradeClass, pickClass, tw } from '$lib/tailwind';
-	import type { ScoreWithPlayer } from '$lib/types';
+	import { calcMatchCosts } from '#lib/stats/solo-stats.ts';
+	import { gradeClass, pickClass, tw } from '#lib/tailwind.ts';
+	import type { ScoreWithPlayer } from '#lib/types.ts';
 
 	interface Props {
 		scores: ScoreWithPlayer[];

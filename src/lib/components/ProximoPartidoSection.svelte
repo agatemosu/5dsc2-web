@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LastMatch, NextMatch } from '$lib/types';
+	import type { LastMatch, NextMatch } from '#lib/types.ts';
 
 	import ProximoPartido from './ProximoPartido.svelte';
 	import UltimosPartidos from './UltimosPartidos.svelte';

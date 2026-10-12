@@ -1,11 +1,12 @@
-import { env } from '$env/dynamic/private';
-import { Grade, Mod } from '$lib/enums';
-import { toLegacyBitset } from '$lib/mods/bitset';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
+import * as env from '$app/env/private';
 import { error, json } from '@sveltejs/kit';
 import { eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
+
+import { Grade, Mod } from '#lib/enums.ts';
+import { toLegacyBitset } from '#lib/mods/bitset.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 import type { RequestHandler } from './$types';
 

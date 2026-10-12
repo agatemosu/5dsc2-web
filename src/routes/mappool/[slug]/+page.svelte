@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import BeatmapCard from '$lib/components/BeatmapCard.svelte';
-	import Layout from '$lib/components/Layout.svelte';
-	import { Mod } from '$lib/enums';
 	import { blur } from 'svelte/transition';
+
+	import BeatmapCard from '#lib/components/BeatmapCard.svelte';
+	import Layout from '#lib/components/Layout.svelte';
+	import { Mod } from '#lib/enums.ts';
 
 	import type { PageProps } from './$types';
 

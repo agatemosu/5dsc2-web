@@ -1,6 +1,4 @@
-import { env } from '$env/dynamic/private';
-import { MAX_QUALIFIED_SEED } from '$lib/consts';
-import { db } from '$lib/server/db';
+import * as env from '$app/env/private';
 import {
 	SlashCommand,
 	type CommandContext,
@@ -8,6 +6,9 @@ import {
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
+
+import { MAX_QUALIFIED_SEED } from '#lib/consts.ts';
+import { db } from '#lib/server/db/index.ts';
 
 export class RemovePlayerRoleCommand extends SlashCommand {
 	constructor(creator: SlashCreator) {

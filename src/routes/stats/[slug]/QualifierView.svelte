@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Score } from '$lib/server/db/schema';
-	import { calcZsums } from '$lib/stats/qualifier-stats';
-	import { modClass, tw } from '$lib/tailwind';
-	import type { FullMappool, ScoreWithPlayer } from '$lib/types';
+	import type { Score } from '#lib/server/db/schema.ts';
+	import { calcZsums } from '#lib/stats/qualifier-stats.ts';
+	import { modClass, tw } from '#lib/tailwind.ts';
+	import type { FullMappool, ScoreWithPlayer } from '#lib/types.ts';
 
 	interface Props {
 		scores: ScoreWithPlayer[];

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MatchPlayer } from '$lib/types';
+	import type { MatchPlayer } from '#lib/types.ts';
 
 	interface Props {
 		user: MatchPlayer;

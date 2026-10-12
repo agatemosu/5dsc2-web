@@ -1,10 +1,11 @@
-import type { DiscordUser } from '$lib/interfaces/discord';
-import { addDiscordDataToUser } from '$lib/server/db/user';
-import { joinUserToServer } from '$lib/server/discord';
-import { getDiscordClient } from '$lib/server/oauth';
-import { UserError } from '$lib/user-error';
 import { error, redirect } from '@sveltejs/kit';
 import type { OAuth2Tokens } from 'arctic';
+
+import type { DiscordUser } from '#lib/interfaces/discord.ts';
+import { addDiscordDataToUser } from '#lib/server/db/user.ts';
+import { joinUserToServer } from '#lib/server/discord.ts';
+import { getDiscordClient } from '#lib/server/oauth.ts';
+import { UserError } from '#lib/user-error.ts';
 
 import type { RequestHandler } from './$types';
 

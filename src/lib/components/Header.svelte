@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import logo from '$lib/assets/logo.svg?url';
-	import { getNavigationItems } from '$lib/navigation';
-	import type { OsuUser } from '$lib/server/db/schema';
+
+	import logo from '#lib/assets/logo.svg?url';
+	import { getNavigationItems } from '#lib/navigation.ts';
+	import type { OsuUser } from '#lib/server/db/schema.ts';
 
 	interface Props {
 		user: OsuUser | undefined;

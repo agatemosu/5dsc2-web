@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import Layout from '$lib/components/Layout.svelte';
-	import Match from '$lib/components/Match.svelte';
 	import { blur } from 'svelte/transition';
+
+	import Layout from '#lib/components/Layout.svelte';
+	import Match from '#lib/components/Match.svelte';
 
 	import type { PageProps } from './$types';
 

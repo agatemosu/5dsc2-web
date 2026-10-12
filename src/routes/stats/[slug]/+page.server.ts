@@ -1,9 +1,10 @@
-import { dates, isFutureAndProd } from '$lib/dates';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
 import { error } from '@sveltejs/kit';
 import { eq, exists } from 'drizzle-orm';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
+import { dates, isFutureAndProd } from '#lib/dates.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 import type { PageServerLoad } from './$types';
 

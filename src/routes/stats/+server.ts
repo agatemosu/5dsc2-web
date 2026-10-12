@@ -1,7 +1,8 @@
 import { resolve } from '$app/paths';
-import { dates, isFutureAndProd } from '$lib/dates';
-import { db } from '$lib/server/db';
 import { error, redirect } from '@sveltejs/kit';
+
+import { dates, isFutureAndProd } from '#lib/dates.ts';
+import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
 

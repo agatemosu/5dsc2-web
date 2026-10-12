@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import Layout from '$lib/components/Layout.svelte';
-	import { Mod, StageType } from '$lib/enums';
 	import { blur } from 'svelte/transition';
+
+	import Layout from '#lib/components/Layout.svelte';
+	import { Mod, StageType } from '#lib/enums.ts';
 
 	import type { PageProps } from './$types';
 	import MapView from './MapView.svelte';

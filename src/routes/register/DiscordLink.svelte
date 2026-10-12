@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import type { DiscordUser } from '$lib/server/db/schema';
+
+	import type { DiscordUser } from '#lib/server/db/schema.ts';
 
 	interface Props {
 		discord: DiscordUser | null;

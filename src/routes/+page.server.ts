@@ -1,6 +1,6 @@
-import { MatchStatus } from '$lib/enums';
-import { db } from '$lib/server/db';
-import type { LastMatch, NextMatch } from '$lib/types';
+import { MatchStatus } from '#lib/enums.ts';
+import { db } from '#lib/server/db/index.ts';
+import type { LastMatch, NextMatch } from '#lib/types.ts';
 
 import type { PageServerLoad } from './$types';
 

@@ -1,5 +1,6 @@
-import { env } from '$env/dynamic/private';
-import { UserError } from '$lib/user-error';
+import * as env from '$app/env/private';
+
+import { UserError } from '#lib/user-error.ts';
 
 export async function joinUserToServer(userId: string, accessToken: string) {
 	const url = `https://discord.com/api/v10/guilds/${env.DISCORD_GUILD_ID}/members/${userId}`;

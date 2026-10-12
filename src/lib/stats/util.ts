@@ -1,6 +1,6 @@
-import { Mod } from '$lib/enums';
-import { fromLegacyBitset } from '$lib/mods/bitset';
-import type { NormalizedScoreWithPlayer, ScoreWithPlayer } from '$lib/types';
+import { Mod } from '#lib/enums.ts';
+import { fromLegacyBitset } from '#lib/mods/bitset.ts';
+import type { NormalizedScoreWithPlayer, ScoreWithPlayer } from '#lib/types.ts';
 
 export function median(values: number[]): number {
 	if (values.length === 0) {

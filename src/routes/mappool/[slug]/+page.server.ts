@@ -1,7 +1,8 @@
-import { dates, isFutureAndProd } from '$lib/dates';
-import { db } from '$lib/server/db';
 import { error } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
+import { dates, isFutureAndProd } from '#lib/dates.ts';
+import { db } from '#lib/server/db/index.ts';
 
 import type { PageServerLoad } from './$types';
 

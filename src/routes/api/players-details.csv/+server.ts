@@ -1,5 +1,6 @@
-import { db } from '$lib/server/db';
 import { text } from '@sveltejs/kit';
+
+import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
 

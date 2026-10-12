@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import flecha from '$lib/assets/flecha.svg?url';
+
+	import flecha from '#lib/assets/flecha.svg?url';
 </script>
 
 <div class="flex items-end gap-3">

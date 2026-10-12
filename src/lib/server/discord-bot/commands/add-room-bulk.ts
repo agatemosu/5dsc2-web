@@ -1,6 +1,4 @@
-import { env } from '$env/dynamic/private';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
+import * as env from '$app/env/private';
 import * as csv from 'csv-parse/sync';
 import { DrizzleQueryError } from 'drizzle-orm';
 import {
@@ -13,6 +11,9 @@ import {
 	type SlashCreator,
 } from 'slash-create';
 import { z } from 'zod';
+
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 interface Options {
 	file: string;

@@ -1,5 +1,6 @@
-import header from '$lib/assets/header.jpg';
 import { defineBaseMetaTags } from 'svelte-meta-tags';
+
+import header from '#lib/assets/header.jpg';
 
 import type { LayoutServerLoad } from './$types';
 

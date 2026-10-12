@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { DraftAction, DraftActor, MatchStatus } from '$lib/enums';
-	import type { MatchWithPlayers } from '$lib/types';
+	import { DraftAction, DraftActor, MatchStatus } from '#lib/enums.ts';
+	import type { MatchWithPlayers } from '#lib/types.ts';
 
 	import InstantTooltip from './InstantTooltip.svelte';
 

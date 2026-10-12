@@ -1,11 +1,12 @@
-import { MAX_REGISTER_RANK, MIN_REGISTER_RANK } from '$lib/consts';
-import { dates, isFutureAndProd } from '$lib/dates';
-import type { OsuUser } from '$lib/interfaces/osu';
-import { createSession, generateSessionToken, setSessionTokenCookie } from '$lib/server/auth';
-import { createUser, getUserByOsuId, refreshOsuUser } from '$lib/server/db/user';
-import { getOsuClient } from '$lib/server/oauth';
 import { error, redirect } from '@sveltejs/kit';
 import type { OAuth2Tokens } from 'arctic';
+
+import { MAX_REGISTER_RANK, MIN_REGISTER_RANK } from '#lib/consts.ts';
+import { dates, isFutureAndProd } from '#lib/dates.ts';
+import type { OsuUser } from '#lib/interfaces/osu.ts';
+import { createSession, generateSessionToken, setSessionTokenCookie } from '#lib/server/auth.ts';
+import { createUser, getUserByOsuId, refreshOsuUser } from '#lib/server/db/user.ts';
+import { getOsuClient } from '#lib/server/oauth.ts';
 
 import type { RequestHandler } from './$types';
 

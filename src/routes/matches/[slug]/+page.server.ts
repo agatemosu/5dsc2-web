@@ -1,8 +1,9 @@
-import { dates, isFutureAndProd } from '$lib/dates';
-import { StageType } from '$lib/enums';
-import { db } from '$lib/server/db';
 import { error } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
+import { dates, isFutureAndProd } from '#lib/dates.ts';
+import { StageType } from '#lib/enums.ts';
+import { db } from '#lib/server/db/index.ts';
 
 import type { PageServerLoad } from './$types';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dates } from '$lib/dates';
+	import { dates } from '#lib/dates.ts';
 
 	import InstantTooltip from './InstantTooltip.svelte';
 

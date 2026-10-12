@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { groupMapScores } from '$lib/stats/leaderboard-stats';
-	import { gradeClass } from '$lib/tailwind';
-	import type { FullMappool, ScoreWithPlayer } from '$lib/types';
+	import { groupMapScores } from '#lib/stats/leaderboard-stats.ts';
+	import { gradeClass } from '#lib/tailwind.ts';
+	import type { FullMappool, ScoreWithPlayer } from '#lib/types.ts';
 
 	import StatsBeatmapCard from './StatsBeatmapCard.svelte';
 

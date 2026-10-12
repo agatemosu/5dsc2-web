@@ -1,10 +1,11 @@
-import { env } from '$env/dynamic/private';
-import { DraftAction, DraftActor, MatchStatus } from '$lib/enums';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
+import * as env from '$app/env/private';
 import { error, json } from '@sveltejs/kit';
 import { eq, inArray, sql } from 'drizzle-orm';
 import { z } from 'zod';
+
+import { DraftAction, DraftActor, MatchStatus } from '#lib/enums.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 import type { RequestHandler } from './$types';
 

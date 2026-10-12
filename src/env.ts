@@ -1,0 +1,20 @@
+import { defineEnvVars } from '@sveltejs/kit/env';
+
+export const variables = defineEnvVars({
+	TURSO_DATABASE_URL: {},
+	TURSO_AUTH_TOKEN: {},
+	MATCH_EVENTS_URL: {},
+	MATCH_EVENTS_SECRET: {},
+	POOLING_API_KEY: {},
+	REFEREE_API_KEY: {},
+	OSU_CLIENT_ID: {},
+	OSU_CLIENT_SECRET: {},
+	DISCORD_APP_ID: {},
+	DISCORD_PUBLIC_KEY: {},
+	DISCORD_CLIENT_SECRET: {},
+	DISCORD_BOT_TOKEN: {},
+	DISCORD_GUILD_ID: {},
+	DISCORD_STAFF_ROLE_ID: {},
+	DISCORD_REFEREE_ROLE_ID: {},
+	DISCORD_PLAYER_ROLE_ID: {},
+});

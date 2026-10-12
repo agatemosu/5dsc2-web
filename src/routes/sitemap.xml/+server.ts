@@ -1,8 +1,9 @@
-import { StageType } from '$lib/enums';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
 import { eq, exists } from 'drizzle-orm';
 import * as sitemap from 'super-sitemap/sveltekit';
+
+import { StageType } from '#lib/enums.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 import type { RequestHandler } from './$types';
 

@@ -1,6 +1,7 @@
-import { env } from '$env/dynamic/private';
-import { db } from '$lib/server/db';
+import * as env from '$app/env/private';
 import { error, json } from '@sveltejs/kit';
+
+import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
 

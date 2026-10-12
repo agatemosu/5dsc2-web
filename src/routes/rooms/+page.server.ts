@@ -1,10 +1,11 @@
-import { ROOM_SIZE } from '$lib/consts';
-import { dates, isFutureAndProd, isPastAndProd } from '$lib/dates';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
 import { error, fail } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
+import { ROOM_SIZE } from '#lib/consts.ts';
+import { dates, isFutureAndProd, isPastAndProd } from '#lib/dates.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 import type { Actions, PageServerLoad } from './$types';
 

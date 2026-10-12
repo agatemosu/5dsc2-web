@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import InstantTooltip from '$lib/components/InstantTooltip.svelte';
-	import type { QualifierRoomWithPlayers } from '$lib/types';
 	import { tooltip } from 'svooltip';
+
+	import InstantTooltip from '#lib/components/InstantTooltip.svelte';
+	import type { QualifierRoomWithPlayers } from '#lib/types.ts';
 
 	interface Props {
 		room: QualifierRoomWithPlayers;

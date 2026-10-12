@@ -1,7 +1,4 @@
-import { env } from '$env/dynamic/private';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
-import { osuApi } from '$lib/server/osu';
+import * as env from '$app/env/private';
 import { sql } from 'drizzle-orm';
 import {
 	CommandOptionType,
@@ -11,6 +8,10 @@ import {
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
+
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
+import { osuApi } from '#lib/server/osu.ts';
 
 interface Options {
 	refresh_global_ranks?: boolean;

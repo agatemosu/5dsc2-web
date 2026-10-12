@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import bgAvif from '$lib/assets/bg.avif';
-	import bgJpg from '$lib/assets/bg.jpg';
-	import bgWebp from '$lib/assets/bg.webp';
-	import favicon from '$lib/assets/logo.svg?url';
-	import Header from '$lib/components/Header.svelte';
-	import MobileHeader from '$lib/components/MobileHeader.svelte';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
+
+	import bgAvif from '#lib/assets/bg.avif';
+	import bgJpg from '#lib/assets/bg.jpg';
+	import bgWebp from '#lib/assets/bg.webp';
+	import favicon from '#lib/assets/logo.svg?url';
+	import Header from '#lib/components/Header.svelte';
+	import MobileHeader from '#lib/components/MobileHeader.svelte';
 
 	import './layout.css';
 

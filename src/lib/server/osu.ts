@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import * as env from '$app/env/private';
 import * as osu from 'osu-api-v2-js';
 
 export const osuApi = new osu.API({

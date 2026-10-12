@@ -1,4 +1,4 @@
-import { Mod } from '$lib/enums';
+import { Mod } from '#lib/enums.ts';
 
 const MOD_TO_LEGACY_BIT = new Map<Mod, number>([
 	[Mod.EZ, 1 << 1],

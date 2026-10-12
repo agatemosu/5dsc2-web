@@ -1,6 +1,4 @@
-import { env } from '$env/dynamic/private';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
+import * as env from '$app/env/private';
 import {
 	ButtonStyle,
 	ComponentType,
@@ -12,6 +10,9 @@ import {
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
+
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 enum Action {
 	Previous,

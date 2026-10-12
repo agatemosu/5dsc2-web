@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { tw } from '$lib/tailwind';
 	import { tooltip } from 'svooltip';
+
+	import { tw } from '#lib/tailwind.ts';
 
 	const socials = [
 		{

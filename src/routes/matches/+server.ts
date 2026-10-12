@@ -1,8 +1,9 @@
 import { resolve } from '$app/paths';
-import { dates, isFutureAndProd } from '$lib/dates';
-import { StageType } from '$lib/enums';
-import { db } from '$lib/server/db';
 import { error, redirect } from '@sveltejs/kit';
+
+import { dates, isFutureAndProd } from '#lib/dates.ts';
+import { StageType } from '#lib/enums.ts';
+import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
 

@@ -1,5 +1,6 @@
-import * as auth from '$lib/server/auth';
 import { error, redirect } from '@sveltejs/kit';
+
+import * as auth from '#lib/server/auth.ts';
 
 import type { RequestHandler } from './$types';
 

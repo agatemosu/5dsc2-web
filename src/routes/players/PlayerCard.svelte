@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { MAX_QUALIFIED_SEED } from '$lib/consts';
-	import type { PlayerWithOsu } from '$lib/types';
+	import { MAX_QUALIFIED_SEED } from '#lib/consts.ts';
+	import type { PlayerWithOsu } from '#lib/types.ts';
 
 	interface Props {
 		player: PlayerWithOsu<'seed' | 'qualifierRoomId'>;

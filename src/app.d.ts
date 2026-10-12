@@ -1,6 +1,7 @@
-import type { SessionValidationResult } from '$lib/server/auth';
-import '@poppanator/sveltekit-svg/dist/svg.d.ts';
 import type { MetaTagsProps } from 'svelte-meta-tags';
+import '@poppanator/sveltekit-svg/dist/svg.d.ts';
+
+import type { SessionValidationResult } from '#lib/server/auth.ts';
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces

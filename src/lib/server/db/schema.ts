@@ -1,5 +1,6 @@
-import type { DraftEntry, Grade, MatchStatus, Mod, StageType } from '$lib/enums';
 import { integer, real, snakeCase, text, unique } from 'drizzle-orm/sqlite-core';
+
+import type { DraftEntry, Grade, MatchStatus, Mod, StageType } from '#lib/enums.ts';
 
 import { instant } from './timestamp';
 

@@ -1,4 +1,4 @@
-import { endpoint } from '$lib/server/discord-bot/slash';
+import { endpoint } from '#lib/server/discord-bot/slash.ts';
 
 import type { RequestHandler } from './$types';
 

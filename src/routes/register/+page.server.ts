@@ -1,11 +1,12 @@
-import { encodeAvailability, validateAvailability } from '$lib/availability';
-import { dates, isFutureAndProd, isPastAndProd } from '$lib/dates';
-import { db } from '$lib/server/db';
-import { registerUser, unlinkDiscord } from '$lib/server/db/user';
-import { addRoleToUser } from '$lib/server/discord';
-import { UserError } from '$lib/user-error';
 import { fail } from '@sveltejs/kit';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
+import { encodeAvailability, validateAvailability } from '#lib/availability.ts';
+import { dates, isFutureAndProd, isPastAndProd } from '#lib/dates.ts';
+import { db } from '#lib/server/db/index.ts';
+import { registerUser, unlinkDiscord } from '#lib/server/db/user.ts';
+import { addRoleToUser } from '#lib/server/discord.ts';
+import { UserError } from '#lib/user-error.ts';
 
 import type { Actions, PageServerLoad } from './$types';
 

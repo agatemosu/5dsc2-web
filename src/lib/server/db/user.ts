@@ -1,8 +1,9 @@
-import type { DiscordUser } from '$lib/interfaces/discord';
-import type { OsuUser } from '$lib/interfaces/osu';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
+
+import type { DiscordUser } from '#lib/interfaces/discord.ts';
+import type { OsuUser } from '#lib/interfaces/osu.ts';
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 export async function getUserByOsuId(osuId: number) {
 	return await db.query.users.findFirst({

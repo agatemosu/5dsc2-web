@@ -1,4 +1,4 @@
-import type { Grade, Mod } from '$lib/enums';
+import type { Grade, Mod } from '#lib/enums.ts';
 
 export function tw(classes: string) {
 	return classes;

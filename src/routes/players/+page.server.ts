@@ -1,5 +1,6 @@
-import { db } from '$lib/server/db';
 import { definePageMetaTags } from 'svelte-meta-tags';
+
+import { db } from '#lib/server/db/index.ts';
 
 import type { PageServerLoad } from './$types';
 

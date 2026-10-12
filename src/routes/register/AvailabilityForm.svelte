@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { onMount } from 'svelte';
+	import type { ChangeEventHandler } from 'svelte/elements';
+	import { writable } from 'svelte/store';
+
 	import {
 		COLS,
 		decodeAvailability,
 		type DecodedAvailability,
 		type EncodedAvailability,
-	} from '$lib/availability';
-	import { onMount } from 'svelte';
-	import type { ChangeEventHandler } from 'svelte/elements';
-	import { writable } from 'svelte/store';
+	} from '#lib/availability.ts';
 
 	import type { SubmitFunction } from './$types';
 

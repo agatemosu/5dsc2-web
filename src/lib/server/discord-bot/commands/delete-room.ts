@@ -1,6 +1,4 @@
-import { env } from '$env/dynamic/private';
-import { db } from '$lib/server/db';
-import * as table from '$lib/server/db/schema';
+import * as env from '$app/env/private';
 import { eq } from 'drizzle-orm';
 import {
 	CommandOptionType,
@@ -12,6 +10,9 @@ import {
 	type MessageOptions,
 	type SlashCreator,
 } from 'slash-create';
+
+import { db } from '#lib/server/db/index.ts';
+import * as table from '#lib/server/db/schema.ts';
 
 interface Options {
 	name: string;

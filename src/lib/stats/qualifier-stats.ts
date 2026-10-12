@@ -1,4 +1,4 @@
-import type { NormalizedScoreWithPlayer, PlayerWithOsu, ScoreWithPlayer } from '$lib/types';
+import type { NormalizedScoreWithPlayer, PlayerWithOsu, ScoreWithPlayer } from '#lib/types.ts';
 
 import { normalizeScore } from './util';
 

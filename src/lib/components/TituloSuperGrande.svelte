@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/logo.svg?url';
+	import logo from '#lib/assets/logo.svg?url';
 </script>
 
 <div class="flex h-60 gap-31.5 bg-dark">

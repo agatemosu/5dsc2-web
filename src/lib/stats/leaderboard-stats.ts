@@ -1,4 +1,4 @@
-import type { FullMappool, ScoreWithPlayer } from '$lib/types';
+import type { FullMappool, ScoreWithPlayer } from '#lib/types.ts';
 
 interface SoloStat {
 	map: FullMappool;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LastMatch } from '$lib/types';
+	import type { LastMatch } from '#lib/types.ts';
 
 	interface Props {
 		lastMatches: LastMatch[];

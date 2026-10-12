@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import logo from '$lib/assets/logo.svg?url';
-	import { getNavigationItems } from '$lib/navigation';
+
+	import logo from '#lib/assets/logo.svg?url';
+	import { getNavigationItems } from '#lib/navigation.ts';
 
 	interface Props {
 		title: string;

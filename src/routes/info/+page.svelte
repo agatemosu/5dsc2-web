@@ -1,5 +1,5 @@
 <script>
-	import Layout from '$lib/components/Layout.svelte';
+	import Layout from '#lib/components/Layout.svelte';
 
 	import Rules from './rules.md';
 </script>

@@ -1,6 +1,7 @@
-import { MAX_QUALIFIED_SEED } from '$lib/consts';
-import { db } from '$lib/server/db';
 import { json } from '@sveltejs/kit';
+
+import { MAX_QUALIFIED_SEED } from '#lib/consts.ts';
+import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
 

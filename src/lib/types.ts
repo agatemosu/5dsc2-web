@@ -7,7 +7,7 @@ import type {
 	Player,
 	QualifierRoom,
 	Score,
-} from '$lib/server/db/schema';
+} from '#lib/server/db/schema.ts';
 
 // users
 export type PlayerWithOsu<

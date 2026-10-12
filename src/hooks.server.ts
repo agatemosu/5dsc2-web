@@ -1,5 +1,6 @@
-import * as auth from '$lib/server/auth';
-import type { Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit/hooks';
+
+import * as auth from '#lib/server/auth.ts';
 
 const handleAuth: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname.startsWith('/api')) {

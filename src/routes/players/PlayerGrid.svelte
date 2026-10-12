@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PlayerWithOsu } from '$lib/types';
+	import type { PlayerWithOsu } from '#lib/types.ts';
 
 	import PlayerCard from './PlayerCard.svelte';
 
