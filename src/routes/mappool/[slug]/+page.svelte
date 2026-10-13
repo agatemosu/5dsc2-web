@@ -14,7 +14,6 @@
 	let { mappools, mappackUrl } = $derived(data.round);
 
 	const order = Object.values(Mod);
-
 	let orderedMappool = $derived(
 		mappools.toSorted((a, b) => order.indexOf(a.slotName) - order.indexOf(b.slotName)),
 	);

@@ -113,6 +113,9 @@ importers:
       svelte-meta-tags:
         specifier: 5.0.3
         version: 5.0.3(svelte@5.57.2(@typescript-eslint/types@8.71.1))
+      sveltekit-search-params:
+        specifier: 4.0.1
+        version: 4.0.1(@sveltejs/kit@3.0.1(@sveltejs/vite-plugin-svelte@7.3.1(svelte@5.57.2(@typescript-eslint/types@8.71.1))(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)))(@typescript/typescript6@6.0.2)(svelte@5.57.2(@typescript-eslint/types@8.71.1))(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)))(svelte@5.57.2(@typescript-eslint/types@8.71.1))
       svooltip:
         specifier: 0.9.0
         version: 0.9.0(svelte@5.57.2(@typescript-eslint/types@8.71.1))
@@ -2384,6 +2387,12 @@ packages:
   svelte@5.57.2:
     resolution: {integrity: sha512-1YiPCAXT0Ct6g1vOMmSLa0Nsc3QRMvtDF32ihgglGVrugIuIK38RyDiFNXVDhtQ81TJjSO57NdMw6DyYLqSGDQ==}
     engines: {node: '>=18'}
+
+  sveltekit-search-params@4.0.1:
+    resolution: {integrity: sha512-OPxmeSfTdUGf4g4L8+wjtT4UhzTROcJROhpTIzsqzo5a9AAykpvfEcgOj1XunqWrnCtxpBcnN3qwW6lV5ahfEg==}
+    peerDependencies:
+      '@sveltejs/kit': ^2.12.0 || >=3.0.0-next.24 || ^3.0.0
+      svelte: ^5.0.0
 
   svgo@4.1.0:
     resolution: {integrity: sha512-bkxnTg1kSU0guhIBmibA6UUhrQmPVA1XsQLN+ylCd+UWzbnLkySOcXpyk1mrl05f+pcaCx2eHb+sp6BgMZWX+Q==}
@@ -4721,6 +4730,12 @@ snapshots:
       zimmerframe: 1.1.5
     transitivePeerDependencies:
       - '@typescript-eslint/types'
+
+  sveltekit-search-params@4.0.1(@sveltejs/kit@3.0.1(@sveltejs/vite-plugin-svelte@7.3.1(svelte@5.57.2(@typescript-eslint/types@8.71.1))(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)))(@typescript/typescript6@6.0.2)(svelte@5.57.2(@typescript-eslint/types@8.71.1))(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)))(svelte@5.57.2(@typescript-eslint/types@8.71.1)):
+    dependencies:
+      '@sveltejs/kit': 3.0.1(@sveltejs/vite-plugin-svelte@7.3.1(svelte@5.57.2(@typescript-eslint/types@8.71.1))(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)))(@typescript/typescript6@6.0.2)(svelte@5.57.2(@typescript-eslint/types@8.71.1))(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1))
+      esm-env: 1.2.2
+      svelte: 5.57.2(@typescript-eslint/types@8.71.1)
 
   svgo@4.1.0:
     dependencies:

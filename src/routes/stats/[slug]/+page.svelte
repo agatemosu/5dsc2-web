@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { blur } from 'svelte/transition';
+	import { queryParameters } from 'sveltekit-search-params';
 
 	import Layout from '#lib/components/Layout.svelte';
 	import { Mod, StageType } from '#lib/enums.ts';
@@ -16,7 +17,6 @@
 	let { mappools } = $derived(data.round);
 
 	const order = Object.values(Mod);
-
 	let orderedMappool = $derived(
 		mappools.toSorted((a, b) => order.indexOf(a.slotName) - order.indexOf(b.slotName)),
 	);
@@ -30,7 +30,7 @@
 		'map-leaderboard': 'leaderboard por mapa',
 	};
 
-	let view: View = $derived(
+	let defaultview: View = $derived(
 		data.round.stageType === StageType.Qualifiers ? 'qualifier-results' : 'solo-results',
 	);
 
@@ -40,6 +40,17 @@
 		// 'mappool-summary',
 		'map-leaderboard',
 	] as View[]);
+
+	const params = $derived(
+		queryParameters({
+			view: {
+				decode: (v) => v,
+				encode: (v) => v,
+				defaultValue: defaultview,
+				equalityFn: (a, b) => a === b,
+			},
+		}),
+	);
 </script>
 
 <Layout>
@@ -74,7 +85,7 @@
 				vista:
 
 				<select
-					bind:value={view}
+					bind:value={params.view}
 					class="cursor-pointer bg-gray p-2 text-white hover:brightness-125"
 				>
 					{#each views as view (view)}
@@ -85,11 +96,11 @@
 
 			<div class="w-full overflow-x-auto">
 				<div class="flex w-fit min-w-full justify-center">
-					{#if view === 'qualifier-results'}
+					{#if params.view === 'qualifier-results'}
 						<QualifierView scores={data.round.scores} maps={orderedMappool} />
-					{:else if view === 'solo-results'}
+					{:else if params.view === 'solo-results'}
 						<SoloView scores={data.round.scores} />
-					{:else if view === 'map-leaderboard'}
+					{:else if params.view === 'map-leaderboard'}
 						<MapView
 							scores={data.round.scores}
 							maps={orderedMappool}
