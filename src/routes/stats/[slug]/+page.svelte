@@ -41,7 +41,7 @@
 		'map-leaderboard',
 	] as View[]);
 
-	const params = $derived(
+	let params = $derived(
 		queryParameters({
 			view: {
 				decode: (v) => v,
