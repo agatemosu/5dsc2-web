@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler } from 'svelte/elements';
-	import { writable } from 'svelte/store';
 
 	import {
 		COLS,
@@ -23,7 +22,7 @@
 	const days = ['Viernes', 'Sábado', 'Domingo', 'Lunes'];
 	const hours = [...Array(COLS).keys()];
 
-	const availability = writable<DecodedAvailability>({});
+	let availability = $state<DecodedAvailability>({});
 
 	const formEnhancer: SubmitFunction = () => {
 		return ({ update }) => update({ reset: false });
@@ -39,19 +38,19 @@
 			savedSelections = decodeAvailability(serverAvailability);
 		}
 
-		availability.set(savedSelections);
+		availability = savedSelections;
+	});
 
-		availability.subscribe((value) => {
-			localStorage.setItem('availability', JSON.stringify(value));
-		});
+	$effect(() => {
+		localStorage.setItem('availability', JSON.stringify(availability));
 	});
 
 	const toggleSelection: ChangeEventHandler<HTMLInputElement> = (event) => {
 		const key = event.currentTarget.name;
-		availability.update((prev) => ({ ...prev, [key]: !prev[key] || undefined }));
+		availability[key] = !availability[key] || undefined;
 	};
 
-	const resetSelections = () => availability.set({});
+	const resetSelections = () => (availability = {});
 </script>
 
 <main class="relative w-full flex-1 rounded-t-3xl">
