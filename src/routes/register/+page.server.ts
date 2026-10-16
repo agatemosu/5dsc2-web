@@ -56,7 +56,7 @@ export const actions: Actions = {
 			return fail(400);
 		}
 
-		const availability = encodeAvailability(data);
+		const availability = encodeAvailability(data.keys().toArray());
 		await registerUser(event.locals.user.id, availability);
 
 		const user = await addRoleToUser(event.locals.user.discordId);

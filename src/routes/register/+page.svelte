@@ -36,7 +36,7 @@
 		</div>
 
 		<AvailabilityForm
-			serverAvailability={data.user.player?.availability as EncodedAvailability | undefined}
+			serverAvailability={(data.user.player?.availability ?? null) as EncodedAvailability | null}
 			loggedInDiscord={data.playerData.discord !== null}
 		/>
 

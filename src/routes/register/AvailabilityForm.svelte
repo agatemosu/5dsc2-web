@@ -6,6 +6,7 @@
 	import {
 		COLS,
 		decodeAvailability,
+		encodeAvailability,
 		type DecodedAvailability,
 		type EncodedAvailability,
 	} from '#lib/availability.ts';
@@ -13,7 +14,7 @@
 	import type { SubmitFunction } from './$types';
 
 	interface Props {
-		serverAvailability: EncodedAvailability | undefined;
+		serverAvailability: EncodedAvailability | null;
 		loggedInDiscord: boolean;
 	}
 
@@ -23,18 +24,18 @@
 	const hours = [...Array(COLS).keys()];
 
 	let availability = $state<DecodedAvailability>({});
-
-	const formEnhancer: SubmitFunction = () => {
-		return ({ update }) => update({ reset: false });
-	};
+	let availabilityModified = $derived(
+		serverAvailability !==
+			encodeAvailability(Object.keys(availability).filter((key) => availability[key])),
+	);
 
 	onMount(() => {
 		const localAvailability = localStorage.getItem('availability');
 		let savedSelections: DecodedAvailability = {};
 
-		if (localAvailability != null) {
+		if (localAvailability !== null) {
 			savedSelections = JSON.parse(localAvailability);
-		} else if (serverAvailability != null) {
+		} else if (serverAvailability !== null) {
 			savedSelections = decodeAvailability(serverAvailability);
 		}
 
@@ -45,12 +46,23 @@
 		localStorage.setItem('availability', JSON.stringify(availability));
 	});
 
+	const formEnhancer: SubmitFunction = () => {
+		return ({ update }) => update({ reset: false });
+	};
+
 	const toggleSelection: ChangeEventHandler<HTMLInputElement> = (event) => {
 		const key = event.currentTarget.name;
 		availability[key] = !availability[key] || undefined;
 	};
 
-	const resetSelections = () => (availability = {});
+	const resetToServer = () => {
+		if (serverAvailability === null) return;
+		availability = decodeAvailability(serverAvailability);
+	};
+
+	const resetToZero = () => {
+		availability = {};
+	};
 </script>
 
 <main class="relative w-full flex-1 rounded-t-3xl">
@@ -72,7 +84,7 @@
 						type="checkbox"
 						name={`${row}-${col}`}
 						class="size-8 cursor-pointer border-0 bg-none checked:bg-blue-400 hover:brightness-75"
-						checked={$availability[`${row}-${col}`]}
+						checked={availability[`${row}-${col}`]}
 						onchange={toggleSelection}
 					/>
 				{/each}
@@ -80,22 +92,47 @@
 		</section>
 
 		<div class="mt-4 flex flex-col items-center gap-4">
+			{#if serverAvailability !== null}
+				<div class="flex items-center gap-2 text-sm text-white">
+					<span class="size-2 rounded-full bg-current"></span>
+					{#if availabilityModified}
+						Modificado localmente
+					{:else}
+						No modificado
+					{/if}
+				</div>
+			{/if}
+
 			<button
 				type="submit"
 				class={[
 					'bg-orange-300 px-16 py-2 text-3xl text-white uppercase shadow-md',
 					loggedInDiscord ? 'cursor-pointer hover:opacity-60' : 'cursor-not-allowed brightness-50',
 				]}
+				disabled={!loggedInDiscord}
 			>
 				Enviar
 			</button>
-			<button
-				type="button"
-				class="cursor-pointer text-white uppercase hover:underline"
-				onclick={resetSelections}
-			>
-				Restablecer
-			</button>
+
+			<div class="flex flex-wrap justify-center gap-4">
+				<button
+					type="button"
+					class="cursor-pointer text-white uppercase hover:underline"
+					onclick={resetToZero}
+				>
+					Restablecer
+				</button>
+
+				{#if serverAvailability !== null}
+					<button
+						type="button"
+						class="cursor-pointer text-white uppercase hover:underline"
+						onclick={resetToServer}
+					>
+						Deshacer cambios
+					</button>
+				{/if}
+			</div>
 		</div>
 	</form>
 </main>

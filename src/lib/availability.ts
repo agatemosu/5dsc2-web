@@ -19,10 +19,10 @@ export function validateAvailability(formData: FormData): boolean {
 	return true;
 }
 
-export function encodeAvailability(formData: FormData): EncodedAvailability {
+export function encodeAvailability(keys: string[]): EncodedAvailability {
 	const rows: number[] = Array(ROWS).fill(0);
 
-	for (const key of formData.keys()) {
+	for (const key of keys) {
 		const [row, col] = key.split('-').map(Number);
 		rows[row] |= 1 << col;
 	}
