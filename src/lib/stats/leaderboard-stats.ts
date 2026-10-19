@@ -15,7 +15,7 @@ export function groupMapScores(scores: ScoreWithPlayer[], maps: FullMappool[]): 
 	const result: SoloStat[] = [];
 
 	for (const map of maps) {
-		const pick = `${map.slotName}${map.slotIndex}`;
+		const pick = map.slotName === 'TB' ? mod.slotName : `${map.slotName}${map.slotIndex}`;
 		const scores = scoreGroups.get(pick);
 
 		if (!scores || scores.length === 0) {
