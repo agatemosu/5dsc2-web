@@ -2,7 +2,6 @@ import type { FullMappool, ScoreWithPlayer } from '#lib/types.ts';
 
 interface SoloStat {
 	map: FullMappool;
-	highestScore: ScoreWithPlayer;
 	scores: ScoreWithPlayer[];
 }
 
@@ -24,7 +23,6 @@ export function groupMapScores(scores: ScoreWithPlayer[], maps: FullMappool[]): 
 
 		result.push({
 			map,
-			highestScore: scores[0],
 			scores: scores,
 		});
 	}
