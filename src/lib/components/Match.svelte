@@ -26,17 +26,17 @@
 </script>
 
 <article
-	class="mb-7 min-h-12 min-w-xl bg-linear-to-r from-team-red from-50% to-team-blue to-50% shadow-lg"
+	class="isolate min-w-xl bg-linear-to-r from-team-red from-50% to-team-blue to-50% shadow-lg"
 >
 	<div
 		class="relative grid h-10 grid-cols-5 items-center bg-linear-to-r from-accent-dark via-accent to-accent-dark shadow-lg/25"
 	>
 		{#if match.status === MatchStatus.Ongoing}
-			<div class="absolute -top-3 left-1/2 z-40 flex -translate-x-1/2 shadow-lg/25">
+			<div class="absolute -top-3 left-1/2 flex -translate-x-1/2 shadow-lg/25">
 				<div class="-mr-2 flex items-center bg-gray pr-3 pl-2">
 					<i class="icon-[mingcute--fast-forward-line] size-6 text-gray-2"></i>
 				</div>
-				<div class="z-20 flex items-center bg-lime-500 px-2 text-sm">En curso</div>
+				<div class="z-0 flex items-center bg-lime-500 px-2 text-sm">En curso</div>
 				<div class="-ml-2 flex items-center bg-purple-500 pr-2 pl-4">
 					<i class="icon-[simple-icons--twitch] size-4 text-purple-950"></i>
 				</div>
@@ -51,13 +51,13 @@
 				<img
 					src="https://a.ppy.sh/{match.red.osu.id}"
 					alt={match.red.osu.username}
-					class="h-10 w-60 object-cover transition-transform duration-500 hover:scale-110"
+					class="h-10 w-full object-cover transition-transform duration-500 hover:scale-110"
 				/>
 			{/if}
 		</a>
-		<span class="z-10 -ml-4 text-left text-xl text-white">{match.red?.osu.username}</span>
+		<span class="-ml-4 text-left text-xl text-white">{match.red?.osu.username}</span>
 		<span class="text-center text-sm text-white">vs.</span>
-		<span class="z-10 -mr-4 text-right text-xl text-white">{match.blue?.osu.username}</span>
+		<span class="-mr-4 text-right text-xl text-white">{match.blue?.osu.username}</span>
 		<a
 			href={match.blue != null ? `https://osu.ppy.sh/users/${match.blue.osu.id}` : null}
 			target="_blank"
@@ -67,7 +67,7 @@
 				<img
 					src="https://a.ppy.sh/{match.blue.osu.id}"
 					alt={match.blue.osu.username}
-					class="h-10 w-60 object-cover transition-transform duration-500 hover:scale-110"
+					class="h-10 w-full object-cover transition-transform duration-500 hover:scale-110"
 				/>
 			{/if}
 		</a>

@@ -59,7 +59,7 @@
 		<div
 			out:blur={{ duration: 200 }}
 			in:blur={{ delay: 200, duration: 200 }}
-			class="flex w-full flex-1 flex-col gap-2.5 overflow-x-auto"
+			class="flex w-full flex-1 flex-col gap-8 overflow-x-auto pt-4"
 		>
 			{#each filteredMatches as match (match.id)}
 				<Match bestOf={data.round.bestOf ?? 0} {match} />
