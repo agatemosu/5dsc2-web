@@ -4,7 +4,7 @@
 	import { blur } from 'svelte/transition';
 
 	import Layout from '#lib/components/Layout.svelte';
-	import Match from '#lib/components/Match.svelte';
+	import ConfirmedMatch from '#lib/components/ConfirmedMatch.svelte';
 
 	import type { PageProps } from './$types';
 
@@ -62,7 +62,7 @@
 			class="flex w-full flex-1 flex-col gap-8 overflow-x-auto pt-4"
 		>
 			{#each filteredMatches as match (match.id)}
-				<Match bestOf={data.round.bestOf ?? 0} {match} />
+				<ConfirmedMatch bestOf={data.round.bestOf ?? 0} {match} />
 			{/each}
 		</div>
 	{/key}
