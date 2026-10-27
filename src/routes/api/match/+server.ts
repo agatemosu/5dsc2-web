@@ -67,6 +67,10 @@ async function findPlayers(osuIds: number[]) {
 	return grouped;
 }
 
+function getParentMatchId(id: string) {
+	return id.match(/^(\d+)P\d+$/)?.[1] ?? null;
+}
+
 export const POST: RequestHandler = async (event) => {
 	if (import.meta.env.PROD) {
 		if (!event.locals.apiKey) {
@@ -107,7 +111,7 @@ export const POST: RequestHandler = async (event) => {
 		return error(404, 'Some round not found');
 	}
 
-	const osuIds = new Set(upsert.flatMap((m) => [m.red.id, m.blue.id]));
+	const osuIds = new Set(upsert.flatMap((m) => [m.red.id, m.blue.id]).filter((id) => id !== 0));
 	const playerIds = await findPlayers(Array.from(osuIds));
 
 	if (osuIds.size !== playerIds.size) {
@@ -115,9 +119,6 @@ export const POST: RequestHandler = async (event) => {
 	}
 
 	const insertMatches = upsert.map((match) => {
-		const teamRedId = playerIds.get(match.red.id) as number;
-		const teamBlueId = playerIds.get(match.blue.id) as number;
-
 		let osuMatchId: number | null = null;
 		if (match.mp_link) {
 			const url = new URL(match.mp_link);
@@ -129,12 +130,13 @@ export const POST: RequestHandler = async (event) => {
 
 		const insert: table.Match = {
 			id: match.id,
+			parentMatchId: getParentMatchId(match.id),
 			roundId: roundIds.get(match.stage) as number,
 			bracket: match.bracket,
 			status: match.status,
 			startTime: match.datetime,
-			teamRedId,
-			teamBlueId,
+			teamRedId: playerIds.get(match.red.id) ?? null,
+			teamBlueId: playerIds.get(match.blue.id) ?? null,
 			teamRedPoints: match.red.points ?? null,
 			teamBluePoints: match.blue.points ?? null,
 			rundown: match.rundown,
@@ -157,6 +159,7 @@ export const POST: RequestHandler = async (event) => {
 				.onConflictDoUpdate({
 					target: table.matches.id,
 					set: {
+						parentMatchId: sql`excluded.parent_match_id`,
 						roundId: sql`excluded.round_id`,
 						bracket: sql`excluded.bracket`,
 						status: sql`excluded.status`,

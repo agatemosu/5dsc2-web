@@ -1,0 +1,1 @@
+ALTER TABLE `matches` ADD `parent_match_id` text REFERENCES matches(id) ON DELETE CASCADE;

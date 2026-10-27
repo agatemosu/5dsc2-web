@@ -30,6 +30,9 @@ export const load: PageServerLoad = async (event) => {
 						with: { osu: true },
 					},
 				},
+				where: {
+					parentMatchId: { isNull: true },
+				},
 				orderBy: {
 					startTime: 'asc',
 				},

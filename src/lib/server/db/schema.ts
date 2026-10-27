@@ -1,4 +1,11 @@
-import { integer, real, snakeCase, text, unique } from 'drizzle-orm/sqlite-core';
+import {
+	integer,
+	real,
+	snakeCase,
+	text,
+	unique,
+	type AnySQLiteColumn,
+} from 'drizzle-orm/sqlite-core';
 
 import type { DraftEntry, Grade, MatchStatus, Mod, StageType } from '#lib/enums.ts';
 
@@ -73,6 +80,9 @@ export const rounds = snakeCase.table('rounds', {
 
 export const matches = snakeCase.table('matches', {
 	id: text().primaryKey(),
+	parentMatchId: text().references((): AnySQLiteColumn => matches.id, {
+		onDelete: 'cascade',
+	}),
 	roundId: integer()
 		.notNull()
 		.references(() => rounds.id),
