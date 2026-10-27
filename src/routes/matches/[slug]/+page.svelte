@@ -4,7 +4,7 @@
 	import { blur } from 'svelte/transition';
 
 	import Layout from '#lib/components/Layout.svelte';
-	import ConfirmedMatch from '#lib/components/ConfirmedMatch.svelte';
+	import Match from '#lib/components/Match.svelte';
 
 	import type { PageProps } from './$types';
 
@@ -12,15 +12,31 @@
 
 	let search = $state('');
 
+	let matchesWithPotentials = $derived(
+		data.round.matches
+			.filter((match) => !match.parentMatchId)
+			.map((match) => ({
+				...match,
+				potentialMatches: data.round.matches.filter(
+					(potentialMatch) => potentialMatch.parentMatchId === match.id,
+				),
+			})),
+	);
+
 	let filteredMatches = $derived(
-		data.round.matches.filter((match) => {
+		matchesWithPotentials.filter((match) => {
 			const query = search.toLowerCase().trim();
 
 			if (!query) return true;
 
 			return (
 				match.red?.osu.username.toLowerCase().includes(query) ||
-				match.blue?.osu.username.toLowerCase().includes(query)
+				match.blue?.osu.username.toLowerCase().includes(query) ||
+				match.potentialMatches.some(
+					(potentialMatch) =>
+						potentialMatch.red?.osu.username.toLowerCase().includes(query) ||
+						potentialMatch.blue?.osu.username.toLowerCase().includes(query),
+				)
 			);
 		}),
 	);
@@ -62,7 +78,7 @@
 			class="flex w-full flex-1 flex-col gap-8 overflow-x-auto pt-4"
 		>
 			{#each filteredMatches as match (match.id)}
-				<ConfirmedMatch bestOf={data.round.bestOf ?? 0} {match} />
+				<Match bestOf={data.round.bestOf ?? 0} {match} />
 			{/each}
 		</div>
 	{/key}

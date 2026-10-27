@@ -33,6 +33,10 @@ export type MatchWithPlayers = Match & {
 	blue: PlayerWithOsu | null;
 };
 
+export type MatchWithPotentials = MatchWithPlayers & {
+	potentialMatches: MatchWithPlayers[];
+};
+
 // stats
 export type ScoreWithPlayer = Score & { player: PlayerWithOsu<'id', 'username'> };
 export type NormalizedScoreWithPlayer = ScoreWithPlayer & { normalizedScore: number };
