@@ -1,5 +1,3 @@
-import { text } from '@sveltejs/kit';
-
 import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
@@ -19,5 +17,5 @@ export const GET: RequestHandler = async () => {
 
 	const rows = players.map(({ osu }) => `${osu.username},${osu.id}`);
 
-	return text(rows.join('\n'));
+	return new Response(rows.join('\n'));
 };

@@ -1,5 +1,5 @@
 import * as env from '$app/env/private';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
 
@@ -60,12 +60,11 @@ export const POST: RequestHandler = async (event) => {
 		}
 	}
 
-	const body = await event.request.json();
+	const body = (await event.request.json()) as unknown;
 	const result = statsSchema.safeParse(body);
 
 	if (!result.success) {
-		return error(400, {
-			message: 'Invalid body format',
+		return error(400, 'Invalid body format', {
 			data: {
 				reason: result.error.issues,
 			},
@@ -89,7 +88,7 @@ export const POST: RequestHandler = async (event) => {
 		const playerId = playerIds.get(score.user_id);
 
 		if (playerId === undefined) {
-			throw error(500, 'Some player not found');
+			return error(500, 'Some player not found');
 		}
 
 		const insert: typeof table.scores.$inferInsert = {
@@ -108,7 +107,7 @@ export const POST: RequestHandler = async (event) => {
 
 	await db.insert(table.scores).values(insertScores);
 
-	return json({
+	return Response.json({
 		success: true,
 	});
 };

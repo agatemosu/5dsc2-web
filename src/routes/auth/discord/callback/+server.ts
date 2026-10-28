@@ -41,8 +41,8 @@ export const GET: RequestHandler = async (event) => {
 			Authorization: `Bearer ${tokens.accessToken()}`,
 		},
 	});
-	const discordUser: DiscordUser = await discordUserResponse.json();
-	addDiscordDataToUser(event.locals.user.id, discordUser);
+	const discordUser = (await discordUserResponse.json()) as DiscordUser;
+	await addDiscordDataToUser(event.locals.user.id, discordUser);
 
 	const joinRes = await joinUserToServer(discordUser.id, tokens.accessToken());
 	if (joinRes instanceof UserError) {

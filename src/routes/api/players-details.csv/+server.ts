@@ -1,5 +1,3 @@
-import { text } from '@sveltejs/kit';
-
 import { db } from '#lib/server/db/index.ts';
 
 import type { RequestHandler } from './$types';
@@ -30,5 +28,5 @@ export const GET: RequestHandler = async () => {
 		);
 	}
 
-	return text(rows.join('\n'));
+	return new Response(rows.join('\n'));
 };

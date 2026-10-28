@@ -1,4 +1,4 @@
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
 import { db } from '#lib/server/db/index.ts';
 
@@ -14,7 +14,7 @@ export const GET: RequestHandler = async (event) => {
 		return error(404, 'Match not found');
 	}
 
-	return json(match, {
+	return Response.json(match, {
 		headers: {
 			'Access-Control-Allow-Origin': 'http://127.0.0.1:24050',
 		},

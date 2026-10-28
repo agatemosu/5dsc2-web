@@ -4,7 +4,7 @@ import header from '#lib/assets/header.jpg';
 
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ url, locals }) => {
+export const load: LayoutServerLoad = ({ url, locals }) => {
 	const baseTags = defineBaseMetaTags({
 		title: 'Inicio',
 		titleTemplate: '%s | 5 Digit Spanish Cup (2026)',

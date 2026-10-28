@@ -1,5 +1,3 @@
-import { json } from '@sveltejs/kit';
-
 import { MAX_QUALIFIED_SEED } from '#lib/consts.ts';
 import { db } from '#lib/server/db/index.ts';
 
@@ -18,5 +16,5 @@ export const GET: RequestHandler = async () => {
 		},
 	});
 
-	return json(players);
+	return Response.json(players);
 };

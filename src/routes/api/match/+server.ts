@@ -1,5 +1,5 @@
 import * as env from '$app/env/private';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { eq, inArray, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
@@ -82,12 +82,11 @@ export const POST: RequestHandler = async (event) => {
 		}
 	}
 
-	const body = await event.request.json();
+	const body = (await event.request.json()) as unknown;
 	const result = matchSyncSchema.safeParse(body);
 
 	if (!result.success) {
-		return error(400, {
-			message: 'Invalid body format',
+		return error(400, 'Invalid body format', {
 			data: {
 				reason: result.error.issues,
 			},
@@ -97,7 +96,7 @@ export const POST: RequestHandler = async (event) => {
 	const { upsert, delete: deleteIds } = result.data;
 
 	if (upsert.length === 0 && deleteIds.length === 0) {
-		return json({
+		return Response.json({
 			success: true,
 			upserted: 0,
 			deleted: 0,
@@ -191,7 +190,7 @@ export const POST: RequestHandler = async (event) => {
 		}),
 	});
 
-	return json({
+	return Response.json({
 		success: true,
 		upserted: insertMatches.length,
 		deleted: deleteIds.length,

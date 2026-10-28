@@ -20,7 +20,7 @@ export function validateAvailability(formData: FormData): boolean {
 }
 
 export function encodeAvailability(keys: string[]): EncodedAvailability {
-	const rows: number[] = Array(ROWS).fill(0);
+	const rows = Array<number>(ROWS).fill(0);
 
 	for (const key of keys) {
 		const [row, col] = key.split('-').map(Number);

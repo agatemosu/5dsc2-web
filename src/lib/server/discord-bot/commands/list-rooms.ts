@@ -6,6 +6,7 @@ import {
 	type AnyComponent,
 	type BaseInteractionContext,
 	type CommandContext,
+	type ComponentContext,
 	type MessageEmbedOptions,
 	type MessageOptions,
 	type SlashCreator,
@@ -35,34 +36,38 @@ export class ListRoomsCommand extends SlashCommand {
 			guildIDs: env.DISCORD_GUILD_ID,
 		});
 
-		creator.on('componentInteraction', async (ctx) => {
-			const parsed = this.parseCustomId(ctx.customID);
-
-			if (parsed === null || ctx.user.id !== parsed.userId) {
-				return;
-			}
-
-			const roomCount = await db.$count(table.qualifierRooms);
-
-			if (roomCount === 0) {
-				await ctx.editParent('No hay ninguna sala registrada.');
-				return;
-			}
-
-			const totalPages = Math.ceil(roomCount / this.pageSize);
-			const listFormatter = new Intl.ListFormat(ctx.locale);
-
-			const newPage = Math.max(
-				0,
-				Math.min(parsed.page + (parsed.action === Action.Previous ? -1 : 1), totalPages - 1),
-			);
-
-			await ctx.editParent({
-				embeds: [await this.createEmbed(newPage, totalPages, listFormatter)],
-				components: this.createComponents(ctx, newPage, totalPages),
-			});
+		creator.on('componentInteraction', (ctx) => {
+			void this.handleComponentInteraction(ctx);
 		});
 	}
+
+	handleComponentInteraction = async (ctx: ComponentContext) => {
+		const parsed = this.parseCustomId(ctx.customID);
+
+		if (parsed === null || ctx.user.id !== parsed.userId) {
+			return;
+		}
+
+		const roomCount = await db.$count(table.qualifierRooms);
+
+		if (roomCount === 0) {
+			await ctx.editParent('No hay ninguna sala registrada.');
+			return;
+		}
+
+		const totalPages = Math.ceil(roomCount / this.pageSize);
+		const listFormatter = new Intl.ListFormat(ctx.locale);
+
+		const newPage = Math.max(
+			0,
+			Math.min(parsed.page + (parsed.action === Action.Previous ? -1 : 1), totalPages - 1),
+		);
+
+		await ctx.editParent({
+			embeds: [await this.createEmbed(newPage, totalPages, listFormatter)],
+			components: this.createComponents(ctx, newPage, totalPages),
+		});
+	};
 
 	createCustomId = (action: Action, userId: string, page: number) =>
 		`${this.commandName}:${action}:${userId}:${page}`;

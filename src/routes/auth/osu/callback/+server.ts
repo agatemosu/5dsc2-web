@@ -40,7 +40,7 @@ export const GET: RequestHandler = async (event) => {
 			Authorization: `Bearer ${tokens.accessToken()}`,
 		},
 	});
-	const osuUser: OsuUser = await osuUserResponse.json();
+	const osuUser = (await osuUserResponse.json()) as OsuUser;
 
 	if (osuUser.country_code !== 'ES') {
 		return error(403, 'Debes ser de España para registrarte.');

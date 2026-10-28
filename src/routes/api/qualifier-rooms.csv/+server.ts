@@ -1,5 +1,3 @@
-import { text } from '@sveltejs/kit';
-
 import { ROOM_SIZE } from '#lib/consts.ts';
 import { db } from '#lib/server/db/index.ts';
 
@@ -36,9 +34,9 @@ export const GET: RequestHandler = async () => {
 			dateFormatter.format(room.startTime),
 			timeFormatter.format(room.startTime),
 			...room.players.map((player) => player.osu.username),
-			...Array(ROOM_SIZE - room.players.length).fill(null),
+			...Array<null>(ROOM_SIZE - room.players.length).fill(null),
 		].join(','),
 	);
 
-	return text(rows.join('\n'));
+	return new Response(rows.join('\n'));
 };

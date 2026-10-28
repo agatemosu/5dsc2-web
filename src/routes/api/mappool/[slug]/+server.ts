@@ -1,5 +1,5 @@
 import * as env from '$app/env/private';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
 import { db } from '#lib/server/db/index.ts';
 
@@ -37,5 +37,5 @@ export const GET: RequestHandler = async (event) => {
 		error(404, 'Round not found');
 	}
 
-	return json(pool);
+	return Response.json(pool);
 };
