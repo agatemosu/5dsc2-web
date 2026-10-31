@@ -22,7 +22,7 @@
 		return matches.map((match): MatchWithPotentials => ({
 			...match,
 			potentialMatches:
-				match.teamBlueId !== null || match.teamRedId !== null ? null : getPotentials(match),
+				match.teamBlueId !== null && match.teamRedId !== null ? null : getPotentials(match),
 		}));
 	});
 
@@ -78,7 +78,7 @@
 		<div
 			out:blur={{ duration: 200 }}
 			in:blur={{ delay: 200, duration: 200 }}
-			class="flex w-full flex-1 flex-col gap-8 overflow-x-auto py-5"
+			class="flex w-full flex-1 flex-col gap-10 overflow-x-auto py-5"
 		>
 			{#each filteredMatches as match (match.id)}
 				<Match bestOf={data.round.bestOf ?? 0} {match} />
