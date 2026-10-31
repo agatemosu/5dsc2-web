@@ -34,7 +34,7 @@ export type MatchWithPlayers = Match & {
 };
 
 export type MatchWithPotentials = MatchWithPlayers & {
-	potentialMatches: MatchWithPlayers[];
+	potentialMatches: MatchWithPlayers[] | null;
 };
 
 // stats

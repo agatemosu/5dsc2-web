@@ -10,11 +10,9 @@
 	}
 
 	let { bestOf, match }: Props = $props();
-
-	let hasPotentials = $derived(match.potentialMatches != null && match.potentialMatches.length > 0);
 </script>
 
-{#if hasPotentials}
+{#if match.potentialMatches !== null}
 	<PotentialMatches potentials={match.potentialMatches} />
 {:else}
 	<ConfirmedMatch {bestOf} {match} />

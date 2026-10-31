@@ -5,6 +5,7 @@
 
 	import Layout from '#lib/components/Layout.svelte';
 	import Match from '#lib/components/Match.svelte';
+	import type { MatchWithPlayers, MatchWithPotentials } from '#lib/types.ts';
 
 	import type { PageProps } from './$types';
 
@@ -12,16 +13,18 @@
 
 	let search = $state('');
 
-	let matchesWithPotentials = $derived(
-		data.round.matches
-			.filter((match) => !match.parentMatchId)
-			.map((match) => ({
-				...match,
-				potentialMatches: data.round.matches.filter(
-					(potentialMatch) => potentialMatch.parentMatchId === match.id,
-				),
-			})),
-	);
+	let matchesWithPotentials = $derived.by(() => {
+		const matches = data.round.matches.filter((match) => !match.parentMatchId);
+
+		const getPotentials = (match: MatchWithPlayers) =>
+			data.round.matches.filter((potentialMatch) => potentialMatch.parentMatchId === match.id);
+
+		return matches.map((match): MatchWithPotentials => ({
+			...match,
+			potentialMatches:
+				match.teamBlueId !== null || match.teamRedId !== null ? null : getPotentials(match),
+		}));
+	});
 
 	let filteredMatches = $derived(
 		matchesWithPotentials.filter((match) => {
@@ -32,7 +35,7 @@
 			return (
 				match.red?.osu.username.toLowerCase().includes(query) ||
 				match.blue?.osu.username.toLowerCase().includes(query) ||
-				match.potentialMatches.some(
+				match.potentialMatches?.some(
 					(potentialMatch) =>
 						potentialMatch.red?.osu.username.toLowerCase().includes(query) ||
 						potentialMatch.blue?.osu.username.toLowerCase().includes(query),
@@ -68,14 +71,14 @@
 		type="search"
 		bind:value={search}
 		placeholder="buscar jugador..."
-		class="mb-5 w-full bg-gray px-4 py-3 text-white outline-none placeholder:text-gray-2"
+		class="w-full bg-gray px-4 py-3 text-white outline-none placeholder:text-gray-2"
 	/>
 
 	{#key page.params.slug}
 		<div
 			out:blur={{ duration: 200 }}
 			in:blur={{ delay: 200, duration: 200 }}
-			class="flex w-full flex-1 flex-col gap-8 overflow-x-auto pt-4"
+			class="flex w-full flex-1 flex-col gap-8 overflow-x-auto py-5"
 		>
 			{#each filteredMatches as match (match.id)}
 				<Match bestOf={data.round.bestOf ?? 0} {match} />
