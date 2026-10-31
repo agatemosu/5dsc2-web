@@ -11,20 +11,33 @@
 
 	let { data }: PageProps = $props();
 
+	function getPotentials(match: MatchWithPlayers) {
+		return data.round.matches.filter((potentialMatch) => {
+			if (potentialMatch.parentMatchId !== match.id) return false;
+
+			if (match.teamBlueId !== null) {
+				return potentialMatch.teamBlueId === match.teamBlueId;
+			}
+
+			if (match.teamRedId !== null) {
+				return potentialMatch.teamRedId === match.teamRedId;
+			}
+
+			return true;
+		});
+	}
+
+	let matchesWithPotentials = $derived(
+		data.round.matches
+			.filter((match) => !match.parentMatchId)
+			.map((match) => ({
+				...match,
+				potentialMatches:
+					match.teamBlueId !== null && match.teamRedId !== null ? null : getPotentials(match),
+			})),
+	);
+
 	let search = $state('');
-
-	let matchesWithPotentials = $derived.by(() => {
-		const matches = data.round.matches.filter((match) => !match.parentMatchId);
-
-		const getPotentials = (match: MatchWithPlayers) =>
-			data.round.matches.filter((potentialMatch) => potentialMatch.parentMatchId === match.id);
-
-		return matches.map((match): MatchWithPotentials => ({
-			...match,
-			potentialMatches:
-				match.teamBlueId !== null && match.teamRedId !== null ? null : getPotentials(match),
-		}));
-	});
 
 	let filteredMatches = $derived(
 		matchesWithPotentials.filter((match) => {
