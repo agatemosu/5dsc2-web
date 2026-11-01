@@ -10,6 +10,7 @@ export const load: PageServerLoad = async () => {
 			startTime: { gt: Temporal.Now.instant() },
 			teamRedId: { isNotNull: true },
 			teamBlueId: { isNotNull: true },
+			parentMatchId: { isNull: true },
 		},
 		columns: {
 			startTime: true,
