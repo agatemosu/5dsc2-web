@@ -26,9 +26,9 @@
 
 				<div class="flex flex-1 flex-col text-center">
 					<div>
-						<span class="text-team-red">{match.teamRedPoints}</span>
+						<span class="text-team-red">{Math.max(0, match.teamRedPoints ?? 0)}</span>
 						<span class="text-white">-</span>
-						<span class="text-team-blue">{match.teamBluePoints}</span>
+						<span class="text-team-blue">{Math.max(0, match.teamBluePoints ?? 0)}</span>
 					</div>
 
 					<div class="text-xs text-white">
