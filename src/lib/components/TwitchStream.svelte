@@ -6,22 +6,22 @@
 
 	const socials = [
 		{
-			icon: tw('icon-[simple-icons--osu]'),
+			icon: tw('iconify simple-icons--osu'),
 			href: 'https://osu.ppy.sh/community/forums/topics/2238623',
 			alt: 'Forum Post',
 		},
 		{
-			icon: tw('icon-[simple-icons--youtube]'),
+			icon: tw('iconify simple-icons--youtube'),
 			href: 'https://www.youtube.com/@SpanishCup',
 			alt: 'YouTube',
 		},
 		{
-			icon: tw('icon-[simple-icons--twitch]'),
+			icon: tw('iconify simple-icons--twitch'),
 			href: 'https://www.twitch.tv/spanishcup',
 			alt: 'Twitch',
 		},
 		{
-			icon: tw('icon-[simple-icons--discord]'),
+			icon: tw('iconify simple-icons--discord'),
 			href: 'https://discord.com/invite/CY2dHK2Zek',
 			alt: 'Discord',
 		},

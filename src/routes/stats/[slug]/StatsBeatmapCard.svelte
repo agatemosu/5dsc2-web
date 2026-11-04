@@ -85,12 +85,12 @@
 				class="flex w-14 items-center justify-center gap-1"
 				use:tooltip={{ content: 'Estrellas' }}
 			>
-				<i class="icon-[mingcute--star-fill] size-3 {modClass[map.slotName].text}"></i>
+				<i class="iconify mingcute--star-fill size-3 {modClass[map.slotName].text}"></i>
 				<span class="text-white">{numFormatter.format(map.starRating)}</span>
 			</div>
 
 			<div class="flex w-14 items-center justify-center gap-1" use:tooltip={{ content: 'BPM' }}>
-				<i class="icon-[mingcute--music-2-fill] size-3 {modClass[map.slotName].text}"></i>
+				<i class="iconify mingcute--music-2-fill size-3 {modClass[map.slotName].text}"></i>
 				<span class="text-white">
 					{numFormatter.format(
 						map.slotName === Mod.DT ? calcModStat.dt.bpm(map.beatmap.bpm) : map.beatmap.bpm,
@@ -102,7 +102,7 @@
 				class="flex w-14 items-center justify-center gap-1"
 				use:tooltip={{ content: 'Duración' }}
 			>
-				<i class="icon-[mingcute--clock-4-fill] size-3 {modClass[map.slotName].text}"></i>
+				<i class="iconify mingcute--clock-4-fill size-3 {modClass[map.slotName].text}"></i>
 				<span class="text-white">
 					{formatTime(
 						map.slotName === Mod.DT

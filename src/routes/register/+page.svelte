@@ -18,7 +18,7 @@
 			href={resolve('/auth/osu')}
 			class="flex items-center gap-3 place-self-center bg-pink-500 px-4 py-2 text-white hover:opacity-80"
 		>
-			<i class="icon-[simple-icons--osu] size-10"></i>
+			<i class="iconify simple-icons--osu size-10"></i>
 			<span class="text-xl">Inicia sesión con osu!</span>
 		</a>
 	{:else}

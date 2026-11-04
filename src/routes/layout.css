@@ -5,8 +5,11 @@
 @import '@fontsource/momo-trust-display';
 @import '@fontsource-variable/inter/wght.css';
 
-@plugin '@iconify/tailwind4';
 @plugin '@tailwindcss/typography';
+
+@plugin '@iconify/tailwind4' {
+	prefixes: mingcute, simple-icons;
+}
 
 @theme {
 	--font-sans: 'Momo Trust Display', sans-serif;
