@@ -174,7 +174,7 @@
 							</div>
 
 							{#if i < picks.length - 1}
-								<i class="mb-2 icon-[flowbite--caret-right-solid] text-white"></i>
+								<i class="mb-2 icon-[mingcute--right-fill] text-white"></i>
 							{/if}
 						{/each}
 					</div>

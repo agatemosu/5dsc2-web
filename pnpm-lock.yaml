@@ -17,9 +17,12 @@ importers:
       '@fontsource/momo-trust-display':
         specifier: 5.3.0
         version: 5.3.0
-      '@iconify/json':
-        specifier: 2.2.541
-        version: 2.2.541
+      '@iconify-json/mingcute':
+        specifier: 1.2.9
+        version: 1.2.9
+      '@iconify-json/simple-icons':
+        specifier: 1.2.101
+        version: 1.2.101
       '@iconify/tailwind4':
         specifier: 1.2.3
         version: 1.2.3(tailwindcss@4.3.3)
@@ -385,8 +388,11 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/json@2.2.541':
-    resolution: {integrity: sha512-s89hthisPkDuwrhPPvYdDKczNAvW7y3OI19L0NXdlVFzmoFi4uO02P8UvHT02hSrQ22ZmPLhInf5K+Knn9TPew==}
+  '@iconify-json/mingcute@1.2.9':
+    resolution: {integrity: sha512-YASrrlFAn+4uLF3xV7DpZhB06ZOP+H1i0sKvm7P75Kl+RkjYntefbG+m8iNaBCjlDdcUxhj1/3kVlrdFTLlVrQ==}
+
+  '@iconify-json/simple-icons@1.2.101':
+    resolution: {integrity: sha512-MXJkMZDancJ/9I+Bgdthi9kXvn3AwWStxoTHwEPwAFQ9kMLBASO1BSstg52fNtjXeizm1Wi91R+QnWxNGkWHPQ==}
 
   '@iconify/tailwind4@1.2.3':
     resolution: {integrity: sha512-z8SKiMHRASJKF/IY//87MF88lcB7ulxh8vlhQXXLWsBkNtOh6ese9R41MyGpQeqXdRvQVt+/fX2glQtHFjQ+MA==}
@@ -2797,10 +2803,13 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@iconify/json@2.2.541':
+  '@iconify-json/mingcute@1.2.9':
     dependencies:
       '@iconify/types': 2.0.0
-      pathe: 2.0.3
+
+  '@iconify-json/simple-icons@1.2.101':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/tailwind4@1.2.3(tailwindcss@4.3.3)':
     dependencies:

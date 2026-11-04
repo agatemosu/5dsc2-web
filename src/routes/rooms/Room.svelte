@@ -54,7 +54,7 @@
 			visibility: room.players.length > 0,
 		}}
 	>
-		<i class="icon-[tabler--user] text-white"></i>
+		<i class="icon-[mingcute--user-1-line] text-white"></i>
 		<span class="text-sm text-white">{room.players.length}/{maxPlayers}</span>
 	</div>
 
@@ -81,10 +81,10 @@
 			>
 				<i
 					class="size-full transition-colors {isThisSelectedRoom
-						? 'icon-[tabler--login-2] text-pink-500'
+						? 'icon-[mingcute--user-follow-line] text-pink-500'
 						: loggedIn && hasSpaceAvailable && !isPast
-							? 'icon-[tabler--login-2] text-green-200'
-							: 'icon-[tabler--lock] text-neutral-500'}"
+							? 'icon-[mingcute--user-add-line] text-green-100'
+							: 'icon-[mingcute--user-remove-line] text-neutral-500'}"
 				></i>
 			</button>
 		</form>

@@ -47,7 +47,7 @@
 			href={resolve('/auth/discord')}
 			class="mr-2 flex items-center gap-1 text-white hover:underline"
 		>
-			<i class="icon-[lucide--link] size-5"></i> Vincular otro Discord
+			<i class="icon-[mingcute--link-line] size-5"></i> Vincular otro Discord
 		</a>
 	{:else if discord}
 		<form method="post" action="?/unlink" use:enhance class="flex items-center">
@@ -55,7 +55,7 @@
 				type="submit"
 				class="mr-2 flex cursor-pointer items-center gap-1 text-white hover:underline"
 			>
-				<i class="icon-[lucide--unlink] size-5"></i> Desvincular
+				<i class="icon-[mingcute--unlink-line] size-5"></i> Desvincular
 			</button>
 		</form>
 	{:else}
@@ -63,7 +63,7 @@
 			href={resolve('/auth/discord')}
 			class="mr-2 flex items-center gap-1 text-white hover:underline"
 		>
-			<i class="icon-[lucide--link] size-5"></i> Vincular
+			<i class="icon-[mingcute--link-line] size-5"></i> Vincular
 		</a>
 	{/if}
 </div>

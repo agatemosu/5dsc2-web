@@ -46,7 +46,7 @@
 			class="flex size-10 items-center justify-center bg-accent"
 			rel="external"
 		>
-			<i class="icon-[tabler--download] size-8 text-white"></i>
+			<i class="icon-[mingcute--file-download-line] size-8 text-white"></i>
 		</a>
 		<span class="text-4xl text-white">{data.round.name}</span>
 	</div>
