@@ -31,6 +31,10 @@
 		>
 			<img
 				src="https://assets.ppy.sh/beatmaps/{map.beatmap.beatmapsetId}/covers/cover.jpg"
+				onerror={(e) => {
+					(e.currentTarget as HTMLImageElement).src =
+						`https://osu.ppy.sh/images/backgrounds/placeholders/${map.beatmap.beatmapset.id % 6}.jpg`;
+				}}
 				alt="Cover de {map.beatmap.beatmapset.title}"
 				class="h-full w-full object-cover"
 			/>
