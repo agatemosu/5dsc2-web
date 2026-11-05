@@ -53,9 +53,10 @@
 							{accuracyFormatter.format(scoreData.accuracy)}
 						</div>
 						<div
-							class="w-8 text-center text-xl drop-shadow-[0_0_5px]/80 drop-shadow-inherit {gradeClass[
-								scoreData.grade
-							].text}"
+							class={[
+								'w-8 text-center text-xl drop-shadow-[0_0_5px]/80 drop-shadow-inherit',
+								gradeClass[scoreData.grade].text,
+							]}
 						>
 							{scoreData.grade.replace(/H$/, '')}
 						</div>

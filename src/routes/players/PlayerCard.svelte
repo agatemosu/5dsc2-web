@@ -26,9 +26,12 @@
 	});
 </script>
 
-<article class="relative overflow-hidden bg-accent {eliminated ? 'grayscale-100' : null}">
+<article class={['relative overflow-hidden bg-accent', { 'grayscale-100': eliminated }]}>
 	<div
-		class="absolute top-1/2 -right-32 z-0 size-64 -translate-y-1/2 rounded-full bg-radial to-transparent to-50% {gradientRule}"
+		class={[
+			'absolute top-1/2 -right-32 z-0 size-64 -translate-y-1/2 rounded-full bg-radial to-transparent to-50%',
+			gradientRule,
+		]}
 	></div>
 
 	<div class="relative z-10 flex items-center">
@@ -49,7 +52,7 @@
 		</div>
 
 		{#if player.seed}
-			<div class="mr-4 text-background {player.seed <= 3 ? 'text-5xl' : 'text-4xl'}">
+			<div class={['mr-4 text-background', player.seed <= 3 ? 'text-5xl' : 'text-4xl']}>
 				#{player.seed}
 			</div>
 		{/if}

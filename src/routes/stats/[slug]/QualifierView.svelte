@@ -56,7 +56,7 @@
 			<th class="px-4 py-2 text-center font-normal text-white underline">z-sum</th>
 			<th class="px-4 py-2 text-center font-normal text-white underline">avg. score</th>
 			{#each maps as map (map.id)}
-				<th class="px-4 py-2 text-center font-normal underline {modClass[map.slotName].text}">
+				<th class={['px-4 py-2 text-center font-normal underline', modClass[map.slotName].text]}>
 					{map.slotName}{map.slotIndex}
 				</th>
 			{/each}
@@ -65,7 +65,7 @@
 	<tbody>
 		{#each zsums as zsum, i (zsum.player.id)}
 			<tr class="bg-dark">
-				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
+				<td class={['px-2 py-2 text-center', getPositionClass(i)]}>#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
 					{zsum.player.osu.username}
 				</td>
@@ -79,7 +79,7 @@
 					{@const scoreIndex = (scoresByPick.get(score.pick) as Score[]).findIndex(
 						(s) => s.id === score.id,
 					)}
-					<td class="px-4 py-2 text-center {getScoreClass(scoreIndex)}">
+					<td class={['px-4 py-2 text-center', getScoreClass(scoreIndex)]}>
 						#{scoreIndex + 1} - {scoreFormatter.format(score.normalizedScore)}
 					</td>
 				{/each}

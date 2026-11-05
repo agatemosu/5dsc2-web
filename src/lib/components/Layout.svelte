@@ -12,7 +12,7 @@
 	let { children, extra, title }: Props = $props();
 </script>
 
-<div class="grid flex-1 md:mt-20 {title ? '2xl:grid-cols-2' : ''}">
+<div class={['grid flex-1 md:mt-20', title ? '2xl:grid-cols-2' : null]}>
 	{#if title}
 		<div class="flex max-w-3xl flex-col gap-5 max-md:hidden">
 			<TituloSuperGrande />

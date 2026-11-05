@@ -42,7 +42,7 @@
 						aria-label={social.alt}
 						use:tooltip={{ content: social.alt }}
 					>
-						<i class="size-7 text-black hover:opacity-80 {social.icon}"></i>
+						<i class={['size-7 text-black hover:opacity-80', social.icon]}></i>
 					</a>
 				</li>
 			{/each}

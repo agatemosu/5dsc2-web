@@ -59,9 +59,10 @@
 			{#if round.hasScores}
 				<a
 					href={resolve('/stats/[slug]', { slug: round.slug })}
-					class="shrink-0 px-5 py-3 text-sm text-white {page.params.slug === round.slug
-						? 'bg-accent'
-						: 'bg-gray'}"
+					class={[
+						'shrink-0 px-5 py-3 text-sm text-white',
+						page.params.slug === round.slug ? 'bg-accent' : 'bg-gray',
+					]}
 				>
 					{round.name}
 				</a>

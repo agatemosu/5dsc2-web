@@ -50,7 +50,7 @@
 	<tbody>
 		{#each matchCosts as player, i (player.player.id)}
 			<tr class="bg-dark odd:bg-gray">
-				<td class="px-2 py-2 text-center {getPositionClass(i)}">#{i + 1}</td>
+				<td class={['px-2 py-2 text-center', getPositionClass(i)]}>#{i + 1}</td>
 				<td class="px-4 py-2 text-left text-background">
 					{player.player.osu.username}
 				</td>
@@ -74,20 +74,21 @@
 									{scoreFormatter.format(player.highestScore.score)}
 								</span>
 
-								<span class="text-xs {pickClass(player.highestScore.pick).text}">
+								<span class={['text-xs', pickClass(player.highestScore.pick).text]}>
 									{accuracyFormatter.format(player.highestScore.accuracy)}
 								</span>
 							</div>
 
-							<div class="truncate text-xs {pickClass(player.highestScore.pick).text}">
+							<div class={['truncate text-xs', pickClass(player.highestScore.pick).text]}>
 								{player.highestScore.pick}
 							</div>
 						</div>
 
 						<div
-							class="flex size-10 items-center justify-center text-2xl drop-shadow-[0_0_5px]/80 drop-shadow-inherit {gradeClass[
-								player.highestScore.grade
-							].text}"
+							class={[
+								'flex size-10 items-center justify-center text-2xl drop-shadow-[0_0_5px]/80 drop-shadow-inherit',
+								gradeClass[player.highestScore.grade].text,
+							]}
 						>
 							{player.highestScore.grade.replace(/H$/, '')}
 						</div>

@@ -96,9 +96,10 @@
 
 				{#if match.teamRedPoints === -1 || match.teamBluePoints === -1}
 					<div
-						class={`absolute top-1.5 ss-forfeit-bg px-2 text-sm font-semibold text-black ${
-							match.teamBluePoints === -1 ? 'left-full ml-2' : 'right-full mr-2'
-						}`}
+						class={[
+							'absolute top-1.5 ss-forfeit-bg px-2 text-sm font-semibold text-black',
+							match.teamBluePoints === -1 ? 'left-full ml-2' : 'right-full mr-2',
+						]}
 					>
 						FORFEIT
 					</div>
@@ -158,18 +159,22 @@
 						{#each picks as item, i (item.pick)}
 							<div class="flex flex-col items-center gap-1">
 								<span
-									class="flex w-10 items-center justify-center rounded-sm py-0.5 text-xs text-white text-shadow-md/20 {item.winner
-										? item.winner === DraftActor.Red
-											? 'bg-team-red'
-											: 'bg-team-blue'
-										: 'bg-neutral-400'}"
+									class={[
+										'flex w-10 items-center justify-center rounded-sm py-0.5 text-xs text-white text-shadow-md/20',
+										{
+											'bg-neutral-400': !item.winner,
+											'bg-team-red': item.winner === DraftActor.Red,
+											'bg-team-blue': item.winner === DraftActor.Blue,
+										},
+									]}
 								>
 									{item.pick}
 								</span>
 								<span
-									class="size-1 rounded-full {item.actor === DraftActor.Red
-										? 'bg-team-red'
-										: 'bg-team-blue'}"
+									class={[
+										'size-1 rounded-full',
+										item.actor === DraftActor.Red ? 'bg-team-red' : 'bg-team-blue',
+									]}
 								></span>
 							</div>
 

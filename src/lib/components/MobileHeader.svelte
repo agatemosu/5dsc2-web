@@ -39,10 +39,9 @@
 			<ul class="flex flex-col gap-4">
 				{#each items as item, i (i)}
 					<li
-						class="text-xl {page.url.pathname === item.href ||
-						page.url.pathname.startsWith(item.href + '/')
-							? 'text-white'
-							: 'text-dimmed'}"
+						class={page.url.pathname === item.href || page.url.pathname.startsWith(item.href + '/')
+							? 'text-xl text-white'
+							: 'text-xl text-dimmed'}
 					>
 						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 						<a href={item.href} onclick={() => (open = false)}>

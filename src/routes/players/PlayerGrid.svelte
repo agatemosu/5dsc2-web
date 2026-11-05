@@ -19,7 +19,7 @@
 		<div
 			class={isListOddAndLastItem(i, players.length)
 				? 'w-full place-self-center md:col-span-2 md:w-1/2'
-				: ''}
+				: null}
 		>
 			<PlayerCard {player} />
 		</div>

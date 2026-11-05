@@ -17,24 +17,28 @@
 	const timeFormatter = new Intl.DateTimeFormat('es-ES', { timeStyle: 'short' });
 	const maxPlayers = 16;
 
-	let isThisSelectedRoom = $derived(selectedRoom === room.id);
 	let hasSpaceAvailable = $derived(maxPlayers > room.players.length);
 	let isPast = $derived(Temporal.Instant.compare(Temporal.Now.instant(), room.startTime) > 0);
+
+	let isThisSelectedRoom = $derived(selectedRoom === room.id);
+	let canSelectRoom = $derived(loggedIn && hasSpaceAvailable && !isPast);
 </script>
 
 <div
-	class="flex items-center gap-2 bg-linear-to-r pr-2 {!isPast && hasSpaceAvailable
-		? 'from-emerald-500 to-sky-800'
-		: 'from-rose-800 to-slate-600'}"
+	class={[
+		'flex items-center gap-2 bg-linear-to-r pr-2',
+		!isPast && hasSpaceAvailable ? 'from-emerald-500 to-sky-800' : 'from-rose-800 to-slate-600',
+	]}
 >
 	<div class="flex size-15 items-center justify-center bg-accent text-2xl text-white">
 		{room.id}
 	</div>
 
 	<span
-		class="ml-2 size-2 rounded-full shadow-[0_0_10px_3px] {!isPast && hasSpaceAvailable
-			? 'bg-green-300 shadow-green-300'
-			: 'bg-red-500 shadow-red-500'}"
+		class={[
+			'ml-2 size-2 rounded-full shadow-[0_0_10px_3px]',
+			!isPast && hasSpaceAvailable ? 'bg-green-300 shadow-green-300' : 'bg-red-500 shadow-red-500',
+		]}
 	></span>
 
 	<InstantTooltip instant={room.startTime}>
@@ -71,20 +75,22 @@
 			<input type="hidden" name="room_id" value={room.id} />
 
 			<button
-				disabled={isThisSelectedRoom || !loggedIn || !hasSpaceAvailable || isPast}
-				class="size-8 p-1 transition-colors {isThisSelectedRoom
-					? 'cursor-not-allowed bg-pink-950'
-					: loggedIn && hasSpaceAvailable && !isPast
-						? 'cursor-pointer bg-emerald-500'
-						: 'cursor-not-allowed bg-dark'}"
+				disabled={isThisSelectedRoom || !canSelectRoom}
+				class={{
+					'size-8 p-1 transition-colors': true,
+					'cursor-not-allowed bg-pink-950': isThisSelectedRoom,
+					'cursor-pointer bg-emerald-500': !isThisSelectedRoom && canSelectRoom,
+					'cursor-not-allowed bg-dark': !isThisSelectedRoom && !canSelectRoom,
+				}}
 				aria-label="Unirse a esta sala"
 			>
 				<i
-					class="size-full transition-colors {isThisSelectedRoom
-						? 'iconify text-pink-500 mingcute--user-follow-line'
-						: loggedIn && hasSpaceAvailable && !isPast
-							? 'iconify text-green-100 mingcute--user-add-line'
-							: 'iconify text-neutral-500 mingcute--user-remove-line'}"
+					class={{
+						'iconify size-full transition-colors': true,
+						'text-pink-500 mingcute--user-follow-line': isThisSelectedRoom,
+						'text-green-100 mingcute--user-add-line': !isThisSelectedRoom && canSelectRoom,
+						'text-neutral-500 mingcute--user-remove-line': !isThisSelectedRoom && !canSelectRoom,
+					}}
 				></i>
 			</button>
 		</form>

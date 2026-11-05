@@ -46,7 +46,7 @@
 	<!-- Slot / ID -->
 	<div class="flex w-18 shrink-0 flex-col gap-2.5 p-2.5">
 		<div
-			class="py-2 text-center text-sm text-white {modClass[map.slotName].bg}"
+			class={['py-2 text-center text-sm text-white', modClass[map.slotName].bg]}
 			use:tooltip={{
 				content:
 					`Sugerido por ${map.suggestor}` +
@@ -68,7 +68,7 @@
 
 	<!-- Song info -->
 	<div class="min-w-40 flex-1 p-2 pt-2 md:basis-auto md:px-0 md:py-4">
-		<div class="truncate font-sans text-sm {modClass[map.slotName].text}">
+		<div class={['truncate font-sans text-sm', modClass[map.slotName].text]}>
 			{map.beatmap.beatmapset.artist}
 		</div>
 
@@ -92,12 +92,12 @@
 					class="flex w-14 items-center justify-center gap-1"
 					use:tooltip={{ content: 'Estrellas' }}
 				>
-					<i class="iconify size-3 mingcute--star-fill {modClass[map.slotName].text}"></i>
+					<i class={['iconify size-3 mingcute--star-fill', modClass[map.slotName].text]}></i>
 					<span class="text-white">{numFormatter.format(map.starRating)}</span>
 				</div>
 
 				<div class="flex w-14 items-center justify-center gap-1" use:tooltip={{ content: 'BPM' }}>
-					<i class="iconify size-3 mingcute--music-2-fill {modClass[map.slotName].text}"></i>
+					<i class={['iconify size-3 mingcute--music-2-fill', modClass[map.slotName].text]}></i>
 					<span class="text-white">
 						{numFormatter.format(
 							map.slotName === Mod.DT ? calcModStat.dt.bpm(map.beatmap.bpm) : map.beatmap.bpm,
@@ -109,7 +109,7 @@
 					class="flex w-14 items-center justify-center gap-1"
 					use:tooltip={{ content: 'Duración' }}
 				>
-					<i class="iconify size-3 mingcute--clock-4-fill {modClass[map.slotName].text}"></i>
+					<i class={['iconify size-3 mingcute--clock-4-fill', modClass[map.slotName].text]}></i>
 					<span class="text-white">
 						{formatTime(
 							map.slotName === Mod.DT
