@@ -38,7 +38,7 @@
 			/>
 			<span class="text-xl text-white">{discordData.displayText}</span>
 		{:else}
-			<i class="iconify simple-icons--discord size-10 text-white"></i>
+			<i class="iconify size-10 text-white simple-icons--discord"></i>
 			<span class="text-xl text-white">Discord (sin vincular)</span>
 		{/if}
 	</div>
@@ -47,7 +47,7 @@
 			href={resolve('/auth/discord')}
 			class="mr-2 flex items-center gap-1 text-white hover:underline"
 		>
-			<i class="iconify mingcute--link-line size-5"></i> Vincular otro Discord
+			<i class="iconify size-5 mingcute--link-line"></i> Vincular otro Discord
 		</a>
 	{:else if discord}
 		<form method="post" action="?/unlink" use:enhance class="flex items-center">
@@ -55,7 +55,7 @@
 				type="submit"
 				class="mr-2 flex cursor-pointer items-center gap-1 text-white hover:underline"
 			>
-				<i class="iconify mingcute--unlink-line size-5"></i> Desvincular
+				<i class="iconify size-5 mingcute--unlink-line"></i> Desvincular
 			</button>
 		</form>
 	{:else}
@@ -63,7 +63,7 @@
 			href={resolve('/auth/discord')}
 			class="mr-2 flex items-center gap-1 text-white hover:underline"
 		>
-			<i class="iconify mingcute--link-line size-5"></i> Vincular
+			<i class="iconify size-5 mingcute--link-line"></i> Vincular
 		</a>
 	{/if}
 </div>

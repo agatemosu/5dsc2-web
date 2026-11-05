@@ -34,11 +34,11 @@
 		{#if match.status === MatchStatus.Ongoing}
 			<div class="absolute -top-3 left-1/2 flex -translate-x-1/2 shadow-lg/25">
 				<div class="-mr-2 flex items-center bg-gray pr-3 pl-2">
-					<i class="iconify mingcute--fast-forward-line size-6 text-gray-2"></i>
+					<i class="iconify size-6 text-gray-2 mingcute--fast-forward-line"></i>
 				</div>
 				<div class="z-0 flex items-center bg-lime-500 px-2 text-sm">En curso</div>
 				<div class="-ml-2 flex items-center bg-purple-500 pr-2 pl-4">
-					<i class="iconify simple-icons--twitch size-4 text-purple-950"></i>
+					<i class="iconify size-4 text-purple-950 simple-icons--twitch"></i>
 				</div>
 			</div>
 		{/if}
@@ -148,7 +148,7 @@
 								target="_blank"
 								aria-label="Enlace del partido en la web de osu!"
 							>
-								<i class="iconify mingcute--external-link-line size-6 text-orange-500"></i>
+								<i class="iconify size-6 text-orange-500 mingcute--external-link-line"></i>
 							</a>
 						</div>
 					</div>
@@ -174,7 +174,7 @@
 							</div>
 
 							{#if i < picks.length - 1}
-								<i class="mb-2 iconify mingcute--right-fill text-white"></i>
+								<i class="mb-2 iconify text-white mingcute--right-fill"></i>
 							{/if}
 						{/each}
 					</div>

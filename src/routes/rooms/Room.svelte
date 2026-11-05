@@ -54,7 +54,7 @@
 			visibility: room.players.length > 0,
 		}}
 	>
-		<i class="iconify mingcute--user-1-line text-white"></i>
+		<i class="iconify text-white mingcute--user-1-line"></i>
 		<span class="text-sm text-white">{room.players.length}/{maxPlayers}</span>
 	</div>
 
@@ -81,10 +81,10 @@
 			>
 				<i
 					class="size-full transition-colors {isThisSelectedRoom
-						? 'iconify mingcute--user-follow-line text-pink-500'
+						? 'iconify text-pink-500 mingcute--user-follow-line'
 						: loggedIn && hasSpaceAvailable && !isPast
-							? 'iconify mingcute--user-add-line text-green-100'
-							: 'iconify mingcute--user-remove-line text-neutral-500'}"
+							? 'iconify text-green-100 mingcute--user-add-line'
+							: 'iconify text-neutral-500 mingcute--user-remove-line'}"
 				></i>
 			</button>
 		</form>

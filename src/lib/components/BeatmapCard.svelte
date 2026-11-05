@@ -105,7 +105,7 @@
 					class="flex w-14 items-center justify-center gap-1"
 					use:tooltip={{ content: 'Duración' }}
 				>
-					<i class="iconify mingcute--clock-4-fill size-3 {modClass[map.slotName].text}"></i>
+					<i class="iconify size-3 mingcute--clock-4-fill {modClass[map.slotName].text}"></i>
 					<span class="text-white">
 						{formatTime(
 							map.slotName === Mod.DT
