@@ -35,8 +35,13 @@
 	></div>
 
 	<div class="relative z-10 flex items-center">
-		<a href="https://osu.ppy.sh/users/{player.osu.id}" target="_blank" class="shrink-0">
-			<img src="https://a.ppy.sh/{player.osu.id}" alt={player.osu.username} class="size-20" />
+		<a
+			href="https://osu.ppy.sh/users/{player.osu.id}"
+			target="_blank"
+			class="shrink-0"
+			aria-label="Ver perfil de {player.osu.username} en osu!"
+		>
+			<img src="https://a.ppy.sh/{player.osu.id}" alt="" class="size-20" />
 		</a>
 
 		<div class="ml-3 flex min-w-0 flex-1">
@@ -45,8 +50,12 @@
 					{player.osu.username}
 				</span>
 				<div class="flex items-baseline gap-3 text-accent-dark">
-					<span>#{player.osu.globalRank}</span>
-					<span>#{player.osu.countryRank} ES</span>
+					<span aria-label="Posición global: {player.osu.globalRank}">
+						#{player.osu.globalRank}
+					</span>
+					<span aria-label="Posición en España: {player.osu.countryRank}">
+						#{player.osu.countryRank} ES
+					</span>
 				</div>
 			</div>
 		</div>

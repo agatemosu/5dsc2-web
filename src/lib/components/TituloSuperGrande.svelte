@@ -8,5 +8,5 @@
 		<span class="text-5xl leading-15 text-white">Spanish Cup</span>
 		<span class="self-end text-2xl text-accent">2026</span>
 	</div>
-	<img src={logo} alt="Logo" width="271px" />
+	<img src={logo} alt="" width="271px" />
 </div>

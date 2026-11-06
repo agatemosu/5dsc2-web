@@ -86,6 +86,7 @@
 		bind:value={search}
 		placeholder="buscar jugador..."
 		class="w-full bg-gray px-4 py-3 text-white outline-none placeholder:text-gray-2"
+		aria-label="Buscar jugador"
 	/>
 
 	{#key page.params.slug}

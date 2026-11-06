@@ -18,7 +18,7 @@
 <header class="sticky top-0 z-50 bg-black lg:hidden">
 	<div class="flex h-16 items-center justify-between px-4">
 		<div class="flex gap-6">
-			<img src={logo} width="48" alt="Logo" />
+			<img src={logo} width="48" alt="5 Digit Spanish Cup (2026)" />
 			<span class="text-xl text-white">{title}</span>
 		</div>
 

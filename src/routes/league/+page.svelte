@@ -56,11 +56,7 @@
 					<tr class={i % 2 === 0 ? 'bg-gray' : null}>
 						<td class="px-4 py-3 text-left">{i + 1}</td>
 						<td class="flex items-center gap-2.5 px-4 py-1 text-left">
-							<img
-								src="https://a.ppy.sh/{item.user.osu.id}"
-								alt="Avatar de {item.user.osu.username}"
-								class="size-10"
-							/>
+							<img src="https://a.ppy.sh/{item.user.osu.id}" alt="" class="size-10" />
 							{item.user.osu.username}
 						</td>
 						<td class="px-4 py-3 text-center text-green-300">{item.wins}</td>

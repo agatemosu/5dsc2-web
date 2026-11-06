@@ -82,7 +82,7 @@
 			in:blur={{ delay: 200, duration: 200 }}
 			class="flex flex-col gap-2.5"
 		>
-			<div class="flex items-center gap-4 text-white">
+			<label class="flex items-center gap-4 text-white">
 				vista:
 
 				<select
@@ -93,7 +93,7 @@
 						<option value={view}>{viewLabels[view]}</option>
 					{/each}
 				</select>
-			</div>
+			</label>
 
 			<div class="w-full overflow-x-auto">
 				<div class="flex w-fit min-w-full justify-center">

@@ -33,7 +33,7 @@
 		{#if discordData}
 			<img
 				src={discordData.avatar}
-				alt={`Avatar de ${discordData.username}`}
+				alt="Avatar de {discordData.username}"
 				class="size-10 rounded-full"
 			/>
 			<span class="text-xl text-white">{discordData.displayText}</span>

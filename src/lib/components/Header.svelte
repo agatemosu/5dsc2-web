@@ -17,7 +17,7 @@
 
 <header class="sticky top-0 z-50 hidden h-20 items-center bg-black pr-5 lg:flex">
 	<div class="flex size-20 justify-center">
-		<img src={logo} width="60" alt="Logo" />
+		<img src={logo} width="60" alt="5 Digit Spanish Cup (2026)" />
 	</div>
 
 	<nav class="ml-10 flex flex-1 items-center">

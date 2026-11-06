@@ -82,7 +82,7 @@
 				{#each hours as hour, col (hour)}
 					<input
 						type="checkbox"
-						name={`${row}-${col}`}
+						name="{row}-{col}"
 						class="size-8 cursor-pointer border-0 bg-none checked:bg-blue-400 hover:brightness-75"
 						checked={availability[`${row}-${col}`]}
 						onchange={toggleSelection}
