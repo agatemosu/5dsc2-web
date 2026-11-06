@@ -61,7 +61,7 @@
 			<div class="bg-white py-1 text-center text-xs text-black">custom</div>
 		{/if}
 
-		<div class="text-center text-xs text-gray-2 select-all">
+		<div class="text-center text-xs text-neutral-400 select-all">
 			{map.beatmapId}
 		</div>
 	</div>

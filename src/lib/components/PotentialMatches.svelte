@@ -33,7 +33,7 @@
 					>
 						{#if potential.red != null}
 							<img
-								src={`https://a.ppy.sh/${potential.red.osu.id}`}
+								src="https://a.ppy.sh/{potential.red.osu.id}"
 								alt={potential.red.osu.username}
 								class="h-10 w-full object-cover transition-transform duration-500 hover:scale-110"
 							/>
@@ -60,7 +60,7 @@
 					>
 						{#if potential.blue != null}
 							<img
-								src={`https://a.ppy.sh/${potential.blue.osu.id}`}
+								src="https://a.ppy.sh/{potential.blue.osu.id}"
 								alt={potential.blue.osu.username}
 								class="h-10 w-full object-cover transition-transform duration-500 hover:scale-110"
 							/>
